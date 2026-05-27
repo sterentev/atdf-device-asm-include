@@ -1,19 +1,19 @@
 #!/bin/sh
 
-VERSION=0.06
+VERSION=0.07
 
 realpath=`readlink -f $0`
 xsltdir=`dirname $realpath`/xslt
 
 usage() {
     echo "Usage:"
-    echo "	$0 [-o outfile.inc] infile.xml"
+    echo "	$0 [-o outfile.inc] infile.atdf"
     echo ""
-    echo "	Script converts XML specification of AVR MCU"
-    echo "	into .inc file appropriate for macroassembler."
+    echo "	Script converts XML specification of AVR MCU (.atdf file)"
+    echo "	into .inc file which contains MCU definitions for macroassembler."
     echo "	If output file not specified results will be written to STDOUT."
-    echo "	XML files for AVR MCUs are available at the following URL"
-    echo "	http://packs.download.atmel.com/"
+    echo "	Device pack files which contain source .atdf files for AVR MCUs"
+    echo "	are available at the following URL: http://packs.download.atmel.com/"
     echo ""
 }
 

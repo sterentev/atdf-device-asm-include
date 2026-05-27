@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=0.02
+VERSION=0.03
 
 realpath=`readlink -f $0`
 converter=`dirname $realpath`/atdf2inc.sh
@@ -9,13 +9,13 @@ usage() {
     echo "Usage:"
     echo "	$0 <ATDF dir> <INC dir>"
     echo ""
-    echo "	Script provides mass conversion of XML specifications"
-    echo "	of AVR MCUs usually stored in .atdf files."
-    echo "	It outputs macroassembler .inc files and put them into <INC dir>"
-    echo "	(keeping original names but with .inc extension)."
+    echo "	Script provides mass conversion of XML specifications of AVR MCUs"
+    echo "	stored in .atdf files which are a part of Microchip \"device packs\"."
+    echo "	It makes macroassembler .inc files and puts them into <INC dir>"
+    echo "	(keeping original name but with .inc extension)."
     echo "	If <INC dir> is absent it will be created."
-    echo "	ATDF files for AVR MCUs are available at the following URL"
-    echo "	http://packs.download.atmel.com/"
+    echo "	Device pack files which contain source .atdf files for AVR MCUs"
+    echo "	are available at the following URL: http://packs.download.atmel.com/"
     echo ""
 }
 
