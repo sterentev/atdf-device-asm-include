@@ -1,0 +1,4 @@
+*.inc linguist-language=Assembly
+*.sh linguist-language=Shell
+*.xsl linguist-language=XSLT
+
