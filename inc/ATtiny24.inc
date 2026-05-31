@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny24
 ;* File Name         : ATtiny24.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-05-27 14:43:30 UTC
+;* Make Date         : 2026-05-31 13:22:18 UTC
 ;
 ;***********************************************************************
 
@@ -624,9 +624,9 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset,Watchdog Reset
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset,Watchdog Reset
 ;#		reti			; EXT_INT0	 - External Interrupt Request 0
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt Request 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
 ;#		reti			; WDT		 - Watchdog Time-out
 ;#		reti			; TIM1_CAPT	 - Timer/Counter1 Capture Event
@@ -638,12 +638,15 @@
 ;#		reti			; TIM0_OVF	 - Timer/Counter0 Overflow
 ;#		reti			; ANA_COMP	 - Analog Comparator
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_RDY	; EE_RDY	 - EEPROM Ready
+;#		rjmp	EE_RDY_ISR	; EE_RDY	 - EEPROM Ready
 ;#		reti			; USI_STR	 - USI START
 ;#		reti			; USI_OVF	 - USI Overflow
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SPL, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATTINY24_INC_ */

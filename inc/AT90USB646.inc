@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the AT90USB646
 ;* File Name         : AT90USB646.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:33 UTC
+;* Make Date         : 2026-05-31 13:22:22 UTC
 ;
 ;***********************************************************************
 
@@ -1394,8 +1394,8 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; INT2		 - External Interrupt Request 2
 ;#		reti			; INT3		 - External Interrupt Request 3
@@ -1403,7 +1403,7 @@
 ;#		reti			; INT5		 - External Interrupt Request 5
 ;#		reti			; INT6		 - External Interrupt Request 6
 ;#		reti			; INT7		 - External Interrupt Request 7
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt Request 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; USB_GEN	 - USB General Interrupt Request
 ;#		reti			; USB_COM	 - USB Endpoint/Pipe Interrupt Communication Request
 ;#		reti			; WDT		 - Watchdog Time-out Interrupt
@@ -1424,7 +1424,7 @@
 ;#		reti			; USART1_TX	 - USART1, Tx Complete
 ;#		reti			; ANALOG_COMP	 - Analog Comparator
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_READY	; EE_READY	 - EEPROM Ready
+;#		rjmp	EE_READY_ISR	; EE_READY	 - EEPROM Ready
 ;#		reti			; TIMER3_CAPT	 - Timer/Counter3 Capture Event
 ;#		reti			; TIMER3_COMPA	 - Timer/Counter3 Compare Match A
 ;#		reti			; TIMER3_COMPB	 - Timer/Counter3 Compare Match B
@@ -1434,7 +1434,12 @@
 ;#		reti			; SPM_READY	 - Store Program Memory Read
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _AT90USB646_INC_ */

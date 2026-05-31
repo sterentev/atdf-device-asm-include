@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega16HVA
 ;* File Name         : ATmega16HVA.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:36 UTC
+;* Make Date         : 2026-05-31 13:22:24 UTC
 ;
 ;***********************************************************************
 
@@ -614,10 +614,10 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
 ;#		reti			; BPINT		 - Battery Protection Interrupt
 ;#		reti			; VREGMON	 - Voltage regulator monitor interrupt
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; INT2		 - External Interrupt Request 2
 ;#		reti			; WDT		 - Watchdog Timeout Interrupt
@@ -634,10 +634,15 @@
 ;#		reti			; CCADC_CONV	 - Coulomb Counter ADC Conversion Complete
 ;#		reti			; CCADC_REG_CUR	 - Coloumb Counter ADC Regular Current
 ;#		reti			; CCADC_ACC	 - Coloumb Counter ADC Accumulator
-;#		rjmp	INT_EE_READY	; EE_READY	 - EEPROM Ready
+;#		rjmp	EE_READY_ISR	; EE_READY	 - EEPROM Ready
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATMEGA16HVA_INC_ */

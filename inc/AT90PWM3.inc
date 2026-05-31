@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the AT90PWM3
 ;* File Name         : AT90PWM3.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:33 UTC
+;* Make Date         : 2026-05-31 13:22:21 UTC
 ;
 ;***********************************************************************
 
@@ -1416,7 +1416,7 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset and JTAG AVR Reset
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset and JTAG AVR Reset
 ;#		reti			; PSC2_CAPT	 - PSC2 Capture Event
 ;#		reti			; PSC2_EC	 - PSC2 End Cycle
 ;#		reti			; PSC1_CAPT	 - PSC1 Capture Event
@@ -1426,7 +1426,7 @@
 ;#		reti			; ANALOG_COMP_0	 - Analog Comparator 0
 ;#		reti			; ANALOG_COMP_1	 - Analog Comparator 1
 ;#		reti			; ANALOG_COMP_2	 - Analog Comparator 2
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; TIMER1_CAPT	 - Timer/Counter1 Capture Event
 ;#		reti			; TIMER1_COMPA	 - Timer/Counter1 Compare Match A
 ;#		reti			; TIMER1_COMPB	 - Timer/Counter Compare Match B
@@ -1442,7 +1442,7 @@
 ;#		reti			; USART_TX	 - USART, Tx Complete
 ;#		reti			; INT2		 - External Interrupt Request 2
 ;#		reti			; WDT		 - Watchdog Timeout Interrupt
-;#		rjmp	INT_EE_READY	; EE_READY	 - EEPROM Ready
+;#		rjmp	EE_READY_ISR	; EE_READY	 - EEPROM Ready
 ;#		reti			; TIMER0_COMPB	 - Timer Counter 0 Compare Match B
 ;#		reti			; INT3		 - External Interrupt Request 3
 ;#		reti			; RESERVED30	 - 
@@ -1450,7 +1450,12 @@
 ;#		reti			; SPM_READY	 - Store Program Memory Read
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _AT90PWM3_INC_ */

@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega32
 ;* File Name         : ATmega32.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:38 UTC
+;* Make Date         : 2026-05-31 13:22:26 UTC
 ;
 ;***********************************************************************
 
@@ -799,8 +799,8 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset  and Watchdog Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset  and Watchdog Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; INT2		 - External Interrupt Request 2
 ;#		reti			; TIMER2_COMP	 - Timer/Counter2 Compare Match
@@ -816,13 +816,18 @@
 ;#		reti			; USART_UDRE	 - USART Data Register Empty
 ;#		reti			; USART_TXC	 - USART, Tx Complete
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_RDY	; EE_RDY	 - EEPROM Ready
+;#		rjmp	EE_RDY_ISR	; EE_RDY	 - EEPROM Ready
 ;#		reti			; ANA_COMP	 - Analog Comparator
 ;#		reti			; TWI		 - 2-wire Serial Interface
 ;#		reti			; SPM_RDY	 - Store Program Memory Ready
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATMEGA32_INC_ */

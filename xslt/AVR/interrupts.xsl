@@ -104,29 +104,29 @@
    <xsl:text>;#&#09;&#09;cli&#10;</xsl:text>
    <xsl:choose>
     <xsl:when test="$regs/register[@name='SP' and @size=1]">
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SP, r16&#10;</xsl:text>
     </xsl:when>
     <xsl:when test="$regs/register[@name='SP' and @size=2]">
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SP+1, r16&#10;</xsl:text>
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SP, r16&#10;</xsl:text>
     </xsl:when>
     <xsl:when test="$regs/register[@name='SPL'] and $regs/register[@name='SPH']">
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SPH, r16&#10;</xsl:text>
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SPL, r16&#10;</xsl:text>
     </xsl:when>
     <xsl:when test="$regs/register[@name='SPL' and @size=1]">
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SPL, r16&#10;</xsl:text>
     </xsl:when>
     <xsl:when test="$regs/register[@name='SPL' and @size=2]">
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SPL+1, r16&#10;</xsl:text>
-     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ')&#10;')"/>
      <xsl:text>;#&#09;&#09;out&#09;SPL, r16&#10;</xsl:text>
     </xsl:when>
    </xsl:choose>

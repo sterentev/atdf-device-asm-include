@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny1634
 ;* File Name         : ATtiny1634.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-05-27 14:43:30 UTC
+;* Make Date         : 2026-05-31 13:22:18 UTC
 ;
 ;***********************************************************************
 
@@ -855,9 +855,9 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
 ;#		reti			; PCINT2	 - Pin Change Interrupt Request 2
 ;#		reti			; WDT		 - Watchdog Time-out Interrupt
@@ -900,11 +900,16 @@
 ;#		reti			; USI_OVF	 - USI Overflow
 ;#		reti			; TWI_SLAVE	 - Two-wire Serial Interface
 ;#		reti			; TWI		 - Two-wire Serial Interface
-;#		rjmp	INT_EE_RDY	; EE_RDY	 - EEPROM Ready
+;#		rjmp	EE_RDY_ISR	; EE_RDY	 - EEPROM Ready
 ;#		reti			; QTRIP		 - Touch Sensing
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATTINY1634_INC_ */

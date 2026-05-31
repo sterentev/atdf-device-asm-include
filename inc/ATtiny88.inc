@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny88
 ;* File Name         : ATtiny88.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-05-27 14:43:32 UTC
+;* Make Date         : 2026-05-31 13:22:20 UTC
 ;
 ;***********************************************************************
 
@@ -708,10 +708,10 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt Request 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
 ;#		reti			; PCINT2	 - Pin Change Interrupt Request 2
 ;#		reti			; PCINT3	 - Pin Change Interrupt Request 3
@@ -725,12 +725,17 @@
 ;#		reti			; TIMER0_OVF	 - Timer/Counter0 Overflow
 ;#		reti			; SPI_STC	 - SPI Serial Transfer Complete
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_RDY	; EE_RDY	 - EEPROM Ready
+;#		rjmp	EE_RDY_ISR	; EE_RDY	 - EEPROM Ready
 ;#		reti			; ANALOG_COMP	 - Analog Comparator
 ;#		reti			; TWI		 - Two-wire Serial Interface
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SPH, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SPL, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATTINY88_INC_ */

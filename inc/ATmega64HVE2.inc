@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega64HVE2
 ;* File Name         : ATmega64HVE2.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:42 UTC
+;* Make Date         : 2026-05-31 13:22:30 UTC
 ;
 ;***********************************************************************
 
@@ -857,9 +857,9 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt 0
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt 0
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt 1
 ;#		reti			; WDT		 - Watchdog Timeout Interrupt
 ;#		reti			; WAKEUP	 - Wakeup Timer Overflow
@@ -879,12 +879,17 @@
 ;#		reti			; CADC_CONV	 - C-ADC Instantaneous Conversion Complete
 ;#		reti			; CADC_REG_CUR	 - C-ADC Regular Current
 ;#		reti			; CADC_ACC	 - C-ADC Accumulated Conversion Complete
-;#		rjmp	INT_EE_READY	; EE_READY	 - EEPROM Ready
+;#		rjmp	EE_READY_ISR	; EE_READY	 - EEPROM Ready
 ;#		reti			; SPM		 - SPM Ready
 ;#		reti			; PLL		 - PLL Lock Change Interrupt
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATMEGA64HVE2_INC_ */

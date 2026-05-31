@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega328PB
 ;* File Name         : ATmega328PB.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:39 UTC
+;* Make Date         : 2026-05-31 13:22:27 UTC
 ;
 ;***********************************************************************
 
@@ -1178,10 +1178,10 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt Request 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
 ;#		reti			; PCINT2	 - Pin Change Interrupt Request 2
 ;#		reti			; WDT		 - Watchdog Time-out Interrupt
@@ -1200,7 +1200,7 @@
 ;#		reti			; USART0_UDRE	 - USART0, Data Register Empty
 ;#		reti			; USART0_TX	 - USART0 Tx Complete
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_READY	; EE_READY	 - EEPROM Ready
+;#		rjmp	EE_READY_ISR	; EE_READY	 - EEPROM Ready
 ;#		reti			; ANALOG_COMP	 - Analog Comparator
 ;#		reti			; TWI0		 - Two-wire Serial Interface
 ;#		reti			; SPM_Ready	 - Store Program Memory Read
@@ -1225,7 +1225,12 @@
 ;#		reti			; TIMER4_OVF	 - Timer/Counter4 Overflow
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATMEGA328PB_INC_ */

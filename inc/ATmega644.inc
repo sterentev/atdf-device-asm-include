@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega644
 ;* File Name         : ATmega644.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:41 UTC
+;* Make Date         : 2026-05-31 13:22:29 UTC
 ;
 ;***********************************************************************
 
@@ -980,11 +980,11 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; INT2		 - External Interrupt Request 2
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt Request 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
 ;#		reti			; PCINT2	 - Pin Change Interrupt Request 2
 ;#		reti			; PCINT3	 - Pin Change Interrupt Request 3
@@ -1005,12 +1005,17 @@
 ;#		reti			; USART0_TX	 - USART0, Tx Complete
 ;#		reti			; ANALOG_COMP	 - Analog Comparator
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_READY	; EE_READY	 - EEPROM Ready
+;#		rjmp	EE_READY_ISR	; EE_READY	 - EEPROM Ready
 ;#		reti			; TWI		 - 2-wire Serial Interface
 ;#		reti			; SPM_READY	 - Store Program Memory Read
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATMEGA644_INC_ */

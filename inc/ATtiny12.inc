@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny12
 ;* File Name         : ATtiny12.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-05-27 14:43:29 UTC
+;* Make Date         : 2026-05-31 13:22:18 UTC
 ;
 ;***********************************************************************
 
@@ -345,15 +345,15 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Reset, Power-on Reset and Watchdog Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt 0
+;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt 0
 ;#		reti			; IO_PINS	 - External Interrupt Request 0
 ;#		reti			; TIMER0_OVF	 - Timer/Counter0 Overflow
-;#		rjmp	INT_EE_RDY	; EE_RDY	 - EEPROM Ready
+;#		rjmp	EE_RDY_ISR	; EE_RDY	 - EEPROM Ready
 ;#		reti			; ANA_COMP	 - Analog Comparator
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATTINY12_INC_ */

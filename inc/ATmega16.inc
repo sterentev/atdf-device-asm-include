@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega16
 ;* File Name         : ATmega16.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-27 14:43:35 UTC
+;* Make Date         : 2026-05-31 13:22:23 UTC
 ;
 ;***********************************************************************
 
@@ -810,8 +810,8 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset and JTAG AVR Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset and JTAG AVR Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; TIMER2_COMP	 - Timer/Counter2 Compare Match
 ;#		reti			; TIMER2_OVF	 - Timer/Counter2 Overflow
@@ -825,7 +825,7 @@
 ;#		reti			; USART_UDRE	 - USART Data Register Empty
 ;#		reti			; USART_TXC	 - USART, Tx Complete
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_RDY	; EE_RDY	 - EEPROM Ready
+;#		rjmp	EE_RDY_ISR	; EE_RDY	 - EEPROM Ready
 ;#		reti			; ANA_COMP	 - Analog Comparator
 ;#		reti			; TWI		 - 2-wire Serial Interface
 ;#		reti			; INT2		 - External Interrupt Request 2
@@ -833,7 +833,12 @@
 ;#		reti			; SPM_RDY	 - Store Program Memory Ready
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATMEGA16_INC_ */

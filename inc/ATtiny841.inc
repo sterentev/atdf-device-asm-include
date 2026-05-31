@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny841
 ;* File Name         : ATtiny841.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-05-27 14:43:31 UTC
+;* Make Date         : 2026-05-31 13:22:20 UTC
 ;
 ;***********************************************************************
 
@@ -977,9 +977,9 @@
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	INT_RESET	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
-;#		rjmp	INT_INT0	; INT0		 - External Interrupt Request 0
-;#		rjmp	INT_PCINT0	; PCINT0	 - Pin Change Interrupt Request 0
+;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
+;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
 ;#		reti			; WDT		 - Watchdog Time-out Interrupt
 ;#		reti			; TIMER1_CAPT	 - Timer/Counter1 Capture Event
@@ -991,7 +991,7 @@
 ;#		reti			; TIMER0_OVF	 - Timer/Counter0 Overflow
 ;#		reti			; ANA_COMP0	 - Analog Comparator 0
 ;#		reti			; ADC		 - ADC Conversion Complete
-;#		rjmp	INT_EE_RDY	; EE_RDY	 - EEPROM Ready
+;#		rjmp	EE_RDY_ISR	; EE_RDY	 - EEPROM Ready
 ;#		reti			; ANA_COMP1	 - Analog Comparator 1
 ;#		reti			; TIMER2_CAPT	 - Timer/Counter2 Capture Event
 ;#		reti			; TIMER2_COMPA	 - Timer/Counter2 Compare Match A
@@ -1009,7 +1009,12 @@
 ;#		reti			; TWI_SLAVE	 - Two-wire Serial Interface
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	INT_RESET:
+;#	RESET:
+;#		cli
+;#		ldi	r16, high(ADDR_IRAM_END)
+;#		out	SP+1, r16
+;#		ldi	r16, low(ADDR_IRAM_END)
+;#		out	SP, r16
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATTINY841_INC_ */
