@@ -90,6 +90,47 @@
   <xsl:text>;#&#09;; Interrupt vectors end&#10;</xsl:text>
   <xsl:text>;#&#09;;.org INT_VECTORS_SIZE&#10;</xsl:text>
   <xsl:text>;#&#09;RESET:&#10;</xsl:text>
+  <xsl:call-template name="stackinit">
+   <xsl:with-param name="ram" select="/avr-tools-device-file/devices/device/address-spaces/address-space/memory-segment[@type='ram' and (@name='SRAM' or (@name='IRAM' and @external='false'))]"/>
+   <xsl:with-param name="regs" select="/avr-tools-device-file/modules/module/register-group[@name='CPU']"/>
+  </xsl:call-template>
+ </xsl:template>
+
+ <xsl:template name="stackinit">
+  <xsl:param name="ram"/>
+  <xsl:param name="regs"/>
+  <xsl:if test="count($ram) and count($regs)">
+   <xsl:variable name="topram" select="concat('ADDR_', $ram/@name, '_END')"/>
+   <xsl:text>;#&#09;&#09;cli&#10;</xsl:text>
+   <xsl:choose>
+    <xsl:when test="$regs/register[@name='SP' and @size=1]">
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SP, r16&#10;</xsl:text>
+    </xsl:when>
+    <xsl:when test="$regs/register[@name='SP' and @size=2]">
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SP+1, r16&#10;</xsl:text>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SP, r16&#10;</xsl:text>
+    </xsl:when>
+    <xsl:when test="$regs/register[@name='SPL'] and $regs/register[@name='SPH']">
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SPH, r16&#10;</xsl:text>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SPL, r16&#10;</xsl:text>
+    </xsl:when>
+    <xsl:when test="$regs/register[@name='SPL' and @size=1]">
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SPL, r16&#10;</xsl:text>
+    </xsl:when>
+    <xsl:when test="$regs/register[@name='SPL' and @size=2]">
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, high(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SPL+1, r16&#10;</xsl:text>
+     <xsl:value-of select="concat(';#&#09;&#09;ldi&#09;r16, low(', $topram, ') &#10;')"/>
+     <xsl:text>;#&#09;&#09;out&#09;SPL, r16&#10;</xsl:text>
+    </xsl:when>
+   </xsl:choose>
+  </xsl:if>
  </xsl:template>
 
 
