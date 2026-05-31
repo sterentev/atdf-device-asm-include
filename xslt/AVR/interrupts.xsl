@@ -71,8 +71,11 @@
    <xsl:sort select="@index" data-type="number" order="ascending"/>
    <xsl:text>;#&#09;&#09;</xsl:text>
    <xsl:choose>
-    <xsl:when test="@name='RESET' or @name='INT0' or @name='PCINT0' or @name='EE_READY' or @name='EE_RDY'">
-     <xsl:value-of select="concat('rjmp&#09;INT_', @name, '&#09;')"/>
+    <xsl:when test="@name='RESET'">
+     <xsl:value-of select="concat('rjmp&#09;', @name, '&#09;&#09;')"/>
+    </xsl:when>
+    <xsl:when test="@name='INT0' or @name='PCINT0' or @name='EE_READY' or @name='EE_RDY'">
+     <xsl:value-of select="concat('rjmp&#09;', @name, '_ISR','&#09;')"/>
     </xsl:when>
     <xsl:otherwise>
      <xsl:text>reti&#09;&#09;&#09;</xsl:text>
@@ -86,7 +89,7 @@
   </xsl:for-each>
   <xsl:text>;#&#09;; Interrupt vectors end&#10;</xsl:text>
   <xsl:text>;#&#09;;.org INT_VECTORS_SIZE&#10;</xsl:text>
-  <xsl:text>;#&#09;INT_RESET:&#10;</xsl:text>
+  <xsl:text>;#&#09;RESET:&#10;</xsl:text>
  </xsl:template>
 
 
