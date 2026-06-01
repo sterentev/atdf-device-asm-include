@@ -92,6 +92,8 @@ xsltproc $xsltdir/${ARCHDIR}/registers.xsl "$INFILE"
 
 xsltproc $xsltdir/${ARCHDIR}/interrupts.xsl "$INFILE"
 
+xsltproc $xsltdir/${ARCHDIR}/skeleton.xsl "$INFILE"
+
 
 echo "#endif /* ${INCL} */"
 cat <<\DOC_FOOTER
