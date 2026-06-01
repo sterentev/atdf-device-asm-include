@@ -17,6 +17,7 @@
   <xsl:text>; - Some bitmasks MCU developers split on 2+ chunks and placed separately&#10;</xsl:text>
   <xsl:text>;   (sometime in different registers). Such bitmaps are placed in&#10;</xsl:text>
   <xsl:text>;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.&#10;</xsl:text>
+  <xsl:text>; - FUSES and LOCKBITS in program skeleton are set to their production default values.&#10;</xsl:text>
   <xsl:text>;&#10;</xsl:text>
   <xsl:text>;***********************************************************************&#10;</xsl:text>
   <xsl:text>&#10;</xsl:text>

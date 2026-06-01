@@ -108,7 +108,7 @@
  <xsl:template name="asmfuses">
   <!-- FUSES calculator -->
   <xsl:for-each select="modules/module[@name='FUSE']/register-group/register">
-   <xsl:value-of select="concat($indent, '; FUSES ', @name, '&#10;')"/>
+   <xsl:value-of select="concat($indent, '; FUSES ', @name, ' byte (addr ', @offset, ')&#10;')"/>
    <xsl:apply-templates select="bitfield" mode="enumselect">
     <xsl:with-param name="initval" select="@initval"/>
    </xsl:apply-templates>
@@ -120,7 +120,7 @@
   </xsl:for-each>
   <!-- LOCKBITS calculator -->
   <xsl:for-each select="modules/module[@name='LOCKBIT']/register-group/register">
-   <xsl:value-of select="concat($indent, '; LOCKBITS ', @name, '&#10;')"/>
+   <xsl:value-of select="concat($indent, '; LOCKBITS ', @name, ' byte (addr ', @offset, ')&#10;')"/>
    <xsl:apply-templates select="bitfield" mode="enumselect">
     <xsl:with-param name="initval" select="@initval"/>
    </xsl:apply-templates>
@@ -130,15 +130,26 @@
    </xsl:apply-templates>
    <xsl:text>&#10;</xsl:text>
   </xsl:for-each>
-  <!-- Output calculator results -->
+  <!-- Display calculator results during assembling -->
   <xsl:value-of select="concat($indent, '.message &#34;=====================&#34;&#10;')"/>
   <xsl:value-of select="concat($indent, '.message &#34;=====  Fuses  =======&#34;&#10;')"/>
-  <xsl:value-of select="concat($indent, '.message &#34;=====================&#34;&#10;')"/>
-  <xsl:value-of select="concat($indent, '.message &#34;EXTENDED:&#09;&#34;, FUSES_EXTENDED&#10;')"/>
-  <xsl:value-of select="concat($indent, '.message &#34;HIGH:&#09;&#09;&#34;, FUSES_HIGH&#10;')"/>
-  <xsl:value-of select="concat($indent, '.message &#34;LOW:&#09;&#09;&#34;, FUSES_LOW&#10;')"/>
+  <xsl:for-each select="modules/module[@name='FUSE']/register-group/register">
+   <xsl:value-of select="concat($indent, '.message &#34;')"/>
+   <xsl:call-template name="tabpad">
+    <xsl:with-param name="str" select="@name"/>
+    <xsl:with-param name="width" select="16"/>
+   </xsl:call-template>
+   <xsl:value-of select="concat('&#34;, FUSES_', @name,'&#10;')"/>
+  </xsl:for-each>
   <xsl:value-of select="concat($indent, '.message &#34;===== Lockbits ======&#34;&#10;')"/>
-  <xsl:value-of select="concat($indent, '.message &#34; LOCKBIT:&#09;&#34;, LOCKBIT_LOCKBIT&#10;')"/>
+  <xsl:for-each select="modules/module[@name='LOCKBIT']/register-group/register">
+   <xsl:value-of select="concat($indent, '.message &#34;')"/>
+   <xsl:call-template name="tabpad">
+    <xsl:with-param name="str" select="concat(' ', @name)"/>
+    <xsl:with-param name="width" select="16"/>
+   </xsl:call-template>
+   <xsl:value-of select="concat('&#34;, LOCKBITS_', @name,'&#10;')"/>
+  </xsl:for-each>
   <xsl:value-of select="concat($indent, '.message &#34;=====================&#34;&#10;')"/>
  </xsl:template>
 
