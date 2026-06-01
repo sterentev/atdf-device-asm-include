@@ -189,7 +189,7 @@
    </xsl:call-template>
    <xsl:value-of select="'= '"/>
    <xsl:choose>
-    <xsl:when test="not($foundval)">
+    <xsl:when test="$foundval = ''">
      <xsl:call-template name="num2hex">
       <xsl:with-param name="number" select="$searchval"/>
      </xsl:call-template>
