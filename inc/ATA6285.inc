@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA6285
 ;* File Name         : ATA6285.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-05-31 13:22:35 UTC
+;* Make Date         : 2026-06-01 12:44:57 UTC
 ;
 ;***********************************************************************
 
@@ -29,6 +29,7 @@
 ; - Some bitmasks MCU developers split on 2+ chunks and placed separately
 ;   (sometime in different registers). Such bitmaps are placed in
 ;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.
+; - FUSES and LOCKBITS in program skeleton are set to their production default values.
 ;
 ;***********************************************************************
 
@@ -679,12 +680,53 @@
 ;	26	SPM_RDY		; Store Program Memory Ready
 
 
-; ====	ASM PROGRAM SKELETON				========
+
+; **********************************************************************
+; ***************	ASM PROGRAM SKELETON	************************
+; **********************************************************************
 ;
 ;  Copy-paste following definitions into your code,
 ;  uncomment and modify for your needs
 ;
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
+;#	.include "ATA6285.inc"
+;#	
+;#	; FUSES HIGH byte (addr 0x01)
+;#	.set	BOOTSZ		= 0x02	; Boot size = 512 words
+;#	.set	FUSES_HIGH	= 0xFF \
+;#				  & ~(0 <<EELOCK) \
+;#				  & ~(0 <<DWEN) \
+;#				  & ~(1 <<SPIEN) \
+;#				  & ~(0 <<WDTON) \
+;#				  & ~(0 <<EESAVE) \
+;#				  &  (~BOOTSZ_MASK | BOOTSZ) \
+;#				  & ~(0 <<BOOTRST)
+;#	; FUSES LOW byte (addr 0x00)
+;#	.set	SUT_CKSEL	= 0x10	; Start-up time PWRDWN/RESET: 6 CK/14 CK + 5.7 ms; [SUT=01]
+;#	.set	FUSES_LOW	= 0xFF \
+;#				  & ~(1 <<CKDIV8) \
+;#				  & ~(0 <<CKOUT) \
+;#				  &  (~SUT_CKSEL_MASK | SUT_CKSEL) \
+;#				  & ~(1 <<WDRCON) \
+;#				  & ~(1 <<FRCFS) \
+;#				  & ~(1 <<BODEN) \
+;#				  & ~(0 <<TSRDI)
+;#	; LOCKBITS LOCKBIT byte (addr 0x00)
+;#	.set	LB		= 0x03	; No memory lock features enabled
+;#	.set	BLB0		= 0x0C	; No lock on SPM and LPM in Application Section
+;#	.set	BLB1		= 0x30	; No lock on SPM and LPM in Boot Section
+;#	.set	LOCKBITS_LOCKBIT= 0xFF \
+;#				  &  (~LB_MASK | LB) \
+;#				  &  (~BLB0_MASK | BLB0) \
+;#				  &  (~BLB1_MASK | BLB1)
+;#	.message "====================="
+;#	.message "=====  Fuses  ======="
+;#	.message "HIGH		", FUSES_HIGH
+;#	.message "LOW		", FUSES_LOW
+;#	.message "===== Lockbits ======"
+;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
+;#	.message "====================="
+;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
 ;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset and Temperature Shutdown Reset

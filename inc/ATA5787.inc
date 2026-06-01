@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA5787
 ;* File Name         : ATA5787.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-05-31 13:22:33 UTC
+;* Make Date         : 2026-06-01 12:44:55 UTC
 ;
 ;***********************************************************************
 
@@ -29,6 +29,7 @@
 ; - Some bitmasks MCU developers split on 2+ chunks and placed separately
 ;   (sometime in different registers). Such bitmaps are placed in
 ;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.
+; - FUSES and LOCKBITS in program skeleton are set to their production default values.
 ;
 ;***********************************************************************
 
@@ -2077,12 +2078,42 @@
 ;	43	IDFULL		; IDSCAN Full Interrupt
 
 
-; ====	ASM PROGRAM SKELETON				========
+
+; **********************************************************************
+; ***************	ASM PROGRAM SKELETON	************************
+; **********************************************************************
 ;
 ;  Copy-paste following definitions into your code,
 ;  uncomment and modify for your needs
 ;
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
+;#	.include "ATA5787.inc"
+;#	
+;#	; FUSES LOW byte (addr 0x00)
+;#	.set	FUSES_LOW	= 0xFF \
+;#				  & ~(0 <<CKDIV8) \
+;#				  & ~(0 <<DWEN) \
+;#				  & ~(1 <<SPIEN) \
+;#				  & ~(0 <<WDTON) \
+;#				  & ~(0 <<EESAVE) \
+;#				  & ~(0 <<BOOTRST) \
+;#				  & ~(0 <<RSTDISBL) \
+;#				  & ~(0 <<EXTCLKEN)
+;#	; LOCKBITS LOCKBIT byte (addr 0x00)
+;#	.set	LB		= 0x03	; No memory lock features enabled
+;#	.set	BLB0		= 0x0C	; No lock on SPM and LPM in Application Section
+;#	.set	BLB1		= 0x30	; No lock on SPM and LPM in Boot Loader Section
+;#	.set	LOCKBITS_LOCKBIT= 0xFF \
+;#				  &  (~LB_MASK | LB) \
+;#				  &  (~BLB0_MASK | BLB0) \
+;#				  &  (~BLB1_MASK | BLB1)
+;#	.message "====================="
+;#	.message "=====  Fuses  ======="
+;#	.message "LOW		", FUSES_LOW
+;#	.message "===== Lockbits ======"
+;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
+;#	.message "====================="
+;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
 ;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset

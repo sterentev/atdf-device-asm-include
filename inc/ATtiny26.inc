@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny26
 ;* File Name         : ATtiny26.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-05-31 13:22:18 UTC
+;* Make Date         : 2026-06-01 12:44:39 UTC
 ;
 ;***********************************************************************
 
@@ -29,6 +29,7 @@
 ; - Some bitmasks MCU developers split on 2+ chunks and placed separately
 ;   (sometime in different registers). Such bitmaps are placed in
 ;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.
+; - FUSES and LOCKBITS in program skeleton are set to their production default values.
 ;
 ;***********************************************************************
 
@@ -534,12 +535,41 @@
 ;	11	ADC		; ADC Conversion Complete
 
 
-; ====	ASM PROGRAM SKELETON				========
+
+; **********************************************************************
+; ***************	ASM PROGRAM SKELETON	************************
+; **********************************************************************
 ;
 ;  Copy-paste following definitions into your code,
 ;  uncomment and modify for your needs
 ;
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
+;#	.include "ATtiny26.inc"
+;#	
+;#	; FUSES HIGH byte (addr 0x01)
+;#	.set	FUSES_HIGH	= 0xFF \
+;#				  & ~(0 <<RSTDISBL) \
+;#				  & ~(1 <<SPIEN) \
+;#				  & ~(0 <<EESAVE) \
+;#				  & ~(0 <<BODLEVEL) \
+;#				  & ~(0 <<BODEN)
+;#	; FUSES LOW byte (addr 0x00)
+;#	.set	PLLCK_SUT_CKSEL	= 
+;#	.set	FUSES_LOW	= 0xFF \
+;#				  & ~(0 <<CKOPT) \
+;#				  &  (~PLLCK_SUT_CKSEL_MASK | PLLCK_SUT_CKSEL)
+;#	; LOCKBITS LOCKBIT byte (addr 0x00)
+;#	.set	LB		= 0x03	; No memory lock features enabled
+;#	.set	LOCKBITS_LOCKBIT= 0xFF \
+;#				  &  (~LB_MASK | LB)
+;#	.message "====================="
+;#	.message "=====  Fuses  ======="
+;#	.message "HIGH		", FUSES_HIGH
+;#	.message "LOW		", FUSES_LOW
+;#	.message "===== Lockbits ======"
+;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
+;#	.message "====================="
+;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
 ;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset

@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega8HVA
 ;* File Name         : ATmega8HVA.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-31 13:22:31 UTC
+;* Make Date         : 2026-06-01 12:44:53 UTC
 ;
 ;***********************************************************************
 
@@ -29,6 +29,7 @@
 ; - Some bitmasks MCU developers split on 2+ chunks and placed separately
 ;   (sometime in different registers). Such bitmaps are placed in
 ;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.
+; - FUSES and LOCKBITS in program skeleton are set to their production default values.
 ;
 ;***********************************************************************
 
@@ -606,12 +607,37 @@
 ;	20	EE_READY	; EEPROM Ready
 
 
-; ====	ASM PROGRAM SKELETON				========
+
+; **********************************************************************
+; ***************	ASM PROGRAM SKELETON	************************
+; **********************************************************************
 ;
 ;  Copy-paste following definitions into your code,
 ;  uncomment and modify for your needs
 ;
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
+;#	.include "ATmega8HVA.inc"
+;#	
+;#	; FUSES LOW byte (addr 0x00)
+;#	.set	SUT		= 0x07	; Start-up time 6 CK/14 CK + 512 ms
+;#	.set	FUSES_LOW	= 0xFF \
+;#				  & ~(0 <<WDTON) \
+;#				  & ~(0 <<EESAVE) \
+;#				  & ~(1 <<SPIEN) \
+;#				  & ~(0 <<DWEN) \
+;#				  & ~(0 <<SELFPRGEN) \
+;#				  &  (~SUT_MASK | SUT)
+;#	; LOCKBITS LOCKBIT byte (addr 0x00)
+;#	.set	LB		= 0x03	; No memory lock features enabled
+;#	.set	LOCKBITS_LOCKBIT= 0xFF \
+;#				  &  (~LB_MASK | LB)
+;#	.message "====================="
+;#	.message "=====  Fuses  ======="
+;#	.message "LOW		", FUSES_LOW
+;#	.message "===== Lockbits ======"
+;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
+;#	.message "====================="
+;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
 ;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset

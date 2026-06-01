@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny104
 ;* File Name         : ATtiny104.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-05-31 13:22:17 UTC
+;* Make Date         : 2026-06-01 12:44:38 UTC
 ;
 ;***********************************************************************
 
@@ -29,6 +29,7 @@
 ; - Some bitmasks MCU developers split on 2+ chunks and placed separately
 ;   (sometime in different registers). Such bitmaps are placed in
 ;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.
+; - FUSES and LOCKBITS in program skeleton are set to their production default values.
 ;
 ;***********************************************************************
 
@@ -576,12 +577,34 @@
 ;	15	USART_TXC	; USART Tx Complete
 
 
-; ====	ASM PROGRAM SKELETON				========
+
+; **********************************************************************
+; ***************	ASM PROGRAM SKELETON	************************
+; **********************************************************************
 ;
 ;  Copy-paste following definitions into your code,
 ;  uncomment and modify for your needs
 ;
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
+;#	.include "ATtiny104.inc"
+;#	
+;#	; FUSES BYTE0 byte (addr 0x00)
+;#	.set	FUSES_BYTE0	= 0xFF \
+;#				  & ~(0 <<SELFPROGEN) \
+;#				  & ~(0 <<CKOUT) \
+;#				  & ~(0 <<WDTON) \
+;#				  & ~(0 <<RSTDISBL)
+;#	; LOCKBITS LOCKBIT byte (addr 0x00)
+;#	.set	LB		= 0x03	; No memory lock features enabled
+;#	.set	LOCKBITS_LOCKBIT= 0xFF \
+;#				  &  (~LB_MASK | LB)
+;#	.message "====================="
+;#	.message "=====  Fuses  ======="
+;#	.message "BYTE0		", FUSES_BYTE0
+;#	.message "===== Lockbits ======"
+;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
+;#	.message "====================="
+;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
 ;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset

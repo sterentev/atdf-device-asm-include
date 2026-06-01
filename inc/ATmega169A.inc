@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega169A
 ;* File Name         : ATmega169A.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-31 13:22:24 UTC
+;* Make Date         : 2026-06-01 12:44:45 UTC
 ;
 ;***********************************************************************
 
@@ -29,6 +29,7 @@
 ; - Some bitmasks MCU developers split on 2+ chunks and placed separately
 ;   (sometime in different registers). Such bitmaps are placed in
 ;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.
+; - FUSES and LOCKBITS in program skeleton are set to their production default values.
 ;
 ;***********************************************************************
 
@@ -946,12 +947,55 @@
 ;	22	LCD		; LCD Start of Frame
 
 
-; ====	ASM PROGRAM SKELETON				========
+
+; **********************************************************************
+; ***************	ASM PROGRAM SKELETON	************************
+; **********************************************************************
 ;
 ;  Copy-paste following definitions into your code,
 ;  uncomment and modify for your needs
 ;
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
+;#	.include "ATmega169A.inc"
+;#	
+;#	; FUSES EXTENDED byte (addr 0x02)
+;#	.set	BODLEVEL	= 0x0E	; Brown-out Detection Disabled
+;#	.set	FUSES_EXTENDED	= 0xFF \
+;#				  &  (~BODLEVEL_MASK | BODLEVEL) \
+;#				  & ~(0 <<RSTDISBL)
+;#	; FUSES HIGH byte (addr 0x01)
+;#	.set	BOOTSZ		= 0x02	; Boot Flash size=512 words start address=$1E00
+;#	.set	FUSES_HIGH	= 0xFF \
+;#				  & ~(0 <<OCDEN) \
+;#				  & ~(1 <<JTAGEN) \
+;#				  & ~(1 <<SPIEN) \
+;#				  & ~(0 <<WDTON) \
+;#				  & ~(0 <<EESAVE) \
+;#				  &  (~BOOTSZ_MASK | BOOTSZ) \
+;#				  & ~(0 <<BOOTRST)
+;#	; FUSES LOW byte (addr 0x00)
+;#	.set	SUT_CKSEL	= 0x22	; Int. RC Osc.; Start-up time: 6 CK + 65 ms
+;#	.set	FUSES_LOW	= 0xFF \
+;#				  & ~(1 <<CKDIV8) \
+;#				  & ~(0 <<CKOUT) \
+;#				  &  (~SUT_CKSEL_MASK | SUT_CKSEL)
+;#	; LOCKBITS LOCKBIT byte (addr 0x00)
+;#	.set	LB		= 0x03	; No memory lock features enabled
+;#	.set	BLB0		= 0x0C	; No lock on SPM and LPM in Application Section
+;#	.set	BLB1		= 0x30	; No lock on SPM and LPM in Boot Section
+;#	.set	LOCKBITS_LOCKBIT= 0xFF \
+;#				  &  (~LB_MASK | LB) \
+;#				  &  (~BLB0_MASK | BLB0) \
+;#				  &  (~BLB1_MASK | BLB1)
+;#	.message "====================="
+;#	.message "=====  Fuses  ======="
+;#	.message "EXTENDED	", FUSES_EXTENDED
+;#	.message "HIGH		", FUSES_HIGH
+;#	.message "LOW		", FUSES_LOW
+;#	.message "===== Lockbits ======"
+;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
+;#	.message "====================="
+;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
 ;#		rjmp	RESET		; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     

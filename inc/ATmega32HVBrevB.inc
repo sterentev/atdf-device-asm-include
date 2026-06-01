@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega32HVBrevB
 ;* File Name         : ATmega32HVBrevB.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-05-31 13:22:28 UTC
+;* Make Date         : 2026-06-01 12:44:49 UTC
 ;
 ;***********************************************************************
 
@@ -29,6 +29,7 @@
 ; - Some bitmasks MCU developers split on 2+ chunks and placed separately
 ;   (sometime in different registers). Such bitmaps are placed in
 ;   'EXTRA BITFIELDS VALUES' section. Refer to docs where such bits should be set.
+; - FUSES and LOCKBITS in program skeleton are set to their production default values.
 ;
 ;***********************************************************************
 
@@ -788,12 +789,49 @@
 ;	28	SPM		; SPM Ready
 
 
-; ====	ASM PROGRAM SKELETON				========
+
+; **********************************************************************
+; ***************	ASM PROGRAM SKELETON	************************
+; **********************************************************************
 ;
 ;  Copy-paste following definitions into your code,
 ;  uncomment and modify for your needs
 ;
 ; ----------	 >>>   SKELETON BEGIN   <<<	------------------------
+;#	.include "ATmega32HVBrevB.inc"
+;#	
+;#	; FUSES LOW byte (addr 0x00)
+;#	.set	SUT		= 0x14	; Start-up time 14 CK + 128 ms
+;#	.set	OSCSEL		= 0x01	; Default
+;#	.set	FUSES_LOW	= 0xFF \
+;#				  & ~(0 <<WDTON) \
+;#				  & ~(0 <<EESAVE) \
+;#				  & ~(1 <<SPIEN) \
+;#				  &  (~SUT_MASK | SUT) \
+;#				  &  (~OSCSEL_MASK | OSCSEL)
+;#	; FUSES HIGH byte (addr 0x01)
+;#	.set	BOOTSZ		= 0x02	; Boot Flash size=1024 words Boot address=$3C00
+;#	.set	FUSES_HIGH	= 0xFF \
+;#				  & ~(1 <<DUVRDINIT) \
+;#				  & ~(0 <<DWEN) \
+;#				  &  (~BOOTSZ_MASK | BOOTSZ) \
+;#				  & ~(0 <<BOOTRST)
+;#	; LOCKBITS LOCKBIT byte (addr 0x00)
+;#	.set	LB		= 0x03	; No memory lock features enabled
+;#	.set	BLB0		= 0x0C	; No lock on SPM and LPM in Application Section
+;#	.set	BLB1		= 0x30	; No lock on SPM and LPM in Boot Section
+;#	.set	LOCKBITS_LOCKBIT= 0xFF \
+;#				  &  (~LB_MASK | LB) \
+;#				  &  (~BLB0_MASK | BLB0) \
+;#				  &  (~BLB1_MASK | BLB1)
+;#	.message "====================="
+;#	.message "=====  Fuses  ======="
+;#	.message "LOW		", FUSES_LOW
+;#	.message "HIGH		", FUSES_HIGH
+;#	.message "===== Lockbits ======"
+;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
+;#	.message "====================="
+;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
 ;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
