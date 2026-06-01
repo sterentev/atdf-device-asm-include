@@ -555,4 +555,39 @@
   </xsl:choose>
  </xsl:template>
 
+
+ <!-- Get divider to normalize enum values set -->
+ <xsl:template name="groupdiv">
+  <xsl:param name="nodes"/>
+  <xsl:param name="mb" select="32"/>
+  <xsl:choose>
+   <xsl:when test="not($nodes)">
+    <xsl:call-template name="pow2">
+     <xsl:with-param name="power" select="$mb"/>
+    </xsl:call-template>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:variable name="lb">
+     <xsl:call-template name="littlebit">
+      <xsl:with-param name="number" select="$nodes[1]/@value"/>
+     </xsl:call-template>
+    </xsl:variable>
+    <xsl:choose>
+     <xsl:when test="$lb = 'NaN' or $lb &gt;= $mb">
+      <xsl:call-template name="groupdiv">
+       <xsl:with-param name="nodes" select="$nodes[position() != 1]"/>
+       <xsl:with-param name="mb" select="$mb"/>
+      </xsl:call-template>
+     </xsl:when>
+     <xsl:otherwise>
+      <xsl:call-template name="groupdiv">
+       <xsl:with-param name="nodes" select="$nodes[position() != 1]"/>
+       <xsl:with-param name="mb" select="$lb"/>
+      </xsl:call-template>
+     </xsl:otherwise>
+    </xsl:choose>
+   </xsl:otherwise>
+  </xsl:choose>
+ </xsl:template>
+
 </xsl:stylesheet>
