@@ -26,8 +26,8 @@
   <xsl:value-of select="$lf" indent="no"/>
   <xsl:call-template name="asmfuses"/>
   <xsl:value-of select="$lf" indent="no"/>
-  <!-- xsl:call-template name="asminterrupts"/>
-  <xsl:call-template name="asminit"/-->
+  <xsl:call-template name="asminterrupts"/>
+  <xsl:call-template name="asminit"/>
   <xsl:call-template name="header3">
    <xsl:with-param name="str" select="' &gt;&gt;&gt;   SKELETON  END    &lt;&lt;&lt;'"/>
   </xsl:call-template>
@@ -130,9 +130,16 @@
    </xsl:apply-templates>
    <xsl:text>&#10;</xsl:text>
   </xsl:for-each>
-  <!-- Print calculator results -->
-
-
+  <!-- Output calculator results -->
+  <xsl:value-of select="concat($indent, '.message &#34;=====================&#34;&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34;=====  Fuses  =======&#34;&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34;=====================&#34;&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34;EXTENDED:&#09;&#34;, FUSES_EXTENDED&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34;HIGH:&#09;&#09;&#34;, FUSES_HIGH&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34;LOW:&#09;&#09;&#34;, FUSES_LOW&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34;===== Lockbits ======&#34;&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34; LOCKBIT:&#09;&#34;, LOCKBIT_LOCKBIT&#10;')"/>
+  <xsl:value-of select="concat($indent, '.message &#34;=====================&#34;&#10;')"/>
  </xsl:template>
 
 
