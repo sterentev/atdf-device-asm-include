@@ -43,10 +43,12 @@ find "${INDIR}" -type f -name \*.inc -print > ${TMPLIST}
 exec<${TMPLIST}
 while read name; do
 	echo ".include \"${name}\"" > $TMPASM
-	echo "" >> $TMPASM
-	echo ".org 0x0000" >> $TMPASM
-	echo "" >> $TMPASM
-	echo "" >> $TMPASM
+	awk '/SKELETON BEGIN/{flag=1; next} /SKELETON  END/{flag=0} flag' "${name}" | tail -n +2 | cut -c 4- >> $TMPASM
+	echo "INT0_ISR:" >> $TMPASM
+	echo "PCINT0_ISR:" >> $TMPASM
+	echo "EE_READY_ISR:" >> $TMPASM
+	echo "EE_RDY_ISR:" >> $TMPASM
+
 	printf "%-32s    - " $name
 	if [ "$DEBUG" = "Y" ]; then
 		avra -o /dev/null -d /dev/null -e /dev/null -l /dev/null $TMPASM >/dev/null
