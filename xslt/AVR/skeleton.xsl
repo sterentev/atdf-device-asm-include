@@ -167,9 +167,19 @@
      <xsl:with-param name="mask" select="@mask"/>
     </xsl:call-template>
    </xsl:variable>
-   <xsl:variable name="foundval">
+   <xsl:variable name="foundvalselected">
     <xsl:apply-templates select="../../../value-group[@name=$enum]/value" mode="selected">
      <xsl:with-param name="search" select="$searchval"/>
+     <xsl:with-param name="mask" select="$bfmask"/>
+     <xsl:with-param name="valdiv">
+      <xsl:call-template name="groupdiv">
+       <xsl:with-param name="nodes" select="../../../value-group[@name=$enum]/value"/>
+      </xsl:call-template>
+     </xsl:with-param>
+    </xsl:apply-templates>
+   </xsl:variable>
+   <xsl:variable name="foundvallabeled">
+    <xsl:apply-templates select="../../../value-group[@name=$enum]/value" mode="labeled">
      <xsl:with-param name="mask" select="$bfmask"/>
      <xsl:with-param name="valdiv">
       <xsl:call-template name="groupdiv">
@@ -186,13 +196,16 @@
    </xsl:call-template>
    <xsl:value-of select="'= '"/>
    <xsl:choose>
-    <xsl:when test="$foundval = ''">
+    <xsl:when test="$foundvallabeled != ''">
+     <xsl:value-of select="$foundvallabeled"/>
+    </xsl:when>
+    <xsl:when test="$foundvalselected != ''">
+     <xsl:value-of select="$foundvalselected"/>
+    </xsl:when>
+    <xsl:otherwise>
      <xsl:call-template name="num2hex">
       <xsl:with-param name="number" select="$searchval"/>
      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-     <xsl:value-of select="$foundval"/>
     </xsl:otherwise>
    </xsl:choose>
    <xsl:text>&#10;</xsl:text>
@@ -248,6 +261,23 @@
   <xsl:if test="$value = $search">
    <xsl:call-template name="num2hex">
     <xsl:with-param name="number" select="$search"/>
+   </xsl:call-template>
+   <xsl:value-of select="concat('&#09;; ', @caption)"/>
+  </xsl:if>
+ </xsl:template>
+
+ <xsl:template match="value" mode="labeled">
+  <xsl:param name="mask"/>
+  <xsl:param name="valdiv" select="1"/>
+  <xsl:if test="substring(@name, string-length(@name) - string-length('_DEFAULT') +1) = '_DEFAULT'">
+   <xsl:call-template name="num2hex">
+    <xsl:with-param name="number">
+     <xsl:call-template name="applymask">
+      <xsl:with-param name="value" select="@value"/>
+      <xsl:with-param name="mask" select="$mask"/>
+      <xsl:with-param name="valdiv" select="$valdiv"/>
+     </xsl:call-template>
+    </xsl:with-param>
    </xsl:call-template>
    <xsl:value-of select="concat('&#09;; ', @caption)"/>
   </xsl:if>
