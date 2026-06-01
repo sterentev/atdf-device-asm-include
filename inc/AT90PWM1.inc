@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the AT90PWM1
 ;* File Name         : AT90PWM1.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 12:44:41 UTC
+;* Make Date         : 2026-06-01 14:52:50 UTC
 ;
 ;***********************************************************************
 
@@ -1221,7 +1221,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset and JTAG AVR Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Pin, Power-on Reset, Brown-out Reset, Watchdog Reset and JTAG AVR Reset
 ;#		reti			; PSC2_CAPT	 - PSC2 Capture Event
 ;#		reti			; PSC2_EC	 - PSC2 End Cycle
 ;#		reti			; PSC1_CAPT	 - PSC1 Capture Event
@@ -1255,7 +1255,7 @@
 ;#		reti			; SPM_READY	 - Store Program Memory Read
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_IRAM_END)
 ;#		out	SP+1, r16

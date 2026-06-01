@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega644A
 ;* File Name         : ATmega644A.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 12:44:51 UTC
+;* Make Date         : 2026-06-01 14:52:59 UTC
 ;
 ;***********************************************************************
 
@@ -1074,7 +1074,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
+;#		rjmp	RESET_ISR	; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; INT2		 - External Interrupt Request 2
@@ -1107,7 +1107,7 @@
 ;#		reti			; USART1_TX	 - USART1 TX complete
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_IRAM_END)
 ;#		out	SP+1, r16

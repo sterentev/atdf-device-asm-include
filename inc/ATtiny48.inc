@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny48
 ;* File Name         : ATtiny48.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:40 UTC
+;* Make Date         : 2026-06-01 14:52:49 UTC
 ;
 ;***********************************************************************
 
@@ -725,7 +725,7 @@
 ;#				  & ~(0 <<EESAVE) \
 ;#				  &  (~BODLEVEL_MASK | BODLEVEL)
 ;#	; FUSES LOW byte (addr 0x00)
-;#	.set	SUT_CKSEL	= 
+;#	.set	SUT_CKSEL	= 0x2E	; Int. RC Osc. 8 MHz; Start-up time PWRDWN/RESET: 6 CK/14 CK + 65 ms; default value
 ;#	.set	FUSES_LOW	= 0xFF \
 ;#				  & ~(1 <<CKDIV8) \
 ;#				  & ~(0 <<CKOUT) \
@@ -745,7 +745,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
@@ -767,7 +767,7 @@
 ;#		reti			; TWI		 - Two-wire Serial Interface
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_IRAM_END)
 ;#		out	SPH, r16

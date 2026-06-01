@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny2313
 ;* File Name         : ATtiny2313.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:39 UTC
+;* Make Date         : 2026-06-01 14:52:48 UTC
 ;
 ;***********************************************************************
 
@@ -648,7 +648,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Reset, Power-on Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; TIMER1_CAPT	 - Timer/Counter1 Capture Event
@@ -669,7 +669,7 @@
 ;#		reti			; WDT_OVERFLOW	 - Watchdog Timer Overflow
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, low(ADDR_IRAM_END)
 ;#		out	SPL, r16

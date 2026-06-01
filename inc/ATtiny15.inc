@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny15
 ;* File Name         : ATtiny15.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:38 UTC
+;* Make Date         : 2026-06-01 14:52:47 UTC
 ;
 ;***********************************************************************
 
@@ -449,7 +449,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Reset, Power-on Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt 0
 ;#		reti			; IO_PINS	 - External Interrupt Request 0
 ;#		reti			; TIMER1_COMP	 - Timer/Counter1 Compare Match
@@ -460,7 +460,7 @@
 ;#		reti			; ADC		 - ADC Conversion Ready
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ; ----------	 >>>   SKELETON  END    <<<	------------------------
 
 #endif /* _ATTINY15_INC_ */

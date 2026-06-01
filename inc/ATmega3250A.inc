@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega3250A
 ;* File Name         : ATmega3250A.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 12:44:48 UTC
+;* Make Date         : 2026-06-01 14:52:57 UTC
 ;
 ;***********************************************************************
 
@@ -908,7 +908,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
+;#		rjmp	RESET_ISR	; RESET		 - External Pin,Power-on Reset,Brown-out Reset,Watchdog Reset,and JTAG AVR Reset. See Datasheet.     
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
@@ -935,7 +935,7 @@
 ;#		reti			; PCINT3	 - Pin Change Interrupt Request 3
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_IRAM_END)
 ;#		out	SP+1, r16

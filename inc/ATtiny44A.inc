@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny44A
 ;* File Name         : ATtiny44A.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:40 UTC
+;* Make Date         : 2026-06-01 14:52:49 UTC
 ;
 ;***********************************************************************
 
@@ -664,7 +664,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset,Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Pin, Power-on Reset, Brown-out Reset,Watchdog Reset
 ;#		reti			; EXT_INT0	 - External Interrupt Request 0
 ;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
@@ -683,7 +683,7 @@
 ;#		reti			; USI_OVF	 - USI Overflow
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_IRAM_END)
 ;#		out	SP+1, r16

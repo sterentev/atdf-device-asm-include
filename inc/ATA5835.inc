@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA5835
 ;* File Name         : ATA5835.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-06-01 12:44:57 UTC
+;* Make Date         : 2026-06-01 14:53:05 UTC
 ;
 ;***********************************************************************
 
@@ -2282,7 +2282,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		reti			; INT1		 - External Interrupt Request 1
 ;#		reti			; PCI0		 - Pin Change Interrupt Request 0
@@ -2328,7 +2328,7 @@
 ;#		reti			; IDFULL	 - IDSCAN Full Interrupt
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_IRAM_END)
 ;#		out	SP+1, r16

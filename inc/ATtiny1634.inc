@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny1634
 ;* File Name         : ATtiny1634.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:39 UTC
+;* Make Date         : 2026-06-01 14:52:47 UTC
 ;
 ;***********************************************************************
 
@@ -867,7 +867,7 @@
 ;#				  &  (~BODACT_MASK | BODACT) \
 ;#				  & ~(0 <<SELFPRGEN)
 ;#	; FUSES HIGH byte (addr 0x01)
-;#	.set	BODLEVEL	= 
+;#	.set	BODLEVEL	= 0x07
 ;#	.set	FUSES_HIGH	= 0xFF \
 ;#				  & ~(0 <<RSTDISBL) \
 ;#				  & ~(0 <<DWEN) \
@@ -896,7 +896,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Pin, Power-on Reset, Brown-out Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
@@ -945,7 +945,7 @@
 ;#		reti			; QTRIP		 - Touch Sensing
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_IRAM_END)
 ;#		out	SP+1, r16

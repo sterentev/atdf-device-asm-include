@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny40
 ;* File Name         : ATtiny40.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:39 UTC
+;* Make Date         : 2026-06-01 14:52:48 UTC
 ;
 ;***********************************************************************
 
@@ -653,7 +653,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Reset, Power-on Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt Request 0
 ;#		rjmp	PCINT0_ISR	; PCINT0	 - Pin Change Interrupt Request 0
 ;#		reti			; PCINT1	 - Pin Change Interrupt Request 1
@@ -673,7 +673,7 @@
 ;#		reti			; QTRIP		 - Touch Sensing
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, high(ADDR_SRAM_END)
 ;#		out	SP+1, r16

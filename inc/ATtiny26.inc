@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny26
 ;* File Name         : ATtiny26.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:39 UTC
+;* Make Date         : 2026-06-01 14:52:48 UTC
 ;
 ;***********************************************************************
 
@@ -554,7 +554,7 @@
 ;#				  & ~(0 <<BODLEVEL) \
 ;#				  & ~(0 <<BODEN)
 ;#	; FUSES LOW byte (addr 0x00)
-;#	.set	PLLCK_SUT_CKSEL	= 
+;#	.set	PLLCK_SUT_CKSEL	= 0xA1
 ;#	.set	FUSES_LOW	= 0xFF \
 ;#				  & ~(0 <<CKOPT) \
 ;#				  &  (~PLLCK_SUT_CKSEL_MASK | PLLCK_SUT_CKSEL)
@@ -572,7 +572,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Reset, Power-on Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt 0
 ;#		reti			; IO_PINS	 - External Interrupt Request 0
 ;#		reti			; TIMER1_CMPA	 - Timer/Counter1 Compare Match 1A
@@ -586,7 +586,7 @@
 ;#		reti			; ADC		 - ADC Conversion Complete
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, low(ADDR_IRAM_END)
 ;#		out	SP, r16

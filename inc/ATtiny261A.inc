@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny261A
 ;* File Name         : ATtiny261A.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 12:44:39 UTC
+;* Make Date         : 2026-06-01 14:52:48 UTC
 ;
 ;***********************************************************************
 
@@ -759,7 +759,7 @@
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
-;#		rjmp	RESET		; RESET		 - External Reset, Power-on Reset and Watchdog Reset
+;#		rjmp	RESET_ISR	; RESET		 - External Reset, Power-on Reset and Watchdog Reset
 ;#		rjmp	INT0_ISR	; INT0		 - External Interrupt 0
 ;#		reti			; PCINT		 - Pin Change Interrupt
 ;#		reti			; TIMER1_COMPA	 - Timer/Counter1 Compare Match 1A
@@ -780,7 +780,7 @@
 ;#		reti			; FAULT_PROTECTION - Timer/Counter1 Fault Protection
 ;#	; Interrupt vectors end
 ;#	;.org INT_VECTORS_SIZE
-;#	RESET:
+;#	RESET_ISR:
 ;#		cli
 ;#		ldi	r16, low(ADDR_IRAM_END)
 ;#		out	SPL, r16
