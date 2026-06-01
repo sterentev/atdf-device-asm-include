@@ -26,8 +26,8 @@
   <xsl:value-of select="$lf" indent="no"/>
   <xsl:call-template name="asmfuses"/>
   <xsl:value-of select="$lf" indent="no"/>
-  <xsl:call-template name="asminterrupts"/>
-  <xsl:call-template name="asminit"/>
+  <!-- xsl:call-template name="asminterrupts"/>
+  <xsl:call-template name="asminit"/-->
   <xsl:call-template name="header3">
    <xsl:with-param name="str" select="' &gt;&gt;&gt;   SKELETON  END    &lt;&lt;&lt;'"/>
   </xsl:call-template>
@@ -112,8 +112,11 @@
    <xsl:apply-templates select="bitfield" mode="enumselect">
     <xsl:with-param name="initval" select="@initval"/>
    </xsl:apply-templates>
-   <xsl:value-of select="concat($indent, '.set&#09;FUSES_', @name, '&#09;= 0xFF \&#10;')"/>
-   <xsl:apply-templates select="bitfield" mode="fuses"/>
+   <xsl:value-of select="concat($indent, '.set&#09;FUSES_', @name, '&#09;= 0xFF')"/>
+   <xsl:apply-templates select="bitfield" mode="appendexpr">
+    <xsl:with-param name="initval" select="@initval"/>
+   </xsl:apply-templates>
+   <xsl:text>&#10;</xsl:text>
   </xsl:for-each>
   <!-- LOCKBITS calculator -->
   <xsl:for-each select="modules/module[@name='LOCKBIT']/register-group/register">
@@ -121,8 +124,11 @@
    <xsl:apply-templates select="bitfield" mode="enumselect">
     <xsl:with-param name="initval" select="@initval"/>
    </xsl:apply-templates>
-   <xsl:value-of select="concat($indent, '.set&#09;LOCKBITS_', @name, '= 0xFF \&#10;')"/>
-   <xsl:apply-templates select="bitfield" mode="appendexpr"/>
+   <xsl:value-of select="concat($indent, '.set&#09;LOCKBITS_', @name, '= 0xFF')"/>
+   <xsl:apply-templates select="bitfield" mode="appendexpr">
+    <xsl:with-param name="initval" select="@initval"/>
+   </xsl:apply-templates>
+   <xsl:text>&#10;</xsl:text>
   </xsl:for-each>
   <!-- Print calculator results -->
 
@@ -180,6 +186,36 @@
 
 
  <xsl:template match="bitfield" mode="appendexpr">
+  <xsl:param name="initval"/>
+  <xsl:variable name="bits">
+    <xsl:call-template name="countone">
+     <xsl:with-param name="number" select="@mask"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="fieldval">
+   <xsl:call-template name="andmask">
+    <xsl:with-param name="value" select="$initval"/>
+    <xsl:with-param name="mask" select="@mask"/>
+   </xsl:call-template>
+  </xsl:variable>
+  <xsl:choose>
+   <xsl:when test="$bits = 1">
+    <xsl:variable name="bitval">
+     <xsl:choose>
+      <xsl:when test="$fieldval = 0">
+       <xsl:value-of select="1"/>
+      </xsl:when>
+      <xsl:otherwise>
+       <xsl:value-of select="0"/>
+      </xsl:otherwise>
+     </xsl:choose>
+    </xsl:variable>
+    <xsl:value-of select="concat(' \&#10;;#&#09;&#09;&#09;&#09;  &amp; ~(', $bitval, ' &lt;&lt;', @name, ')')"/>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:value-of select="concat(' \&#10;;#&#09;&#09;&#09;&#09;  &amp;  (~', @name, '_MASK | ', @name, ')')"/>
+   </xsl:otherwise>
+  </xsl:choose>
  </xsl:template>
 
 

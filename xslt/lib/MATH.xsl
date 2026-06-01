@@ -556,6 +556,58 @@
  </xsl:template>
 
 
+ <xsl:template name="andmask">
+  <xsl:param name="value"/>
+  <xsl:param name="mask"/>
+  <xsl:variable name="decvalue">
+   <xsl:call-template name="num2dec">
+    <xsl:with-param name="number" select="$value"/>
+   </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="decmask">
+   <xsl:call-template name="num2dec">
+    <xsl:with-param name="number" select="$mask"/>
+   </xsl:call-template>
+  </xsl:variable>
+  <xsl:call-template name="andmask10">
+   <xsl:with-param name="value" select="$decvalue"/>
+   <xsl:with-param name="mask" select="$decmask"/>
+  </xsl:call-template>
+ </xsl:template>
+
+ <xsl:template name="andmask10">
+  <xsl:param name="value"/>
+  <xsl:param name="mask"/>
+  <xsl:param name="scale" select="1"/>
+  <xsl:param name="result" select="0"/>
+  <xsl:choose>
+   <xsl:when test="$mask = 0">
+    <xsl:value-of select="$result"/>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:choose>
+     <xsl:when test="$mask mod 2">
+      <xsl:call-template name="andmask10">
+       <xsl:with-param name="value" select="floor($value div 2)"/>
+       <xsl:with-param name="mask" select="floor($mask div 2)"/>
+       <xsl:with-param name="scale" select="$scale * 2"/>
+       <xsl:with-param name="result" select="$result + ($value mod 2) * $scale"/>
+      </xsl:call-template>
+     </xsl:when>
+     <xsl:otherwise>
+      <xsl:call-template name="andmask10">
+       <xsl:with-param name="value" select="floor($value div 2)"/>
+       <xsl:with-param name="mask" select="floor($mask div 2)"/>
+       <xsl:with-param name="scale" select="$scale * 2"/>
+       <xsl:with-param name="result" select="$result"/>
+      </xsl:call-template>
+     </xsl:otherwise>
+    </xsl:choose>
+   </xsl:otherwise>
+  </xsl:choose>
+ </xsl:template>
+
+
  <!-- Get divider to normalize enum values set -->
  <xsl:template name="groupdiv">
   <xsl:param name="nodes"/>
