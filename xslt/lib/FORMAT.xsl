@@ -22,10 +22,26 @@
  <xsl:template name="tabpad">
   <xsl:param name="str"/>
   <xsl:param name="width"/>
-  <xsl:value-of select="$str"/>
+  <xsl:value-of select="$str" indent="no"/>
   <xsl:call-template name="printtab">
    <xsl:with-param name="count" select="($width + $tabspace - 1 - string-length($str)) div $tabspace"/>
   </xsl:call-template>
+ </xsl:template>
+
+ <xsl:template name="spacepad">
+  <xsl:param name="str"/>
+  <xsl:param name="width"/>
+  <xsl:choose>
+   <xsl:when test="string-length($str) &gt;= $width">
+    <xsl:value-of select="$str" indent="no"/>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:call-template name="spacepad">
+     <xsl:with-param name="str" select="concat($str, ' ')"/>
+     <xsl:with-param name="width" select="$width"/>
+    </xsl:call-template>
+   </xsl:otherwise>
+  </xsl:choose>
  </xsl:template>
 
 
