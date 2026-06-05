@@ -40,13 +40,45 @@
       <xsl:with-param name="addr" select="@offset"/>
      </xsl:call-template>
     </xsl:variable>
+    <xsl:variable name="captionregsize">
+     <xsl:if test="@size &gt; 1">
+      <xsl:value-of select="concat('[___', @size, ' addrs___] ')" indent="no"/>
+     </xsl:if>
+    </xsl:variable>
     <xsl:call-template name="out">
      <xsl:with-param name="name" select="@name"/>
      <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset)"/>
      <xsl:with-param name="valuebase" select="16"/>
-     <xsl:with-param name="comment" select="concat($captionmark, @caption)"/>
+     <xsl:with-param name="comment" select="concat($captionmark, $captionregsize, @caption)"/>
     </xsl:call-template>
    </xsl:for-each>
+   <!-- Add addr space register pairs -->
+   <xsl:if test="count(/avr-tools-device-file/modules/module[@name=exsl:node-set($modnames)/@name]/register-group/register[@size=2])">
+    <xsl:text>;&#10;</xsl:text>
+    <xsl:call-template name="header3">
+     <xsl:with-param name="str" select="'REGISTERS PAIRS'"/>
+    </xsl:call-template>
+    <xsl:for-each select="/avr-tools-device-file/modules/module[@name=exsl:node-set($modnames)/@name]/register-group/register[@size=2 and not(@name=preceding::register/@name)]">
+     <xsl:sort select="@offset" order="descending"/>
+     <xsl:variable name="regs_offset">
+      <xsl:call-template name="MAPPED_IO_offset">
+       <xsl:with-param name="addrspace" select="$addrspace"/>
+       <xsl:with-param name="addr" select="@offset"/>
+      </xsl:call-template>
+     </xsl:variable>
+     <xsl:value-of select="concat(';    ', @caption, '&#10;')" indent="no"/>
+     <xsl:call-template name="out">
+      <xsl:with-param name="name" select="concat(@name, 'H')"/>
+      <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset, '+1')"/>
+      <xsl:with-param name="valuebase" select="16"/>
+     </xsl:call-template>
+     <xsl:call-template name="out">
+      <xsl:with-param name="name" select="concat(@name, 'L')"/>
+      <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset)"/>
+      <xsl:with-param name="valuebase" select="16"/>
+     </xsl:call-template>
+    </xsl:for-each>
+   </xsl:if>
    <!-- Describe registers bits by functional modules -->
    <xsl:for-each select="$modnames">
     <xsl:variable name="modname" select="@name"/>
@@ -57,7 +89,6 @@
      <xsl:text>;&#10;</xsl:text>
      <xsl:apply-templates select="/avr-tools-device-file/modules/module[@name=$modname]" mode="regbits"/>
     </xsl:if>
-
    </xsl:for-each>
   </xsl:if>
  </xsl:template>
