@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA6286
 ;* File Name         : ATA6286.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-06-01 14:53:06 UTC
+;* Make Date         : 2026-06-05 09:18:07 UTC
 ;
 ;***********************************************************************
 
@@ -205,8 +205,8 @@
 ; ***************	DATA REGISTERS		************************
 ; **********************************************************************
 ;
-.equ	LFCAL		= 0x86		; [MEMORY MAPPED] LF Calibration Register  Bytes
-.equ	LFIDC		= 0x84		; [MEMORY MAPPED] LF ID Compare Register 
+.equ	LFCAL		= 0x86		; [MEMORY MAPPED] [___2 addrs___] LF Calibration Register  Bytes
+.equ	LFIDC		= 0x84		; [MEMORY MAPPED] [___2 addrs___] LF ID Compare Register 
 .equ	LFHCR		= 0x83		; [MEMORY MAPPED] LF Header Compare Register
 .equ	LFRCR		= 0x82		; [MEMORY MAPPED] Low Frequency Receiver Control Register
 .equ	LFIMR		= 0x81		; [MEMORY MAPPED] Low Frequency Interrupt Mask Register
@@ -214,13 +214,13 @@
 .equ	T3CRB		= 0x7E		; [MEMORY MAPPED] Timer 3 Control Register B
 .equ	T3MRB		= 0x7D		; [MEMORY MAPPED] Timer 3 Mode Register B
 .equ	T3MRA		= 0x7C		; [MEMORY MAPPED] Timer 3 Mode Register A
-.equ	T3CORB		= 0x7A		; [MEMORY MAPPED] Timer3 COmpare Register B  Bytes
-.equ	T3CORA		= 0x78		; [MEMORY MAPPED] Timer3 COmpare Register A  Bytes
-.equ	T3ICR		= 0x76		; [MEMORY MAPPED] Timer3 Input Capture Register  Bytes
+.equ	T3CORB		= 0x7A		; [MEMORY MAPPED] [___2 addrs___] Timer3 COmpare Register B  Bytes
+.equ	T3CORA		= 0x78		; [MEMORY MAPPED] [___2 addrs___] Timer3 COmpare Register A  Bytes
+.equ	T3ICR		= 0x76		; [MEMORY MAPPED] [___2 addrs___] Timer3 Input Capture Register  Bytes
 .equ	T2IMR		= 0x74		; [MEMORY MAPPED] Timer 2 Interrupt Mask Register
 .equ	T2MRB		= 0x73		; [MEMORY MAPPED] Timer 2 Mode Register B
 .equ	T2MRA		= 0x72		; [MEMORY MAPPED] Timer 2 Mode Register A
-.equ	T2COR		= 0x70		; [MEMORY MAPPED] Timer2 Compare Register  Bytes
+.equ	T2COR		= 0x70		; [MEMORY MAPPED] [___2 addrs___] Timer2 Compare Register  Bytes
 .equ	T2ICR		= 0x6F		; [MEMORY MAPPED] Timer 2 Input Capture Register High Byte
 .equ	T2ICRL		= 0x6E		; [MEMORY MAPPED] Timer 2 Input Capture Register Low Byte
 .equ	PCMSK2		= 0x6C		; [MEMORY MAPPED] Pin Change Mask Register 2
@@ -234,7 +234,7 @@
 .equ	SIMSK		= 0x61		; [MEMORY MAPPED] Sensor Interrupt Mask register
 .equ	WDTCR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	CLKPR		= 0x3C		; Clock Prescaler Register
 .equ	CMIMR		= 0x3B		; Clock Management Interrupt Mask Register
 .equ	T0CR		= 0x39		; Timer 0 Control Register
@@ -257,7 +257,7 @@
 .equ	SVCR		= 0x27		; Sensor Voltage Control Register
 .equ	EIMSK		= 0x24		; External Interrupt Mask Register
 .equ	PCICR		= 0x23		; Pin Change Interrupt Control Register
-.equ	EEAR		= 0x21		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR0		= 0x1E		; General Purpose I/O Register 0
@@ -283,6 +283,32 @@
 .equ	PORTB		= 0x05		; Port B Data Register
 .equ	DDRB		= 0x04		; Port B Data Direction Register
 .equ	PINB		= 0x03		; Port B Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    LF Calibration Register  Bytes
+.equ	LFCALH		= 0x87
+.equ	LFCALL		= 0x86
+;    LF ID Compare Register 
+.equ	LFIDCH		= 0x85
+.equ	LFIDCL		= 0x84
+;    Timer3 COmpare Register B  Bytes
+.equ	T3CORBH		= 0x7B
+.equ	T3CORBL		= 0x7A
+;    Timer3 COmpare Register A  Bytes
+.equ	T3CORAH		= 0x79
+.equ	T3CORAL		= 0x78
+;    Timer3 Input Capture Register  Bytes
+.equ	T3ICRH		= 0x77
+.equ	T3ICRL		= 0x76
+;    Timer2 Compare Register  Bytes
+.equ	T2CORH		= 0x71
+.equ	T2CORL		= 0x70
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	SENSOR_INTERFACE MODULE REGISTERS BITS DEFINITION========
@@ -719,13 +745,13 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

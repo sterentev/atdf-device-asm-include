@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny2313
 ;* File Name         : ATtiny2313.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:48 UTC
+;* Make Date         : 2026-06-05 09:17:49 UTC
 ;
 ;***********************************************************************
 
@@ -238,11 +238,11 @@
 .equ	TCCR0A		= 0x30		; Timer/Counter  Control Register A
 .equ	TCCR1A		= 0x2F		; Timer/Counter1 Control Register A
 .equ	TCCR1B		= 0x2E		; Timer/Counter1 Control Register B
-.equ	TCNT1		= 0x2C		; Timer/Counter1  Bytes
-.equ	OCR1A		= 0x2A		; Timer/Counter1 Output Compare Register  Bytes
-.equ	OCR1B		= 0x28		; Timer/Counter1 Output Compare Register  Bytes
+.equ	TCNT1		= 0x2C		; [___2 addrs___] Timer/Counter1  Bytes
+.equ	OCR1A		= 0x2A		; [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1B		= 0x28		; [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
 .equ	CLKPR		= 0x26		; Clock Prescale Register
-.equ	ICR1		= 0x24		; Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1		= 0x24		; [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
 .equ	GTCCR		= 0x23		; General Timer Counter Control Register
 .equ	TCCR1C		= 0x22		; Timer/Counter1 Control Register C
 .equ	WDTCR		= 0x21		; Watchdog Timer Control Register
@@ -273,6 +273,20 @@
 .equ	DIDR		= 0x01		; Digital Input Disable Register 1
 .equ	UCSRA		= 0x0B		; USART Control and Status Register A
 .equ	UCSRB		= 0x0A		; USART Control and Status Register B
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x2D
+.equ	TCNT1L		= 0x2C
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1AH		= 0x2B
+.equ	OCR1AL		= 0x2A
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1BH		= 0x29
+.equ	OCR1BL		= 0x28
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x25
+.equ	ICR1L		= 0x24
 
 
 ; ====	TC8 MODULE REGISTERS BITS DEFINITION		========
@@ -637,14 +651,14 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

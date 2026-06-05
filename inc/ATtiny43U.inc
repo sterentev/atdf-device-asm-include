@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny43U
 ;* File Name         : ATtiny43U.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:48 UTC
+;* Make Date         : 2026-06-05 09:17:50 UTC
 ;
 ;***********************************************************************
 
@@ -230,7 +230,7 @@
 ; **********************************************************************
 ;
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	OCR0B		= 0x3C		; Timer/Counter0 Output Compare Register B
 .equ	GIMSK		= 0x3B		; General Interrupt Mask Register
 .equ	GIFR		= 0x3A		; General Interrupt Flag register
@@ -275,10 +275,18 @@
 .equ	ACSR		= 0x08		; Analog Comparator Control And Status Register
 .equ	ADMUX		= 0x07		; ADC Multiplexer Selection Register
 .equ	ADCSRA		= 0x06		; ADC Control and Status Register A
-.equ	ADC		= 0x04		; ADC Data Register  Bytes
+.equ	ADC		= 0x04		; [___2 addrs___] ADC Data Register  Bytes
 .equ	ADCSRB		= 0x03		; ADC Control and Status Register B
 .equ	DIDR0		= 0x01
 .equ	PRR		= 0x00		; Power Reduction Register
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x05
+.equ	ADCL		= 0x04
 
 
 ; ====	USI MODULE REGISTERS BITS DEFINITION		========
@@ -673,14 +681,14 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

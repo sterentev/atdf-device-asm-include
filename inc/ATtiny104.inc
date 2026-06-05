@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny104
 ;* File Name         : ATtiny104.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:47 UTC
+;* Make Date         : 2026-06-05 09:17:48 UTC
 ;
 ;***********************************************************************
 
@@ -161,7 +161,7 @@
 ; **********************************************************************
 ;
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	CCP		= 0x3C		; Configuration Change Protection
 .equ	RSTFLR		= 0x3B		; Reset Flag Register
 .equ	SMCR		= 0x3A		; Sleep Mode Control Register
@@ -179,10 +179,10 @@
 .equ	TCCR0C		= 0x2C		; Timer/Counter 0 Control Register C
 .equ	TIMSK0		= 0x2B		; Timer Interrupt Mask Register 0
 .equ	TIFR0		= 0x2A		; Overflow Interrupt Enable
-.equ	TCNT0		= 0x28		; Timer/Counter0 
-.equ	OCR0A		= 0x26		; Timer/Counter 0 Output Compare Register A 
-.equ	OCR0B		= 0x24		; Timer/Counter0 Output Compare Register B 
-.equ	ICR0		= 0x22		; Input Capture Register  Bytes
+.equ	TCNT0		= 0x28		; [___2 addrs___] Timer/Counter0 
+.equ	OCR0A		= 0x26		; [___2 addrs___] Timer/Counter 0 Output Compare Register A 
+.equ	OCR0B		= 0x24		; [___2 addrs___] Timer/Counter0 Output Compare Register B 
+.equ	ICR0		= 0x22		; [___2 addrs___] Input Capture Register  Bytes
 .equ	ACSRA		= 0x1F		; Analog Comparator Control And Status Register A
 .equ	ACSRB		= 0x1E		; Analog Comparator Control And Status Register B
 .equ	ADCSRA		= 0x1D		; The ADC Control and Status register A
@@ -203,7 +203,7 @@
 .equ	UCSRB		= 0x0D		; USART Control and Status Register B
 .equ	UCSRC		= 0x0C		; USART Control and Status Register C
 .equ	UCSRD		= 0x0B		; USART Control and Status Register D
-.equ	UBRR		= 0x09		; USART Baud Rate Register  Bytes
+.equ	UBRR		= 0x09		; [___2 addrs___] USART Baud Rate Register  Bytes
 .equ	UDR		= 0x08		; USART I/O Data Register
 .equ	PUEB		= 0x07		; Pull-up Enable Control Register for PORTB
 .equ	PORTB		= 0x06		; Port B Data register
@@ -213,6 +213,26 @@
 .equ	PORTA		= 0x02		; Port A Data register
 .equ	DDRA		= 0x01		; Data Direction Register, Port A
 .equ	PINA		= 0x00		; Input Pins, Port A
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer/Counter0 
+.equ	TCNT0H		= 0x29
+.equ	TCNT0L		= 0x28
+;    Timer/Counter 0 Output Compare Register A 
+.equ	OCR0AH		= 0x27
+.equ	OCR0AL		= 0x26
+;    Timer/Counter0 Output Compare Register B 
+.equ	OCR0BH		= 0x25
+.equ	OCR0BL		= 0x24
+;    Input Capture Register  Bytes
+.equ	ICR0H		= 0x23
+.equ	ICR0L		= 0x22
+;    USART Baud Rate Register  Bytes
+.equ	UBRRH		= 0x0A
+.equ	UBRRL		= 0x09
 
 
 ; ====	ADC MODULE REGISTERS BITS DEFINITION		========
@@ -598,12 +618,12 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "BYTE0		", FUSES_BYTE0
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "BYTE0           ", FUSES_BYTE0
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

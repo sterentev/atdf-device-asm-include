@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny261
 ;* File Name         : ATtiny261.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:48 UTC
+;* Make Date         : 2026-06-05 09:17:49 UTC
 ;
 ;***********************************************************************
 
@@ -259,7 +259,7 @@
 .equ	PCMSK1		= 0x22		; Pin Change Enable Mask 1
 .equ	WDTCR		= 0x21		; Watchdog Timer Control Register
 .equ	DWDR		= 0x20		; debugWire data register
-.equ	EEAR		= 0x1E		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	PORTA		= 0x1B		; Port A Data Register
@@ -284,11 +284,19 @@
 .equ	ACSRA		= 0x08		; Analog Comparator Control And Status Register A
 .equ	ADMUX		= 0x07		; The ADC multiplexer Selection Register
 .equ	ADCSRA		= 0x06		; The ADC Control and Status register
-.equ	ADC		= 0x04		; ADC Data Register  Bytes
+.equ	ADC		= 0x04		; [___2 addrs___] ADC Data Register  Bytes
 .equ	ADCSRB		= 0x03		; ADC Control and Status Register B
 .equ	DIDR1		= 0x02		; Digital Input Disable Register 1
 .equ	DIDR0		= 0x01		; Digital Input Disable Register 0
 .equ	TCCR1E		= 0x00		; Timer/Counter1 Control Register E
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x05
+.equ	ADCL		= 0x04
 
 
 ; ====	ADC MODULE REGISTERS BITS DEFINITION		========
@@ -746,14 +754,14 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

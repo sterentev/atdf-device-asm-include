@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega6450A
 ;* File Name         : ATmega6450A.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:53:00 UTC
+;* Make Date         : 2026-06-05 09:18:01 UTC
 ;
 ;***********************************************************************
 
@@ -266,7 +266,7 @@
 .equ	DDRH		= 0xD9		; [MEMORY MAPPED] PORT H Data Direction Register
 .equ	PINH		= 0xD8		; [MEMORY MAPPED] PORT H Input Pins
 .equ	UDR0		= 0xC6		; [MEMORY MAPPED] USART I/O Data Register
-.equ	UBRR0		= 0xC4		; [MEMORY MAPPED] USART Baud Rate Register  Bytes
+.equ	UBRR0		= 0xC4		; [MEMORY MAPPED] [___2 addrs___] USART Baud Rate Register  Bytes
 .equ	UCSR0C		= 0xC2		; [MEMORY MAPPED] USART Control and Status Register C
 .equ	UCSR0B		= 0xC1		; [MEMORY MAPPED] USART Control and Status Register B
 .equ	UCSR0A		= 0xC0		; [MEMORY MAPPED] USART Control and Status Register A
@@ -277,10 +277,10 @@
 .equ	OCR2A		= 0xB3		; [MEMORY MAPPED] Timer/Counter2 Output Compare Register
 .equ	TCNT2		= 0xB2		; [MEMORY MAPPED] Timer/Counter2
 .equ	TCCR2A		= 0xB0		; [MEMORY MAPPED] Timer/Counter2 Control Register
-.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register B  Bytes
-.equ	OCR1A		= 0x88		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register A  Bytes
-.equ	ICR1		= 0x86		; [MEMORY MAPPED] Timer/Counter1 Input Capture Register  Bytes
-.equ	TCNT1		= 0x84		; [MEMORY MAPPED] Timer/Counter1  Bytes
+.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register B  Bytes
+.equ	OCR1A		= 0x88		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register A  Bytes
+.equ	ICR1		= 0x86		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1  Bytes
 .equ	TCCR1C		= 0x82		; [MEMORY MAPPED] Timer/Counter 1 Control Register C
 .equ	TCCR1B		= 0x81		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	TCCR1A		= 0x80		; [MEMORY MAPPED] Timer/Counter1 Control Register A
@@ -289,7 +289,7 @@
 .equ	ADMUX		= 0x7C		; [MEMORY MAPPED] The ADC multiplexer Selection Register
 .equ	ADCSRB		= 0x7B		; [MEMORY MAPPED] ADC Control and Status Register B
 .equ	ADCSRA		= 0x7A		; [MEMORY MAPPED] The ADC Control and Status register
-.equ	ADC		= 0x78		; [MEMORY MAPPED] ADC Data Register  Bytes
+.equ	ADC		= 0x78		; [MEMORY MAPPED] [___2 addrs___] ADC Data Register  Bytes
 .equ	PCMSK3		= 0x73		; [MEMORY MAPPED] Pin Change Mask Register 3
 .equ	TIMSK2		= 0x70		; [MEMORY MAPPED] Timer/Counter2 Interrupt Mask register
 .equ	TIMSK1		= 0x6F		; [MEMORY MAPPED] Timer/Counter1 Interrupt Mask Register
@@ -303,7 +303,7 @@
 .equ	CLKPR		= 0x61		; [MEMORY MAPPED] Clock Prescale Register
 .equ	WDTCR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	SPMCSR		= 0x37		; Store Program Memory Control Register
 .equ	MCUCR		= 0x35		; MCU Control Register
 .equ	MCUSR		= 0x34		; MCU Status Register
@@ -319,7 +319,7 @@
 .equ	TCNT0		= 0x26		; Timer/Counter0
 .equ	TCCR0A		= 0x24		; Timer/Counter0 Control Register
 .equ	GTCCR		= 0x23		; General Timer/Control Register
-.equ	EEAR		= 0x21		; EEPROM Read/Write Access  Bytes
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Read/Write Access  Bytes
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR0		= 0x1E		; General Purpose IO Register 0
@@ -349,6 +349,32 @@
 .equ	PORTA		= 0x02		; Port A Data Register
 .equ	DDRA		= 0x01		; Port A Data Direction Register
 .equ	PINA		= 0x00		; Port A Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    USART Baud Rate Register  Bytes
+.equ	UBRR0H		= 0xC5
+.equ	UBRR0L		= 0xC4
+;    Timer/Counter1 Output Compare Register B  Bytes
+.equ	OCR1BH		= 0x8B
+.equ	OCR1BL		= 0x8A
+;    Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1AH		= 0x89
+.equ	OCR1AL		= 0x88
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x87
+.equ	ICR1L		= 0x86
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x85
+.equ	TCNT1L		= 0x84
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x79
+.equ	ADCL		= 0x78
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Read/Write Access  Bytes
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	ADC MODULE REGISTERS BITS DEFINITION		========
@@ -876,14 +902,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

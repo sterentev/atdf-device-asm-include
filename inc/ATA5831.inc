@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA5831
 ;* File Name         : ATA5831.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-06-01 14:53:05 UTC
+;* Make Date         : 2026-06-05 09:18:06 UTC
 ;
 ;***********************************************************************
 
@@ -182,7 +182,7 @@
 ; **********************************************************************
 ;
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	SPMCSR		= 0x3C		; Store Program Memory Control and Status Register
 .equ	CLPR		= 0x3B		; Clock Prescaler Register
 .equ	SMCR		= 0x38		; Sleep mode control Register
@@ -254,12 +254,12 @@
 .equ	TMCR2		= 0x012D	; [MEMORY MAPPED] Tx Modulator Control Register 2
 .equ	TMSR		= 0x012C	; [MEMORY MAPPED] Tx Modulator Status Register
 .equ	TMSSC		= 0x012B	; [MEMORY MAPPED] Tx Modulator Stop Sequence Configuration
-.equ	TMTL		= 0x0129	; [MEMORY MAPPED] Tx Modulator Telegram Length Register
+.equ	TMTL		= 0x0129	; [MEMORY MAPPED] [___2 addrs___] Tx Modulator Telegram Length Register
 .equ	TMSHR		= 0x0128	; [MEMORY MAPPED] Tx Modulator Shift Register
-.equ	TMCP		= 0x0126	; [MEMORY MAPPED] Tx Modulator CRC Polynomial
-.equ	TMCI		= 0x0124	; [MEMORY MAPPED] Tx Modulator CRC Init Value
+.equ	TMCP		= 0x0126	; [MEMORY MAPPED] [___2 addrs___] Tx Modulator CRC Polynomial
+.equ	TMCI		= 0x0124	; [MEMORY MAPPED] [___2 addrs___] Tx Modulator CRC Init Value
 .equ	TMCSB		= 0x0123	; [MEMORY MAPPED] Tx Modulator CRC Skip Bit Number
-.equ	TMCR		= 0x0121	; [MEMORY MAPPED] Tx Modulator CRC Result
+.equ	TMCR		= 0x0121	; [MEMORY MAPPED] [___2 addrs___] Tx Modulator CRC Result
 .equ	TMFSM		= 0x0120	; [MEMORY MAPPED] Tx Modulator Finite State Machine
 .equ	FEBIA		= 0x010E	; [MEMORY MAPPED] Front-End IF Amplifier BIAS
 .equ	FEANT		= 0x010D	; [MEMORY MAPPED] Front-End ANTenna
@@ -319,7 +319,7 @@
 .equ	DFRP		= 0xD7		; [MEMORY MAPPED] Data FIFO Read Pointer
 .equ	DFWP		= 0xD6		; [MEMORY MAPPED] Data FIFO Write Pointer
 .equ	DFL		= 0xD5		; [MEMORY MAPPED] Data FIFO Fill Level Register
-.equ	DFTL		= 0xD3		; [MEMORY MAPPED] Data FIFO Telegram Length
+.equ	DFTL		= 0xD3		; [MEMORY MAPPED] [___2 addrs___] Data FIFO Telegram Length
 .equ	DFS		= 0xD2		; [MEMORY MAPPED] Data FIFO Status Register
 .equ	VMCAL		= 0xD1		; [MEMORY MAPPED] Voltage Monitor Calibration register
 .equ	CALRDY		= 0xD0		; [MEMORY MAPPED] Calibration ready signature
@@ -386,21 +386,21 @@
 .equ	SOTSB		= 0x91		; [MEMORY MAPPED] Start Of Telegram Status for path B
 .equ	GTCCR		= 0x90		; [MEMORY MAPPED] General Timer/Counter Control Register
 .equ	T5IMR		= 0x8F		; [MEMORY MAPPED] Timer5 Interrupt Mask Register
-.equ	T5CNT		= 0x8D		; [MEMORY MAPPED] Timer5 Counter
+.equ	T5CNT		= 0x8D		; [MEMORY MAPPED] [___2 addrs___] Timer5 Counter
 .equ	T5CCR		= 0x8C		; [MEMORY MAPPED] Timer5 Control Register
-.equ	T5OCR		= 0x8A		; [MEMORY MAPPED] Timer5 Output Compare Register
+.equ	T5OCR		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer5 Output Compare Register
 .equ	T4IMR		= 0x88		; [MEMORY MAPPED] Timer4 interrupt mask Register
 .equ	T4MRB		= 0x87		; [MEMORY MAPPED] Timer4 mode Register
 .equ	T4MRA		= 0x86		; [MEMORY MAPPED] Timer4 mode Register
-.equ	T4ICR		= 0x84		; [MEMORY MAPPED] Timer4 input capture Register
-.equ	T4COR		= 0x82		; [MEMORY MAPPED] Timer4 compare Register
-.equ	T4CNT		= 0x80		; [MEMORY MAPPED] Timer4 counter Register
+.equ	T4ICR		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer4 input capture Register
+.equ	T4COR		= 0x82		; [MEMORY MAPPED] [___2 addrs___] Timer4 compare Register
+.equ	T4CNT		= 0x80		; [MEMORY MAPPED] [___2 addrs___] Timer4 counter Register
 .equ	T3IMR		= 0x7F		; [MEMORY MAPPED] Timer3 interrupt mask Register
 .equ	T3MRB		= 0x7E		; [MEMORY MAPPED] Timer3 mode Register
 .equ	T3MRA		= 0x7D		; [MEMORY MAPPED] Timer3 mode Register
-.equ	T3ICR		= 0x7B		; [MEMORY MAPPED] Timer3 input capture Register
-.equ	T3COR		= 0x79		; [MEMORY MAPPED] Timer3 compare Register
-.equ	T3CNT		= 0x77		; [MEMORY MAPPED] Timer3 counter Register
+.equ	T3ICR		= 0x7B		; [MEMORY MAPPED] [___2 addrs___] Timer3 input capture Register
+.equ	T3COR		= 0x79		; [MEMORY MAPPED] [___2 addrs___] Timer3 compare Register
+.equ	T3CNT		= 0x77		; [MEMORY MAPPED] [___2 addrs___] Timer3 counter Register
 .equ	T2IMR		= 0x76		; [MEMORY MAPPED] Timer2 Interrupt Mask Register
 .equ	T2MR		= 0x75		; [MEMORY MAPPED] Timer2 Mode Register
 .equ	T2COR		= 0x74		; [MEMORY MAPPED] Timer2 Compare Register
@@ -419,7 +419,7 @@
 .equ	FFREQ1H		= 0x66		; [MEMORY MAPPED] Fractional Frequency 1 Setting, High Byte
 .equ	FFREQ1M		= 0x65		; [MEMORY MAPPED] Fractional Frequency 1 Setting, Middle Byte
 .equ	FFREQ1L		= 0x64		; [MEMORY MAPPED] Fractional Frequency 1 Setting, Low Byte
-.equ	GACDIV		= 0x62		; [MEMORY MAPPED] Gauss Clock Divider
+.equ	GACDIV		= 0x62		; [MEMORY MAPPED] [___2 addrs___] Gauss Clock Divider
 .equ	FSFCR		= 0x61		; [MEMORY MAPPED] Frequency Synthesizer Filter Control Register
 .equ	FSEN		= 0x60		; [MEMORY MAPPED] Frequency Synthesizer Enable register
 .equ	CMIMR		= 0x3A		; Clock Interrupt Mask Register
@@ -438,7 +438,7 @@
 .equ	GPIOR2		= 0x25		; General Purpose I/O Register 2
 .equ	GPIOR1		= 0x24		; General Purpose I/O Register 1
 .equ	EEPR		= 0x23		; EEPROM Protection Register
-.equ	EEAR		= 0x21		; EEPROM Address Register
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR6		= 0x1E		; General Purpose I/O Register 6
@@ -460,6 +460,56 @@
 .equ	RDSIFR		= 0x0D		; Rx DSP status interrupt flag register
 .equ	FSCR		= 0x0B		; Frequency Synthesizer Control Register
 .equ	RDPR		= 0x04		; Rx DSP power reduction register
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Tx Modulator Telegram Length Register
+.equ	TMTLH		= 0x012A
+.equ	TMTLL		= 0x0129
+;    Tx Modulator CRC Polynomial
+.equ	TMCPH		= 0x0127
+.equ	TMCPL		= 0x0126
+;    Tx Modulator CRC Init Value
+.equ	TMCIH		= 0x0125
+.equ	TMCIL		= 0x0124
+;    Tx Modulator CRC Result
+.equ	TMCRH		= 0x0122
+.equ	TMCRL		= 0x0121
+;    Data FIFO Telegram Length
+.equ	DFTLH		= 0xD4
+.equ	DFTLL		= 0xD3
+;    Timer5 Counter
+.equ	T5CNTH		= 0x8E
+.equ	T5CNTL		= 0x8D
+;    Timer5 Output Compare Register
+.equ	T5OCRH		= 0x8B
+.equ	T5OCRL		= 0x8A
+;    Timer4 input capture Register
+.equ	T4ICRH		= 0x85
+.equ	T4ICRL		= 0x84
+;    Timer4 compare Register
+.equ	T4CORH		= 0x83
+.equ	T4CORL		= 0x82
+;    Timer4 counter Register
+.equ	T4CNTH		= 0x81
+.equ	T4CNTL		= 0x80
+;    Timer3 input capture Register
+.equ	T3ICRH		= 0x7C
+.equ	T3ICRL		= 0x7B
+;    Timer3 compare Register
+.equ	T3CORH		= 0x7A
+.equ	T3CORL		= 0x79
+;    Timer3 counter Register
+.equ	T3CNTH		= 0x78
+.equ	T3CNTL		= 0x77
+;    Gauss Clock Divider
+.equ	GACDIVH		= 0x63
+.equ	GACDIVL		= 0x62
+;    EEPROM Address Register
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	CHFLT MODULE REGISTERS BITS DEFINITION		========
@@ -2009,12 +2059,12 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~AP_MASK | AP) \
 ;#				  &  (~BLP_MASK | BLP)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

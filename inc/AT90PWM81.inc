@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the AT90PWM81
 ;* File Name         : AT90PWM81.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:52:51 UTC
+;* Make Date         : 2026-06-05 09:17:52 UTC
 ;
 ;***********************************************************************
 
@@ -279,7 +279,7 @@
 ; ***************	DATA REGISTERS		************************
 ; **********************************************************************
 ;
-.equ	ICR1		= 0x8C		; [MEMORY MAPPED] Timer/Counter1 Input Capture Register Bytes
+.equ	ICR1		= 0x8C		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Input Capture Register Bytes
 .equ	TCCR1B		= 0x8A		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	EICRA		= 0x89		; [MEMORY MAPPED] External Interrupt Control Register A
 .equ	OSCCAL		= 0x88		; [MEMORY MAPPED] Oscillator Calibration Value
@@ -305,34 +305,34 @@
 .equ	PCNFE2		= 0x70		; [MEMORY MAPPED] PSC 2 Enhanced Configuration Register
 .equ	POM2		= 0x6F		; [MEMORY MAPPED] PSC 2 Output Matrix
 .equ	PSOC2		= 0x6E		; [MEMORY MAPPED] PSC2 Synchro and Output Configuration
-.equ	PICR2		= 0x6C		; [MEMORY MAPPED] PSC 2 Input Capture Register
+.equ	PICR2		= 0x6C		; [MEMORY MAPPED] [___2 addrs___] PSC 2 Input Capture Register
 .equ	PSOC0		= 0x6A		; [MEMORY MAPPED] PSC0 Synchro and Output Configuration
-.equ	PICR0		= 0x68		; [MEMORY MAPPED] PSC 0 Input Capture Register 
+.equ	PICR0		= 0x68		; [MEMORY MAPPED] [___2 addrs___] PSC 0 Input Capture Register 
 .equ	PFRC2B		= 0x67		; [MEMORY MAPPED] PSC 2 Input B Control
 .equ	PFRC2A		= 0x66		; [MEMORY MAPPED] PSC 2 Input B Control
-.equ	OCR2SA		= 0x64		; [MEMORY MAPPED] Output Compare SA Register 
+.equ	OCR2SA		= 0x64		; [MEMORY MAPPED] [___2 addrs___] Output Compare SA Register 
 .equ	PFRC0B		= 0x63		; [MEMORY MAPPED] PSC 0 Input B Control
 .equ	PFRC0A		= 0x62		; [MEMORY MAPPED] PSC 0 Input A Control
-.equ	OCR0SA		= 0x60		; [MEMORY MAPPED] Output Compare SA Register 
+.equ	OCR0SA		= 0x60		; [MEMORY MAPPED] [___2 addrs___] Output Compare SA Register 
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
-.equ	TCNT1		= 0x3A		; Timer/Counter1 Bytes
-.equ	DAC		= 0x38		; DAC Data Register
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
+.equ	TCNT1		= 0x3A		; [___2 addrs___] Timer/Counter1 Bytes
+.equ	DAC		= 0x38		; [___2 addrs___] DAC Data Register
 .equ	SPMCSR		= 0x37		; Store Program Memory Control Register
 .equ	SPDR		= 0x36		; SPI Data Register
 .equ	MCUCR		= 0x35		; MCU Control Register
 .equ	MCUSR		= 0x34		; MCU Status Register
 .equ	SMCR		= 0x33		; Sleep Mode Control Register
-.equ	OCR2RA		= 0x2E		; Output Compare RA Register 
-.equ	ADC		= 0x2C		; ADC Data Register Bytes
-.equ	OCR0RA		= 0x2A		; Output Compare RA Register 
-.equ	OCR2RB		= 0x28		; Output Compare RB Register 
-.equ	OCR2SB		= 0x26		; Output Compare SB Register 
-.equ	OCR0RB		= 0x24		; Output Compare RB Register 
-.equ	OCR0SB		= 0x22		; Output Compare SB Register 
+.equ	OCR2RA		= 0x2E		; [___2 addrs___] Output Compare RA Register 
+.equ	ADC		= 0x2C		; [___2 addrs___] ADC Data Register Bytes
+.equ	OCR0RA		= 0x2A		; [___2 addrs___] Output Compare RA Register 
+.equ	OCR2RB		= 0x28		; [___2 addrs___] Output Compare RB Register 
+.equ	OCR2SB		= 0x26		; [___2 addrs___] Output Compare SB Register 
+.equ	OCR0RB		= 0x24		; [___2 addrs___] Output Compare RB Register 
+.equ	OCR0SB		= 0x22		; [___2 addrs___] Output Compare SB Register 
 .equ	EIMSK		= 0x21		; External Interrupt Mask Register
 .equ	EIFR		= 0x20		; External Interrupt Flag Register
-.equ	EEAR		= 0x1E		; EEPROM Read/Write Access Bytes
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Read/Write Access Bytes
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	GPIOR2		= 0x1B		; General Purpose IO Register 2
@@ -363,6 +363,56 @@
 .equ	TIFR1		= 0x02		; Timer/Counter Interrupt Flag register
 .equ	TIMSK1		= 0x01		; Timer/Counter Interrupt Mask Register
 .equ	ACSR		= 0x00		; Analog Comparator Status Register
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Timer/Counter1 Input Capture Register Bytes
+.equ	ICR1H		= 0x8D
+.equ	ICR1L		= 0x8C
+;    PSC 2 Input Capture Register
+.equ	PICR2H		= 0x6D
+.equ	PICR2L		= 0x6C
+;    PSC 0 Input Capture Register 
+.equ	PICR0H		= 0x69
+.equ	PICR0L		= 0x68
+;    Output Compare SA Register 
+.equ	OCR2SAH		= 0x65
+.equ	OCR2SAL		= 0x64
+;    Output Compare SA Register 
+.equ	OCR0SAH		= 0x61
+.equ	OCR0SAL		= 0x60
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer/Counter1 Bytes
+.equ	TCNT1H		= 0x3B
+.equ	TCNT1L		= 0x3A
+;    DAC Data Register
+.equ	DACH		= 0x39
+.equ	DACL		= 0x38
+;    Output Compare RA Register 
+.equ	OCR2RAH		= 0x2F
+.equ	OCR2RAL		= 0x2E
+;    ADC Data Register Bytes
+.equ	ADCH		= 0x2D
+.equ	ADCL		= 0x2C
+;    Output Compare RA Register 
+.equ	OCR0RAH		= 0x2B
+.equ	OCR0RAL		= 0x2A
+;    Output Compare RB Register 
+.equ	OCR2RBH		= 0x29
+.equ	OCR2RBL		= 0x28
+;    Output Compare SB Register 
+.equ	OCR2SBH		= 0x27
+.equ	OCR2SBL		= 0x26
+;    Output Compare RB Register 
+.equ	OCR0RBH		= 0x25
+.equ	OCR0RBL		= 0x24
+;    Output Compare SB Register 
+.equ	OCR0SBH		= 0x23
+.equ	OCR0SBL		= 0x22
+;    EEPROM Read/Write Access Bytes
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
 
 
 ; ====	DAC MODULE REGISTERS BITS DEFINITION		========
@@ -1072,14 +1122,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the AT90PWM316
 ;* File Name         : AT90PWM316.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:52:51 UTC
+;* Make Date         : 2026-06-05 09:17:52 UTC
 ;
 ;***********************************************************************
 
@@ -275,36 +275,36 @@
 ; ***************	DATA REGISTERS		************************
 ; **********************************************************************
 ;
-.equ	PICR2		= 0xFE		; [MEMORY MAPPED] PSC 2 Input Capture Register 
+.equ	PICR2		= 0xFE		; [MEMORY MAPPED] [___2 addrs___] PSC 2 Input Capture Register 
 .equ	PFRC2B		= 0xFD		; [MEMORY MAPPED] PSC 2 Input B Control
 .equ	PFRC2A		= 0xFC		; [MEMORY MAPPED] PSC 2 Input B Control
 .equ	PCTL2		= 0xFB		; [MEMORY MAPPED] PSC 2 Control Register
 .equ	PCNF2		= 0xFA		; [MEMORY MAPPED] PSC 2 Configuration Register
-.equ	OCR2RB		= 0xF8		; [MEMORY MAPPED] Output Compare RB Register 
-.equ	OCR2SB		= 0xF6		; [MEMORY MAPPED] Output Compare SB Register 
-.equ	OCR2RA		= 0xF4		; [MEMORY MAPPED] Output Compare RA Register 
-.equ	OCR2SA		= 0xF2		; [MEMORY MAPPED] Output Compare SA Register 
+.equ	OCR2RB		= 0xF8		; [MEMORY MAPPED] [___2 addrs___] Output Compare RB Register 
+.equ	OCR2SB		= 0xF6		; [MEMORY MAPPED] [___2 addrs___] Output Compare SB Register 
+.equ	OCR2RA		= 0xF4		; [MEMORY MAPPED] [___2 addrs___] Output Compare RA Register 
+.equ	OCR2SA		= 0xF2		; [MEMORY MAPPED] [___2 addrs___] Output Compare SA Register 
 .equ	POM2		= 0xF1		; [MEMORY MAPPED] PSC 2 Output Matrix
 .equ	PSOC2		= 0xF0		; [MEMORY MAPPED] PSC2 Synchro and Output Configuration
-.equ	PICR1		= 0xEE		; [MEMORY MAPPED] PSC 1 Input Capture Register 
+.equ	PICR1		= 0xEE		; [MEMORY MAPPED] [___2 addrs___] PSC 1 Input Capture Register 
 .equ	PFRC1B		= 0xED		; [MEMORY MAPPED] PSC 1 Input B Control
 .equ	PFRC1A		= 0xEC		; [MEMORY MAPPED] PSC 1 Input B Control
 .equ	PCTL1		= 0xEB		; [MEMORY MAPPED] PSC 1 Control Register
 .equ	PCNF1		= 0xEA		; [MEMORY MAPPED] PSC 1 Configuration Register
-.equ	OCR1RB		= 0xE8		; [MEMORY MAPPED] Output Compare RB Register 
-.equ	OCR1SB		= 0xE6		; [MEMORY MAPPED] Output Compare SB Register 
-.equ	OCR1RA		= 0xE4		; [MEMORY MAPPED] Output Compare RA Register 
-.equ	OCR1SA		= 0xE2		; [MEMORY MAPPED] Output Compare SA Register 
+.equ	OCR1RB		= 0xE8		; [MEMORY MAPPED] [___2 addrs___] Output Compare RB Register 
+.equ	OCR1SB		= 0xE6		; [MEMORY MAPPED] [___2 addrs___] Output Compare SB Register 
+.equ	OCR1RA		= 0xE4		; [MEMORY MAPPED] [___2 addrs___] Output Compare RA Register 
+.equ	OCR1SA		= 0xE2		; [MEMORY MAPPED] [___2 addrs___] Output Compare SA Register 
 .equ	PSOC1		= 0xE0		; [MEMORY MAPPED] PSC1 Synchro and Output Configuration
-.equ	PICR0		= 0xDE		; [MEMORY MAPPED] PSC 0 Input Capture Register 
+.equ	PICR0		= 0xDE		; [MEMORY MAPPED] [___2 addrs___] PSC 0 Input Capture Register 
 .equ	PFRC0B		= 0xDD		; [MEMORY MAPPED] PSC 0 Input B Control
 .equ	PFRC0A		= 0xDC		; [MEMORY MAPPED] PSC 0 Input A Control
 .equ	PCTL0		= 0xDB		; [MEMORY MAPPED] PSC 0 Control Register
 .equ	PCNF0		= 0xDA		; [MEMORY MAPPED] PSC 0 Configuration Register
-.equ	OCR0RB		= 0xD8		; [MEMORY MAPPED] Output Compare RB Register 
-.equ	OCR0SB		= 0xD6		; [MEMORY MAPPED] Output Compare SB Register 
-.equ	OCR0RA		= 0xD4		; [MEMORY MAPPED] Output Compare RA Register 
-.equ	OCR0SA		= 0xD2		; [MEMORY MAPPED] Output Compare SA Register 
+.equ	OCR0RB		= 0xD8		; [MEMORY MAPPED] [___2 addrs___] Output Compare RB Register 
+.equ	OCR0SB		= 0xD6		; [MEMORY MAPPED] [___2 addrs___] Output Compare SB Register 
+.equ	OCR0RA		= 0xD4		; [MEMORY MAPPED] [___2 addrs___] Output Compare RA Register 
+.equ	OCR0SA		= 0xD2		; [MEMORY MAPPED] [___2 addrs___] Output Compare SA Register 
 .equ	PSOC0		= 0xD0		; [MEMORY MAPPED] PSC0 Synchro and Output Configuration
 .equ	EUDR		= 0xCE		; [MEMORY MAPPED] EUSART I/O Data Register
 .equ	MUBRRH		= 0xCD		; [MEMORY MAPPED] Manchester Receiver Baud Rate Register High Byte
@@ -321,7 +321,7 @@
 .equ	AC2CON		= 0xAF		; [MEMORY MAPPED] Analog Comparator 2 Control Register
 .equ	AC1CON		= 0xAE		; [MEMORY MAPPED] Analog Comparator 1 Control Register
 .equ	AC0CON		= 0xAD		; [MEMORY MAPPED] Analog Comparator 0 Control Register
-.equ	DAC		= 0xAB		; [MEMORY MAPPED] DAC Data Register Bytes
+.equ	DAC		= 0xAB		; [MEMORY MAPPED] [___2 addrs___] DAC Data Register Bytes
 .equ	DACON		= 0xAA		; [MEMORY MAPPED] DAC Control Register
 .equ	PIM2		= 0xA5		; [MEMORY MAPPED] PSC2 Interrupt Mask Register
 .equ	PIFR2		= 0xA4		; [MEMORY MAPPED] PSC2 Interrupt Flag Register
@@ -329,10 +329,10 @@
 .equ	PIFR1		= 0xA2		; [MEMORY MAPPED] PSC1 Interrupt Flag Register
 .equ	PIM0		= 0xA1		; [MEMORY MAPPED] PSC0 Interrupt Mask Register
 .equ	PIFR0		= 0xA0		; [MEMORY MAPPED] PSC0 Interrupt Flag Register
-.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register Bytes
-.equ	OCR1A		= 0x88		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register Bytes
-.equ	ICR1		= 0x86		; [MEMORY MAPPED] Timer/Counter1 Input Capture Register  Bytes
-.equ	TCNT1		= 0x84		; [MEMORY MAPPED] Timer/Counter1 Bytes
+.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register Bytes
+.equ	OCR1A		= 0x88		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register Bytes
+.equ	ICR1		= 0x86		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Bytes
 .equ	TCCR1C		= 0x82		; [MEMORY MAPPED] Timer/Counter1 Control Register C
 .equ	TCCR1B		= 0x81		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	TCCR1A		= 0x80		; [MEMORY MAPPED] Timer/Counter1 Control Register A
@@ -341,7 +341,7 @@
 .equ	ADMUX		= 0x7C		; [MEMORY MAPPED] The ADC multiplexer Selection Register
 .equ	ADCSRB		= 0x7B		; [MEMORY MAPPED] ADC Control and Status Register B
 .equ	ADCSRA		= 0x7A		; [MEMORY MAPPED] The ADC Control and Status register
-.equ	ADC		= 0x78		; [MEMORY MAPPED] ADC Data Register  Bytes
+.equ	ADC		= 0x78		; [MEMORY MAPPED] [___2 addrs___] ADC Data Register  Bytes
 .equ	AMP1CSR		= 0x77		; [MEMORY MAPPED] 
 .equ	AMP0CSR		= 0x76		; [MEMORY MAPPED] 
 .equ	TIMSK1		= 0x6F		; [MEMORY MAPPED] Timer/Counter Interrupt Mask Register
@@ -352,7 +352,7 @@
 .equ	CLKPR		= 0x61		; [MEMORY MAPPED] 
 .equ	WDTCSR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	SPMCSR		= 0x37		; Store Program Memory Control Register
 .equ	MCUCR		= 0x35		; MCU Control Register
 .equ	MCUSR		= 0x34		; MCU Status Register
@@ -368,7 +368,7 @@
 .equ	TCCR0B		= 0x25		; Timer/Counter Control Register B
 .equ	TCCR0A		= 0x24		; Timer/Counter  Control Register A
 .equ	GTCCR		= 0x23		; General Timer/Counter Control Register
-.equ	EEAR		= 0x21		; EEPROM Read/Write Access Bytes
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Read/Write Access Bytes
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR0		= 0x1E		; General Purpose IO Register 0
@@ -391,6 +391,77 @@
 .equ	PORTB		= 0x05		; Port B Data Register
 .equ	DDRB		= 0x04		; Port B Data Direction Register
 .equ	PINB		= 0x03		; Port B Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    PSC 2 Input Capture Register 
+.equ	PICR2H		= 0xFF
+.equ	PICR2L		= 0xFE
+;    Output Compare RB Register 
+.equ	OCR2RBH		= 0xF9
+.equ	OCR2RBL		= 0xF8
+;    Output Compare SB Register 
+.equ	OCR2SBH		= 0xF7
+.equ	OCR2SBL		= 0xF6
+;    Output Compare RA Register 
+.equ	OCR2RAH		= 0xF5
+.equ	OCR2RAL		= 0xF4
+;    Output Compare SA Register 
+.equ	OCR2SAH		= 0xF3
+.equ	OCR2SAL		= 0xF2
+;    PSC 1 Input Capture Register 
+.equ	PICR1H		= 0xEF
+.equ	PICR1L		= 0xEE
+;    Output Compare RB Register 
+.equ	OCR1RBH		= 0xE9
+.equ	OCR1RBL		= 0xE8
+;    Output Compare SB Register 
+.equ	OCR1SBH		= 0xE7
+.equ	OCR1SBL		= 0xE6
+;    Output Compare RA Register 
+.equ	OCR1RAH		= 0xE5
+.equ	OCR1RAL		= 0xE4
+;    Output Compare SA Register 
+.equ	OCR1SAH		= 0xE3
+.equ	OCR1SAL		= 0xE2
+;    PSC 0 Input Capture Register 
+.equ	PICR0H		= 0xDF
+.equ	PICR0L		= 0xDE
+;    Output Compare RB Register 
+.equ	OCR0RBH		= 0xD9
+.equ	OCR0RBL		= 0xD8
+;    Output Compare SB Register 
+.equ	OCR0SBH		= 0xD7
+.equ	OCR0SBL		= 0xD6
+;    Output Compare RA Register 
+.equ	OCR0RAH		= 0xD5
+.equ	OCR0RAL		= 0xD4
+;    Output Compare SA Register 
+.equ	OCR0SAH		= 0xD3
+.equ	OCR0SAL		= 0xD2
+;    DAC Data Register Bytes
+.equ	DACH		= 0xAC
+.equ	DACL		= 0xAB
+;    Timer/Counter1 Output Compare Register Bytes
+.equ	OCR1BH		= 0x8B
+.equ	OCR1BL		= 0x8A
+;    Timer/Counter1 Output Compare Register Bytes
+.equ	OCR1AH		= 0x89
+.equ	OCR1AL		= 0x88
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x87
+.equ	ICR1L		= 0x86
+;    Timer/Counter1 Bytes
+.equ	TCNT1H		= 0x85
+.equ	TCNT1L		= 0x84
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x79
+.equ	ADCL		= 0x78
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Read/Write Access Bytes
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	BOOT_LOAD MODULE REGISTERS BITS DEFINITION	========
@@ -1280,14 +1351,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

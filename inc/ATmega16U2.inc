@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega16U2
 ;* File Name         : ATmega16U2.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:52:55 UTC
+;* Make Date         : 2026-06-05 09:17:56 UTC
 ;
 ;***********************************************************************
 
@@ -283,7 +283,7 @@
 .equ	UENUM		= 0xE9		; [MEMORY MAPPED] USB Endpoint Number
 .equ	UEINTX		= 0xE8		; [MEMORY MAPPED] USB Endpoint Interrupt Register
 .equ	UDMFN		= 0xE6		; [MEMORY MAPPED] USB Device Micro Frame Number
-.equ	UDFNUM		= 0xE4		; [MEMORY MAPPED] USB Device Frame Number High Register
+.equ	UDFNUM		= 0xE4		; [MEMORY MAPPED] [___2 addrs___] USB Device Frame Number High Register
 .equ	UDADDR		= 0xE3		; [MEMORY MAPPED] USB Device Address Register
 .equ	UDIEN		= 0xE2		; [MEMORY MAPPED] USB Device Interrupt Enable Register
 .equ	UDINT		= 0xE1		; [MEMORY MAPPED] USB Device Interrupt Register
@@ -293,16 +293,16 @@
 .equ	CLKSEL1		= 0xD1		; [MEMORY MAPPED] 
 .equ	CLKSEL0		= 0xD0		; [MEMORY MAPPED] 
 .equ	UDR1		= 0xCE		; [MEMORY MAPPED] USART I/O Data Register
-.equ	UBRR1		= 0xCC		; [MEMORY MAPPED] USART Baud Rate Register Bytes
+.equ	UBRR1		= 0xCC		; [MEMORY MAPPED] [___2 addrs___] USART Baud Rate Register Bytes
 .equ	UCSR1D		= 0xCB		; [MEMORY MAPPED] USART Control and Status Register D
 .equ	UCSR1C		= 0xCA		; [MEMORY MAPPED] USART Control and Status Register C
 .equ	UCSR1B		= 0xC9		; [MEMORY MAPPED] USART Control and Status Register B
 .equ	UCSR1A		= 0xC8		; [MEMORY MAPPED] USART Control and Status Register A
-.equ	OCR1C		= 0x8C		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register C Bytes
-.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register B Bytes
-.equ	OCR1A		= 0x88		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register A Bytes
-.equ	ICR1		= 0x86		; [MEMORY MAPPED] Timer/Counter1 Input Capture Register Bytes
-.equ	TCNT1		= 0x84		; [MEMORY MAPPED] Timer/Counter1 Bytes
+.equ	OCR1C		= 0x8C		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register C Bytes
+.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register B Bytes
+.equ	OCR1A		= 0x88		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register A Bytes
+.equ	ICR1		= 0x86		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Input Capture Register Bytes
+.equ	TCNT1		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Bytes
 .equ	TCCR1C		= 0x82		; [MEMORY MAPPED] Timer/Counter 1 Control Register C
 .equ	TCCR1B		= 0x81		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	TCCR1A		= 0x80		; [MEMORY MAPPED] Timer/Counter1 Control Register A
@@ -323,7 +323,7 @@
 .equ	CLKPR		= 0x61		; [MEMORY MAPPED] 
 .equ	WDTCSR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	EIND		= 0x3C		; Extended Indirect Register
 .equ	SPMCSR		= 0x37		; Store Program Memory Control Register
 .equ	MCUCR		= 0x35		; MCU Control Register
@@ -343,7 +343,7 @@
 .equ	TCCR0B		= 0x25		; Timer/Counter Control Register B
 .equ	TCCR0A		= 0x24		; Timer/Counter  Control Register A
 .equ	GTCCR		= 0x23		; General Timer/Counter Control Register
-.equ	EEAR		= 0x21		; EEPROM Address Register Low Bytes
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register Low Bytes
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR0		= 0x1E		; General Purpose IO Register 0
@@ -361,6 +361,35 @@
 .equ	PORTB		= 0x05		; Port B Data Register
 .equ	DDRB		= 0x04		; Port B Data Direction Register
 .equ	PINB		= 0x03		; Port B Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    USB Device Frame Number High Register
+.equ	UDFNUMH		= 0xE5
+.equ	UDFNUML		= 0xE4
+;    USART Baud Rate Register Bytes
+.equ	UBRR1H		= 0xCD
+.equ	UBRR1L		= 0xCC
+;    Timer/Counter1 Output Compare Register C Bytes
+.equ	OCR1CH		= 0x8D
+.equ	OCR1CL		= 0x8C
+;    Timer/Counter1 Output Compare Register B Bytes
+.equ	OCR1BH		= 0x8B
+.equ	OCR1BL		= 0x8A
+;    Timer/Counter1 Output Compare Register A Bytes
+.equ	OCR1AH		= 0x89
+.equ	OCR1AL		= 0x88
+;    Timer/Counter1 Input Capture Register Bytes
+.equ	ICR1H		= 0x87
+.equ	ICR1L		= 0x86
+;    Timer/Counter1 Bytes
+.equ	TCNT1H		= 0x85
+.equ	TCNT1L		= 0x84
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Address Register Low Bytes
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	PORT MODULE REGISTERS BITS DEFINITION		========
@@ -1041,14 +1070,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

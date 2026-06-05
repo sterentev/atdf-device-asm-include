@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA5791
 ;* File Name         : ATA5791.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-06-01 14:53:04 UTC
+;* Make Date         : 2026-06-05 09:18:06 UTC
 ;
 ;***********************************************************************
 
@@ -232,7 +232,7 @@
 .equ	PRR0		= 0x63		; [MEMORY MAPPED] Power Reduction Register
 .equ	WDTCR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	CLKPR		= 0x3C		; Clock Prescaler Register
 .equ	CMIMR		= 0x3B		; Clock Management Interrupt Mask Register
 .equ	T0CR		= 0x39		; Timer 0 Control Register
@@ -257,7 +257,7 @@
 .equ	EECR2		= 0x25		; EEPROM Control Register 2
 .equ	EECCR		= 0x24		; EEPROM Error Correction Code Register
 .equ	EEPR		= 0x23		; EEPROM Protect Register
-.equ	EEAR		= 0x21		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR		= 0x1E		; General Purpose I/O Register 0
@@ -288,6 +288,14 @@
 .equ	PORTB		= 0x05		; Port B Data Register
 .equ	DDRB		= 0x04		; Port B Data Direction Register
 .equ	PINB		= 0x03		; Port B Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	SPI MODULE REGISTERS BITS DEFINITION		========
@@ -860,12 +868,12 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

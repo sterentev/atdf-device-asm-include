@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega8HVA
 ;* File Name         : ATmega8HVA.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:53:02 UTC
+;* Make Date         : 2026-06-05 09:18:04 UTC
 ;
 ;***********************************************************************
 
@@ -176,7 +176,7 @@
 .equ	BPIFR		= 0xF3		; [MEMORY MAPPED] Battery Protection Interrupt Flag Register
 .equ	BPIMSK		= 0xF2		; [MEMORY MAPPED] Battery Protection Interrupt Mask Register
 .equ	FCSR		= 0xF0		; [MEMORY MAPPED] FET Control and Status Register
-.equ	CADIC		= 0xE8		; [MEMORY MAPPED] CC-ADC Instantaneous Current
+.equ	CADIC		= 0xE8		; [MEMORY MAPPED] [___2 addrs___] CC-ADC Instantaneous Current
 .equ	CADRC		= 0xE6		; [MEMORY MAPPED] CC-ADC Regular Current
 .equ	CADCSRB		= 0xE5		; [MEMORY MAPPED] CC-ADC Control and Status Register B
 .equ	CADCSRA		= 0xE4		; [MEMORY MAPPED] CC-ADC Control and Status Register A
@@ -189,13 +189,13 @@
 .equ	ROCR		= 0xC8		; [MEMORY MAPPED] Regulator Operating Condition Register
 .equ	OCR1B		= 0x89		; [MEMORY MAPPED] Output Compare Register B
 .equ	OCR1A		= 0x88		; [MEMORY MAPPED] Output Compare Register 1A
-.equ	TCNT1		= 0x84		; [MEMORY MAPPED] Timer Counter 1  Bytes
+.equ	TCNT1		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer Counter 1  Bytes
 .equ	TCCR1B		= 0x81		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	TCCR1A		= 0x80		; [MEMORY MAPPED] Timer/Counter 1 Control Register A
 .equ	DIDR0		= 0x7E		; [MEMORY MAPPED] Digital Input Disable Register
 .equ	VADMUX		= 0x7C		; [MEMORY MAPPED] The VADC multiplexer Selection Register
 .equ	VADCSR		= 0x7A		; [MEMORY MAPPED] The VADC Control and Status register
-.equ	VADC		= 0x78		; [MEMORY MAPPED] VADC Data Register  Bytes
+.equ	VADC		= 0x78		; [MEMORY MAPPED] [___2 addrs___] VADC Data Register  Bytes
 .equ	TIMSK1		= 0x6F		; [MEMORY MAPPED] Timer/Counter Interrupt Mask Register
 .equ	TIMSK0		= 0x6E		; [MEMORY MAPPED] Timer/Counter Interrupt Mask Register
 .equ	EICRA		= 0x69		; [MEMORY MAPPED] External Interrupt Control Register
@@ -204,7 +204,7 @@
 .equ	CLKPR		= 0x61		; [MEMORY MAPPED] Clock Prescale Register
 .equ	WDTCSR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	SPMCSR		= 0x37		; Store Program Memory Control and Status Register
 .equ	MCUCR		= 0x35		; MCU Control Register
 .equ	MCUSR		= 0x34		; MCU Status Register
@@ -216,7 +216,7 @@
 .equ	GPIOR1		= 0x2A		; General Purpose IO Register 1
 .equ	OCR0B		= 0x29		; Output compare Register B
 .equ	OCR0A		= 0x28		; Output compare Register A
-.equ	TCNT0		= 0x26		; Timer Counter 0  Bytes
+.equ	TCNT0		= 0x26		; [___2 addrs___] Timer Counter 0  Bytes
 .equ	TCCR0B		= 0x25		; Timer/Counter0 Control Register
 .equ	TCCR0A		= 0x24		; Timer/Counter0 Control Register
 .equ	GTCCR		= 0x23		; General Timer/Counter Control Register
@@ -237,6 +237,23 @@
 .equ	PORTA		= 0x02		; Port A Data Register
 .equ	DDRA		= 0x01		; Port A Data Direction Register
 .equ	PINA		= 0x00		; Port A Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    CC-ADC Instantaneous Current
+.equ	CADICH		= 0xE9
+.equ	CADICL		= 0xE8
+;    Timer Counter 1  Bytes
+.equ	TCNT1H		= 0x85
+.equ	TCNT1L		= 0x84
+;    VADC Data Register  Bytes
+.equ	VADCH		= 0x79
+.equ	VADCL		= 0x78
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer Counter 0  Bytes
+.equ	TCNT0H		= 0x27
+.equ	TCNT0L		= 0x26
 
 
 ; ====	ADC MODULE REGISTERS BITS DEFINITION		========
@@ -631,12 +648,12 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

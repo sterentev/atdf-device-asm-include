@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny20
 ;* File Name         : ATtiny20.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:47 UTC
+;* Make Date         : 2026-06-05 09:17:49 UTC
 ;
 ;***********************************************************************
 
@@ -173,7 +173,7 @@
 ; **********************************************************************
 ;
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	CCP		= 0x3C		; Configuration Change Protection
 .equ	RSTFLR		= 0x3B		; Reset Flag Register
 .equ	MCUCR		= 0x3A		; MCU Control Register
@@ -199,10 +199,10 @@
 .equ	TCCR1A		= 0x24		; Timer/Counter1 Control Register A
 .equ	TCCR1B		= 0x23		; Timer/Counter1 Control Register B
 .equ	TCCR1C		= 0x22		; Timer/Counter1 Control Register C
-.equ	TCNT1		= 0x20		; Timer/Counter1 
-.equ	OCR1A		= 0x1E		; Timer/Counter 1 Output Compare Register A 
-.equ	OCR1B		= 0x1C		; Timer/Counter1 Output Compare Register B 
-.equ	ICR1		= 0x1A		; Input Capture Register  Bytes
+.equ	TCNT1		= 0x20		; [___2 addrs___] Timer/Counter1 
+.equ	OCR1A		= 0x1E		; [___2 addrs___] Timer/Counter 1 Output Compare Register A 
+.equ	OCR1B		= 0x1C		; [___2 addrs___] Timer/Counter1 Output Compare Register B 
+.equ	ICR1		= 0x1A		; [___2 addrs___] Input Capture Register  Bytes
 .equ	TCCR0A		= 0x19		; Timer/Counter 0 Control Register A
 .equ	TCCR0B		= 0x18		; Timer/Counter 0 Control Register B
 .equ	TCNT0		= 0x17		; Timer/Counter0
@@ -213,7 +213,7 @@
 .equ	ADCSRA		= 0x12		; The ADC Control and Status register
 .equ	ADCSRB		= 0x11		; ADC Control and Status Register B
 .equ	ADMUX		= 0x10		; The ADC multiplexer Selection Register
-.equ	ADC		= 0x0E		; ADC Data Register  Bytes
+.equ	ADC		= 0x0E		; [___2 addrs___] ADC Data Register  Bytes
 .equ	DIDR0		= 0x0D		; Digital Input Disable Register 0
 .equ	GIMSK		= 0x0C		; General Interrupt Mask Register
 .equ	GIFR		= 0x0B		; General Interrupt Flag Register
@@ -228,6 +228,26 @@
 .equ	PORTA		= 0x02		; Port A Data Register
 .equ	DDRA		= 0x01		; Data Direction Register, Port A
 .equ	PINA		= 0x00		; Port A Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer/Counter1 
+.equ	TCNT1H		= 0x21
+.equ	TCNT1L		= 0x20
+;    Timer/Counter 1 Output Compare Register A 
+.equ	OCR1AH		= 0x1F
+.equ	OCR1AL		= 0x1E
+;    Timer/Counter1 Output Compare Register B 
+.equ	OCR1BH		= 0x1D
+.equ	OCR1BL		= 0x1C
+;    Input Capture Register  Bytes
+.equ	ICR1H		= 0x1B
+.equ	ICR1L		= 0x1A
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x0F
+.equ	ADCL		= 0x0E
 
 
 ; ====	PORT MODULE REGISTERS BITS DEFINITION		========
@@ -664,12 +684,12 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "BYTE0		", FUSES_BYTE0
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "BYTE0           ", FUSES_BYTE0
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega644RFR2
 ;* File Name         : ATmega644RFR2.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:53:00 UTC
+;* Make Date         : 2026-06-05 09:18:01 UTC
 ;
 ;***********************************************************************
 
@@ -312,12 +312,12 @@
 .equ	SCRSTRLH	= 0xD8		; [MEMORY MAPPED] Symbol Counter Received Frame Timestamp Register LH-Byte
 .equ	SCRSTRLL	= 0xD7		; [MEMORY MAPPED] Symbol Counter Received Frame Timestamp Register LL-Byte
 .equ	UDR1		= 0xCE		; [MEMORY MAPPED] USART1 I/O Data Register
-.equ	UBRR1		= 0xCC		; [MEMORY MAPPED] USART1 Baud Rate Register  Bytes
+.equ	UBRR1		= 0xCC		; [MEMORY MAPPED] [___2 addrs___] USART1 Baud Rate Register  Bytes
 .equ	UCSR1C		= 0xCA		; [MEMORY MAPPED] USART1 Control and Status Register C
 .equ	UCSR1B		= 0xC9		; [MEMORY MAPPED] USART1 Control and Status Register B
 .equ	UCSR1A		= 0xC8		; [MEMORY MAPPED] USART1 Control and Status Register A
 .equ	UDR0		= 0xC6		; [MEMORY MAPPED] USART0 I/O Data Register
-.equ	UBRR0		= 0xC4		; [MEMORY MAPPED] USART0 Baud Rate Register  Bytes
+.equ	UBRR0		= 0xC4		; [MEMORY MAPPED] [___2 addrs___] USART0 Baud Rate Register  Bytes
 .equ	UCSR0C		= 0xC2		; [MEMORY MAPPED] USART0 Control and Status Register C
 .equ	UCSR0B		= 0xC1		; [MEMORY MAPPED] USART0 Control and Status Register B
 .equ	UCSR0A		= 0xC0		; [MEMORY MAPPED] USART0 Control and Status Register A
@@ -335,27 +335,27 @@
 .equ	TCNT2		= 0xB2		; [MEMORY MAPPED] Timer/Counter2
 .equ	TCCR2B		= 0xB1		; [MEMORY MAPPED] Timer/Counter2 Control Register B
 .equ	TCCR2A		= 0xB0		; [MEMORY MAPPED] Timer/Counter2 Control Register A
-.equ	OCR4C		= 0xAC		; [MEMORY MAPPED] Timer/Counter4 Output Compare Register C  Bytes
-.equ	OCR4B		= 0xAA		; [MEMORY MAPPED] Timer/Counter4 Output Compare Register B  Bytes
-.equ	OCR4A		= 0xA8		; [MEMORY MAPPED] Timer/Counter4 Output Compare Register A  Bytes
-.equ	ICR4		= 0xA6		; [MEMORY MAPPED] Timer/Counter4 Input Capture Register  Bytes
-.equ	TCNT4		= 0xA4		; [MEMORY MAPPED] Timer/Counter4  Bytes
+.equ	OCR4C		= 0xAC		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter4 Output Compare Register C  Bytes
+.equ	OCR4B		= 0xAA		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter4 Output Compare Register B  Bytes
+.equ	OCR4A		= 0xA8		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter4 Output Compare Register A  Bytes
+.equ	ICR4		= 0xA6		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter4 Input Capture Register  Bytes
+.equ	TCNT4		= 0xA4		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter4  Bytes
 .equ	TCCR4C		= 0xA2		; [MEMORY MAPPED] Timer/Counter4 Control Register C
 .equ	TCCR4B		= 0xA1		; [MEMORY MAPPED] Timer/Counter4 Control Register B
 .equ	TCCR4A		= 0xA0		; [MEMORY MAPPED] Timer/Counter4 Control Register A
-.equ	OCR3C		= 0x9C		; [MEMORY MAPPED] Timer/Counter3 Output Compare Register C  Bytes
-.equ	OCR3B		= 0x9A		; [MEMORY MAPPED] Timer/Counter3 Output Compare Register B  Bytes
-.equ	OCR3A		= 0x98		; [MEMORY MAPPED] Timer/Counter3 Output Compare Register A  Bytes
-.equ	ICR3		= 0x96		; [MEMORY MAPPED] Timer/Counter3 Input Capture Register  Bytes
-.equ	TCNT3		= 0x94		; [MEMORY MAPPED] Timer/Counter3  Bytes
+.equ	OCR3C		= 0x9C		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output Compare Register C  Bytes
+.equ	OCR3B		= 0x9A		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output Compare Register B  Bytes
+.equ	OCR3A		= 0x98		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output Compare Register A  Bytes
+.equ	ICR3		= 0x96		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Input Capture Register  Bytes
+.equ	TCNT3		= 0x94		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3  Bytes
 .equ	TCCR3C		= 0x92		; [MEMORY MAPPED] Timer/Counter3 Control Register C
 .equ	TCCR3B		= 0x91		; [MEMORY MAPPED] Timer/Counter3 Control Register B
 .equ	TCCR3A		= 0x90		; [MEMORY MAPPED] Timer/Counter3 Control Register A
-.equ	OCR1C		= 0x8C		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register C  Bytes
-.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register B  Bytes
-.equ	OCR1A		= 0x88		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register A  Bytes
-.equ	ICR1		= 0x86		; [MEMORY MAPPED] Timer/Counter1 Input Capture Register  Bytes
-.equ	TCNT1		= 0x84		; [MEMORY MAPPED] Timer/Counter1  Bytes
+.equ	OCR1C		= 0x8C		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register C  Bytes
+.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register B  Bytes
+.equ	OCR1A		= 0x88		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register A  Bytes
+.equ	ICR1		= 0x86		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1  Bytes
 .equ	TCCR1C		= 0x82		; [MEMORY MAPPED] Timer/Counter1 Control Register C
 .equ	TCCR1B		= 0x81		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	TCCR1A		= 0x80		; [MEMORY MAPPED] Timer/Counter1 Control Register A
@@ -365,7 +365,7 @@
 .equ	ADMUX		= 0x7C		; [MEMORY MAPPED] The ADC Multiplexer Selection Register
 .equ	ADCSRB		= 0x7B		; [MEMORY MAPPED] ADC Control and Status Register B
 .equ	ADCSRA		= 0x7A		; [MEMORY MAPPED] The ADC Control and Status Register A
-.equ	ADC		= 0x78		; [MEMORY MAPPED] ADC Data Register  Bytes
+.equ	ADC		= 0x78		; [MEMORY MAPPED] [___2 addrs___] ADC Data Register  Bytes
 .equ	ADCSRC		= 0x77		; [MEMORY MAPPED] The ADC Control and Status Register C
 .equ	NEMCR		= 0x75		; [MEMORY MAPPED] Flash Extended-Mode Control-Register
 .equ	TIMSK5		= 0x73		; [MEMORY MAPPED] Timer/Counter5 Interrupt Mask Register
@@ -388,7 +388,7 @@
 .equ	CLKPR		= 0x61		; [MEMORY MAPPED] Clock Prescale Register
 .equ	WDTCSR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	SPMCSR		= 0x37		; Store Program Memory Control Register
 .equ	MCUCR		= 0x35		; MCU Control Register
 .equ	MCUSR		= 0x34		; MCU Status Register
@@ -406,7 +406,7 @@
 .equ	TCCR0B		= 0x25		; Timer/Counter0 Control Register B
 .equ	TCCR0A		= 0x24		; Timer/Counter0 Control Register A
 .equ	GTCCR		= 0x23		; General Timer/Counter Control Register
-.equ	EEAR		= 0x21		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR0		= 0x1E		; General Purpose IO Register 0
@@ -505,11 +505,11 @@
 .equ	LLDRH		= 0x0131	; [MEMORY MAPPED] Low Leakage Voltage Regulator Data Register (High-Byte)
 .equ	LLDRL		= 0x0130	; [MEMORY MAPPED] Low Leakage Voltage Regulator Data Register (Low-Byte)
 .equ	LLCR		= 0x012F	; [MEMORY MAPPED] Low Leakage Voltage Regulator Control Register
-.equ	OCR5C		= 0x012C	; [MEMORY MAPPED] Timer/Counter5 Output Compare Register C  Bytes
-.equ	OCR5B		= 0x012A	; [MEMORY MAPPED] Timer/Counter5 Output Compare Register B  Bytes
-.equ	OCR5A		= 0x0128	; [MEMORY MAPPED] Timer/Counter5 Output Compare Register A  Bytes
-.equ	ICR5		= 0x0126	; [MEMORY MAPPED] Timer/Counter5 Input Capture Register  Bytes
-.equ	TCNT5		= 0x0124	; [MEMORY MAPPED] Timer/Counter5  Bytes
+.equ	OCR5C		= 0x012C	; [MEMORY MAPPED] [___2 addrs___] Timer/Counter5 Output Compare Register C  Bytes
+.equ	OCR5B		= 0x012A	; [MEMORY MAPPED] [___2 addrs___] Timer/Counter5 Output Compare Register B  Bytes
+.equ	OCR5A		= 0x0128	; [MEMORY MAPPED] [___2 addrs___] Timer/Counter5 Output Compare Register A  Bytes
+.equ	ICR5		= 0x0126	; [MEMORY MAPPED] [___2 addrs___] Timer/Counter5 Input Capture Register  Bytes
+.equ	TCNT5		= 0x0124	; [MEMORY MAPPED] [___2 addrs___] Timer/Counter5  Bytes
 .equ	TCCR5C		= 0x0122	; [MEMORY MAPPED] Timer/Counter5 Control Register C
 .equ	TCCR5B		= 0x0121	; [MEMORY MAPPED] Timer/Counter5 Control Register B
 .equ	TCCR5A		= 0x0120	; [MEMORY MAPPED] Timer/Counter5 Control Register A
@@ -531,6 +531,83 @@
 .equ	MAFSA0L		= 0x010E	; [MEMORY MAPPED] Transceiver MAC Short Address Register for Frame Filter 0 (Low Byte)
 .equ	MAFCR1		= 0x010D	; [MEMORY MAPPED] Multiple Address Filter Configuration Register 1
 .equ	MAFCR0		= 0x010C	; [MEMORY MAPPED] Multiple Address Filter Configuration Register 0
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    USART1 Baud Rate Register  Bytes
+.equ	UBRR1H		= 0xCD
+.equ	UBRR1L		= 0xCC
+;    USART0 Baud Rate Register  Bytes
+.equ	UBRR0H		= 0xC5
+.equ	UBRR0L		= 0xC4
+;    Timer/Counter4 Output Compare Register C  Bytes
+.equ	OCR4CH		= 0xAD
+.equ	OCR4CL		= 0xAC
+;    Timer/Counter4 Output Compare Register B  Bytes
+.equ	OCR4BH		= 0xAB
+.equ	OCR4BL		= 0xAA
+;    Timer/Counter4 Output Compare Register A  Bytes
+.equ	OCR4AH		= 0xA9
+.equ	OCR4AL		= 0xA8
+;    Timer/Counter4 Input Capture Register  Bytes
+.equ	ICR4H		= 0xA7
+.equ	ICR4L		= 0xA6
+;    Timer/Counter4  Bytes
+.equ	TCNT4H		= 0xA5
+.equ	TCNT4L		= 0xA4
+;    Timer/Counter3 Output Compare Register C  Bytes
+.equ	OCR3CH		= 0x9D
+.equ	OCR3CL		= 0x9C
+;    Timer/Counter3 Output Compare Register B  Bytes
+.equ	OCR3BH		= 0x9B
+.equ	OCR3BL		= 0x9A
+;    Timer/Counter3 Output Compare Register A  Bytes
+.equ	OCR3AH		= 0x99
+.equ	OCR3AL		= 0x98
+;    Timer/Counter3 Input Capture Register  Bytes
+.equ	ICR3H		= 0x97
+.equ	ICR3L		= 0x96
+;    Timer/Counter3  Bytes
+.equ	TCNT3H		= 0x95
+.equ	TCNT3L		= 0x94
+;    Timer/Counter1 Output Compare Register C  Bytes
+.equ	OCR1CH		= 0x8D
+.equ	OCR1CL		= 0x8C
+;    Timer/Counter1 Output Compare Register B  Bytes
+.equ	OCR1BH		= 0x8B
+.equ	OCR1BL		= 0x8A
+;    Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1AH		= 0x89
+.equ	OCR1AL		= 0x88
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x87
+.equ	ICR1L		= 0x86
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x85
+.equ	TCNT1L		= 0x84
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x79
+.equ	ADCL		= 0x78
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
+;    Timer/Counter5 Output Compare Register C  Bytes
+.equ	OCR5CH		= 0x012D
+.equ	OCR5CL		= 0x012C
+;    Timer/Counter5 Output Compare Register B  Bytes
+.equ	OCR5BH		= 0x012B
+.equ	OCR5BL		= 0x012A
+;    Timer/Counter5 Output Compare Register A  Bytes
+.equ	OCR5AH		= 0x0129
+.equ	OCR5AL		= 0x0128
+;    Timer/Counter5 Input Capture Register  Bytes
+.equ	ICR5H		= 0x0127
+.equ	ICR5L		= 0x0126
+;    Timer/Counter5  Bytes
+.equ	TCNT5H		= 0x0125
+.equ	TCNT5L		= 0x0124
 
 
 ; ====	AC MODULE REGISTERS BITS DEFINITION		========
@@ -2698,14 +2775,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

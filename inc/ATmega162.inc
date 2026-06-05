@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega162
 ;* File Name         : ATmega162.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:52:53 UTC
+;* Make Date         : 2026-06-05 09:17:55 UTC
 ;
 ;***********************************************************************
 
@@ -272,17 +272,17 @@
 ;
 .equ	TCCR3A		= 0x8B		; [MEMORY MAPPED] Timer/Counter3 Control Register A
 .equ	TCCR3B		= 0x8A		; [MEMORY MAPPED] Timer/Counter3 Control Register B
-.equ	TCNT3		= 0x88		; [MEMORY MAPPED] Timer/Counter3  Bytes
-.equ	OCR3A		= 0x86		; [MEMORY MAPPED] Timer/Counter3 Output Compare Register A  Bytes
-.equ	OCR3B		= 0x84		; [MEMORY MAPPED] Timer/Counter3 Output Compare Register B  Bytes
-.equ	ICR3		= 0x80		; [MEMORY MAPPED] Timer/Counter3 Input Capture Register  Bytes
+.equ	TCNT3		= 0x88		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3  Bytes
+.equ	OCR3A		= 0x86		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output Compare Register A  Bytes
+.equ	OCR3B		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output Compare Register B  Bytes
+.equ	ICR3		= 0x80		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Input Capture Register  Bytes
 .equ	ETIMSK		= 0x7D		; [MEMORY MAPPED] Extended Timer/Counter Interrupt Mask Register
 .equ	ETIFR		= 0x7C		; [MEMORY MAPPED] Extended Timer/Counter Interrupt Flag register
 .equ	PCMSK1		= 0x6C		; [MEMORY MAPPED] Pin Change Mask Register 1
 .equ	PCMSK0		= 0x6B		; [MEMORY MAPPED] Pin Change Enable Mask
 .equ	CLKPR		= 0x61		; [MEMORY MAPPED] Clock prescale register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	UCSR1C		= 0x3C		; USART Control and Status Register C
 .equ	UBRR1H		= 0x3C		; USART Baud Rate Register High Byte
 .equ	GICR		= 0x3B		; General Interrupt Control Register
@@ -299,18 +299,18 @@
 .equ	SFIOR		= 0x30		; Special Function IO Register
 .equ	TCCR1A		= 0x2F		; Timer/Counter1 Control Register A
 .equ	TCCR1B		= 0x2E		; Timer/Counter1 Control Register B
-.equ	TCNT1		= 0x2C		; Timer/Counter1  Bytes
-.equ	OCR1A		= 0x2A		; Timer/Counter1 Output Compare Register A  Bytes
-.equ	OCR1B		= 0x28		; Timer/Counter1 Output Compare Register B  Bytes
+.equ	TCNT1		= 0x2C		; [___2 addrs___] Timer/Counter1  Bytes
+.equ	OCR1A		= 0x2A		; [___2 addrs___] Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1B		= 0x28		; [___2 addrs___] Timer/Counter1 Output Compare Register B  Bytes
 .equ	TCCR2		= 0x27		; Timer/Counter Control Register
 .equ	ASSR		= 0x26		; Asynchronous Status Register
-.equ	ICR1		= 0x24		; Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1		= 0x24		; [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
 .equ	TCNT2		= 0x23		; Timer/Counter Register
 .equ	OCR2		= 0x22		; Output Compare Register
 .equ	WDTCR		= 0x21		; Watchdog Timer Control Register
 .equ	UCSR0C		= 0x20		; USART Control and Status Register C
 .equ	UBRR0H		= 0x20		; USART Baud Rate Register High Byte
-.equ	EEAR		= 0x1E		; EEPROM Address Register Bytes
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Address Register Bytes
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	PORTA		= 0x1B		; Port A Data Register
@@ -342,6 +342,38 @@
 .equ	UCSR1A		= 0x02		; USART Control and Status Register A
 .equ	UCSR1B		= 0x01		; USART Control and Status Register B
 .equ	UBRR1L		= 0x00		; USART Baud Rate Register Low Byte
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Timer/Counter3  Bytes
+.equ	TCNT3H		= 0x89
+.equ	TCNT3L		= 0x88
+;    Timer/Counter3 Output Compare Register A  Bytes
+.equ	OCR3AH		= 0x87
+.equ	OCR3AL		= 0x86
+;    Timer/Counter3 Output Compare Register B  Bytes
+.equ	OCR3BH		= 0x85
+.equ	OCR3BL		= 0x84
+;    Timer/Counter3 Input Capture Register  Bytes
+.equ	ICR3H		= 0x81
+.equ	ICR3L		= 0x80
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x2D
+.equ	TCNT1L		= 0x2C
+;    Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1AH		= 0x2B
+.equ	OCR1AL		= 0x2A
+;    Timer/Counter1 Output Compare Register B  Bytes
+.equ	OCR1BH		= 0x29
+.equ	OCR1BL		= 0x28
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x25
+.equ	ICR1L		= 0x24
+;    EEPROM Address Register Bytes
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
 
 
 ; ====	TC16 MODULE REGISTERS BITS DEFINITION		========
@@ -946,14 +978,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

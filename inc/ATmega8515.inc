@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega8515
 ;* File Name         : ATmega8515.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:53:02 UTC
+;* Make Date         : 2026-06-05 09:18:03 UTC
 ;
 ;***********************************************************************
 
@@ -269,7 +269,7 @@
 ; **********************************************************************
 ;
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	GICR		= 0x3B		; General Interrupt Control Register
 .equ	GIFR		= 0x3A		; General Interrupt Flag Register
 .equ	TIMSK		= 0x39		; Timer/Counter Interrupt Mask Register
@@ -284,14 +284,14 @@
 .equ	SFIOR		= 0x30		; Special Function IO Register
 .equ	TCCR1A		= 0x2F		; Timer/Counter1 Control Register A
 .equ	TCCR1B		= 0x2E		; Timer/Counter1 Control Register B
-.equ	TCNT1		= 0x2C		; Timer/Counter1  Bytes
-.equ	OCR1A		= 0x2A		; Timer/Counter1 Output Compare Register A  Bytes
-.equ	OCR1B		= 0x28		; Timer/Counter1 Output Compare Register B  Bytes
-.equ	ICR1		= 0x24		; Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x2C		; [___2 addrs___] Timer/Counter1  Bytes
+.equ	OCR1A		= 0x2A		; [___2 addrs___] Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1B		= 0x28		; [___2 addrs___] Timer/Counter1 Output Compare Register B  Bytes
+.equ	ICR1		= 0x24		; [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
 .equ	WDTCR		= 0x21		; Watchdog Timer Control Register
 .equ	UCSRC		= 0x20		; USART Control and Status Register C
 .equ	UBRRH		= 0x20		; USART Baud Rate Register High Byte
-.equ	EEAR		= 0x1E		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	PORTA		= 0x1B		; Port A Data Register
@@ -318,6 +318,26 @@
 .equ	DDRE		= 0x06		; Port E Data Direction Register
 .equ	PINE		= 0x05		; Port E Input Pins
 .equ	OSCCAL		= 0x04		; Oscillator Calibration Value
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x2D
+.equ	TCNT1L		= 0x2C
+;    Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1AH		= 0x2B
+.equ	OCR1AL		= 0x2A
+;    Timer/Counter1 Output Compare Register B  Bytes
+.equ	OCR1BH		= 0x29
+.equ	OCR1BL		= 0x28
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x25
+.equ	ICR1L		= 0x24
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
 
 
 ; ====	AC MODULE REGISTERS BITS DEFINITION		========
@@ -699,13 +719,13 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

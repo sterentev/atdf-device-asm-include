@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny25
 ;* File Name         : ATtiny25.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:48 UTC
+;* Make Date         : 2026-06-05 09:17:49 UTC
 ;
 ;***********************************************************************
 
@@ -257,7 +257,7 @@
 .equ	DWDR		= 0x22		; debugWire data register
 .equ	WDTCR		= 0x21		; Watchdog Timer Control Register
 .equ	PRR		= 0x20		; Power Reduction Register
-.equ	EEAR		= 0x1E		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	PORTB		= 0x18		; Data Register, Port B
@@ -275,8 +275,16 @@
 .equ	ACSR		= 0x08		; Analog Comparator Control And Status Register
 .equ	ADMUX		= 0x07		; The ADC multiplexer Selection Register
 .equ	ADCSRA		= 0x06		; The ADC Control and Status register
-.equ	ADC		= 0x04		; ADC Data Register  Bytes
+.equ	ADC		= 0x04		; [___2 addrs___] ADC Data Register  Bytes
 .equ	ADCSRB		= 0x03		; ADC Control and Status Register B
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x05
+.equ	ADCL		= 0x04
 
 
 ; ====	AC MODULE REGISTERS BITS DEFINITION		========
@@ -696,14 +704,14 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny828
 ;* File Name         : ATtiny828.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:49 UTC
+;* Make Date         : 2026-06-05 09:17:50 UTC
 ;
 ;***********************************************************************
 
@@ -249,7 +249,7 @@
 .equ	DIDR3		= 0xDF		; [MEMORY MAPPED] Digital Input Disable Register 2
 .equ	DIDR2		= 0xDE		; [MEMORY MAPPED] Digital Input Disable Register 2
 .equ	UDR		= 0xC6		; [MEMORY MAPPED] USART I/O Data Register
-.equ	UBRR		= 0xC4		; [MEMORY MAPPED] USART Baud Rate Register  Bytes
+.equ	UBRR		= 0xC4		; [MEMORY MAPPED] [___2 addrs___] USART Baud Rate Register  Bytes
 .equ	UCSRD		= 0xC3		; [MEMORY MAPPED] USART Control and Status Register D
 .equ	UCSRC		= 0xC2		; [MEMORY MAPPED] USART Control and Status Register C
 .equ	UCSRB		= 0xC1		; [MEMORY MAPPED] USART Control and Status Register B
@@ -260,10 +260,10 @@
 .equ	TWSSRA		= 0xBA		; [MEMORY MAPPED] TWI Slave Status Register A
 .equ	TWSCRB		= 0xB9		; [MEMORY MAPPED] TWI Slave Control Register B
 .equ	TWSCRA		= 0xB8		; [MEMORY MAPPED] TWI Slave Control Register A
-.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register  Bytes
-.equ	OCR1A		= 0x88		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register  Bytes
-.equ	ICR1		= 0x86		; [MEMORY MAPPED] Timer/Counter1 Input Capture Register  Bytes
-.equ	TCNT1		= 0x84		; [MEMORY MAPPED] Timer/Counter1  Bytes
+.equ	OCR1B		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1A		= 0x88		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
+.equ	ICR1		= 0x86		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1  Bytes
 .equ	TCCR1C		= 0x82		; [MEMORY MAPPED] Timer/Counter1 Control Register C
 .equ	TCCR1B		= 0x81		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	TCCR1A		= 0x80		; [MEMORY MAPPED] Timer/Counter1 Control Register A
@@ -273,7 +273,7 @@
 .equ	ADMUXA		= 0x7C		; [MEMORY MAPPED] The ADC multiplexer Selection Register A
 .equ	ADCSRB		= 0x7B		; [MEMORY MAPPED] ADC Control and Status Register B
 .equ	ADCSRA		= 0x7A		; [MEMORY MAPPED] The ADC Control and Status register
-.equ	ADC		= 0x78		; [MEMORY MAPPED] ADC Data Register  Bytes
+.equ	ADC		= 0x78		; [MEMORY MAPPED] [___2 addrs___] ADC Data Register  Bytes
 .equ	PCMSK3		= 0x73		; [MEMORY MAPPED] Pin Change Mask Register 3
 .equ	TIMSK1		= 0x6F		; [MEMORY MAPPED] Timer/Counter Interrupt Mask Register
 .equ	TIMSK0		= 0x6E		; [MEMORY MAPPED] Timer/Counter0 Interrupt Mask Register
@@ -288,7 +288,7 @@
 .equ	CLKPR		= 0x61		; [MEMORY MAPPED] Clock Prescale Register
 .equ	WDTCSR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control and Status Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	SPMCSR		= 0x37		; Store Program Memory Control and Status Register
 .equ	CCP		= 0x36		; Configuration Change Protection
 .equ	MCUCR		= 0x35		; MCU Control Register
@@ -334,6 +334,29 @@
 .equ	PORTA		= 0x02		; Port A Data Register
 .equ	DDRA		= 0x01		; Data Direction Register, Port A
 .equ	PINA		= 0x00		; Port A Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    USART Baud Rate Register  Bytes
+.equ	UBRRH		= 0xC5
+.equ	UBRRL		= 0xC4
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1BH		= 0x8B
+.equ	OCR1BL		= 0x8A
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1AH		= 0x89
+.equ	OCR1AL		= 0x88
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x87
+.equ	ICR1L		= 0x86
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x85
+.equ	TCNT1L		= 0x84
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x79
+.equ	ADCL		= 0x78
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
 
 
 ; ====	SPI MODULE REGISTERS BITS DEFINITION		========
@@ -934,14 +957,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

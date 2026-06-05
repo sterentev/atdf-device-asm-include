@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega64
 ;* File Name         : ATmega64.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:52:59 UTC
+;* Make Date         : 2026-06-05 09:18:00 UTC
 ;
 ;***********************************************************************
 
@@ -286,15 +286,15 @@
 .equ	TCCR3C		= 0x8C		; [MEMORY MAPPED] Timer/Counter3 Control Register C
 .equ	TCCR3A		= 0x8B		; [MEMORY MAPPED] Timer/Counter3 Control Register A
 .equ	TCCR3B		= 0x8A		; [MEMORY MAPPED] Timer/Counter3 Control Register B
-.equ	TCNT3		= 0x88		; [MEMORY MAPPED] Timer/Counter3  Bytes
-.equ	OCR3A		= 0x86		; [MEMORY MAPPED] Timer/Counter3 Output Compare Register A  Bytes
-.equ	OCR3B		= 0x84		; [MEMORY MAPPED] Timer/Counter3 Output Compare Register B  Bytes
-.equ	OCR3C		= 0x82		; [MEMORY MAPPED] Timer/Counter3 Output compare Register C  Bytes
-.equ	ICR3		= 0x80		; [MEMORY MAPPED] Timer/Counter3 Input Capture Register  Bytes
+.equ	TCNT3		= 0x88		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3  Bytes
+.equ	OCR3A		= 0x86		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output Compare Register A  Bytes
+.equ	OCR3B		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output Compare Register B  Bytes
+.equ	OCR3C		= 0x82		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Output compare Register C  Bytes
+.equ	ICR3		= 0x80		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter3 Input Capture Register  Bytes
 .equ	ETIMSK		= 0x7D		; [MEMORY MAPPED] Extended Timer/Counter Interrupt Mask Register
 .equ	ETIFR		= 0x7C		; [MEMORY MAPPED] Extended Timer/Counter Interrupt Flag register
 .equ	TCCR1C		= 0x7A		; [MEMORY MAPPED] Timer/Counter1 Control Register C
-.equ	OCR1C		= 0x78		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1C		= 0x78		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
 .equ	TWCR		= 0x74		; [MEMORY MAPPED] TWI Control Register
 .equ	TWDR		= 0x73		; [MEMORY MAPPED] TWI Data register
 .equ	TWAR		= 0x72		; [MEMORY MAPPED] TWI (Slave) Address register
@@ -311,7 +311,7 @@
 .equ	PORTF		= 0x62		; [MEMORY MAPPED] Data Register, Port F
 .equ	DDRF		= 0x61		; [MEMORY MAPPED] Data Direction Register, Port F
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	XDIV		= 0x3C		; XTAL Divide Control Register
 .equ	EICRB		= 0x3A		; External Interrupt Control Register B
 .equ	EIMSK		= 0x39		; External Interrupt Mask Register
@@ -326,17 +326,17 @@
 .equ	ASSR		= 0x30		; Asynchronous Status Register
 .equ	TCCR1A		= 0x2F		; Timer/Counter1 Control Register A
 .equ	TCCR1B		= 0x2E		; Timer/Counter1 Control Register B
-.equ	TCNT1		= 0x2C		; Timer/Counter1  Bytes
-.equ	OCR1A		= 0x2A		; Timer/Counter1 Output Compare Register  Bytes
-.equ	OCR1B		= 0x28		; Timer/Counter1 Output Compare Register  Bytes
-.equ	ICR1		= 0x26		; Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x2C		; [___2 addrs___] Timer/Counter1  Bytes
+.equ	OCR1A		= 0x2A		; [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1B		= 0x28		; [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
+.equ	ICR1		= 0x26		; [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
 .equ	TCCR2		= 0x25		; Timer/Counter Control Register
 .equ	TCNT2		= 0x24		; Timer/Counter Register
 .equ	OCR2		= 0x23		; Output Compare Register
 .equ	OCDR		= 0x22		; On-Chip Debug Related Register in I/O Memory
 .equ	WDTCR		= 0x21		; Watchdog Timer Control Register
 .equ	SFIOR		= 0x20		; Special Function IO Register
-.equ	EEAR		= 0x1E		; EEPROM Read/Write Access  Bytes
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Read/Write Access  Bytes
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	PORTA		= 0x1B		; Port A Data Register
@@ -361,11 +361,52 @@
 .equ	ACSR		= 0x08		; Analog Comparator Control And Status Register
 .equ	ADMUX		= 0x07		; The ADC multiplexer Selection Register
 .equ	ADCSRA		= 0x06		; The ADC Control and Status register A
-.equ	ADC		= 0x04		; ADC Data Register  Bytes
+.equ	ADC		= 0x04		; [___2 addrs___] ADC Data Register  Bytes
 .equ	PORTE		= 0x03		; Data Register, Port E
 .equ	DDRE		= 0x02		; Data Direction Register, Port E
 .equ	PINE		= 0x01		; Input Pins, Port E
 .equ	PINF		= 0x00		; Input Pins, Port F
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Timer/Counter3  Bytes
+.equ	TCNT3H		= 0x89
+.equ	TCNT3L		= 0x88
+;    Timer/Counter3 Output Compare Register A  Bytes
+.equ	OCR3AH		= 0x87
+.equ	OCR3AL		= 0x86
+;    Timer/Counter3 Output Compare Register B  Bytes
+.equ	OCR3BH		= 0x85
+.equ	OCR3BL		= 0x84
+;    Timer/Counter3 Output compare Register C  Bytes
+.equ	OCR3CH		= 0x83
+.equ	OCR3CL		= 0x82
+;    Timer/Counter3 Input Capture Register  Bytes
+.equ	ICR3H		= 0x81
+.equ	ICR3L		= 0x80
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1CH		= 0x79
+.equ	OCR1CL		= 0x78
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x2D
+.equ	TCNT1L		= 0x2C
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1AH		= 0x2B
+.equ	OCR1AL		= 0x2A
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1BH		= 0x29
+.equ	OCR1BL		= 0x28
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x27
+.equ	ICR1L		= 0x26
+;    EEPROM Read/Write Access  Bytes
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x05
+.equ	ADCL		= 0x04
 
 
 ; ====	AC MODULE REGISTERS BITS DEFINITION		========
@@ -1069,14 +1110,14 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

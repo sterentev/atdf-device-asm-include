@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny40
 ;* File Name         : ATtiny40.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:48 UTC
+;* Make Date         : 2026-06-05 09:17:49 UTC
 ;
 ;***********************************************************************
 
@@ -173,7 +173,7 @@
 ; **********************************************************************
 ;
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	CCP		= 0x3C		; Configuration Change Protection
 .equ	RSTFLR		= 0x3B		; Reset Flag Register
 .equ	MCUCR		= 0x3A		; MCU Control Register
@@ -217,7 +217,7 @@
 .equ	ADCSRA		= 0x12		; The ADC Control and Status register
 .equ	ADCSRB		= 0x11		; ADC Control and Status Register B
 .equ	ADMUX		= 0x10		; The ADC multiplexer Selection Register
-.equ	ADC		= 0x0E		; ADC Data Register  Bytes
+.equ	ADC		= 0x0E		; [___2 addrs___] ADC Data Register  Bytes
 .equ	DIDR0		= 0x0D		; Digital Input Disable Register 0
 .equ	GIMSK		= 0x0C		; General Interrupt Mask Register
 .equ	GIFR		= 0x0B		; General Interrupt Flag Register
@@ -232,6 +232,14 @@
 .equ	PORTA		= 0x02		; Port A Data Register
 .equ	DDRA		= 0x01		; Data Direction Register, Port A
 .equ	PINA		= 0x00		; Port A Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x0F
+.equ	ADCL		= 0x0E
 
 
 ; ====	WDT MODULE REGISTERS BITS DEFINITION		========
@@ -644,12 +652,12 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "BYTE0		", FUSES_BYTE0
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "BYTE0           ", FUSES_BYTE0
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

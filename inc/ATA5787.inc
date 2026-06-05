@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA5787
 ;* File Name         : ATA5787.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-06-01 14:53:04 UTC
+;* Make Date         : 2026-06-05 09:18:05 UTC
 ;
 ;***********************************************************************
 
@@ -177,7 +177,7 @@
 ; ***************	DATA REGISTERS		************************
 ; **********************************************************************
 ;
-.equ	TRCID		= 0x0180	; [MEMORY MAPPED] Trace Identifier
+.equ	TRCID		= 0x0180	; [MEMORY MAPPED] [___2 addrs___] Trace Identifier
 .equ	TRCDR		= 0x017F	; [MEMORY MAPPED] Trace Unit Data Register
 .equ	TRCCR		= 0x017E	; [MEMORY MAPPED] Trace Unit Control Register
 .equ	LINDAT		= 0x017D	; [MEMORY MAPPED] LIN/UART Data Register
@@ -300,7 +300,7 @@
 .equ	DFRP		= 0xE4		; [MEMORY MAPPED] Data FIFO Read Pointer
 .equ	DFWP		= 0xE3		; [MEMORY MAPPED] Data FIFO Write Pointer
 .equ	DFL		= 0xE2		; [MEMORY MAPPED] Data FIFO Fill Level
-.equ	DFTL		= 0xE0		; [MEMORY MAPPED] Data FIFO Telegram Length
+.equ	DFTL		= 0xE0		; [MEMORY MAPPED] [___2 addrs___] Data FIFO Telegram Length
 .equ	DFS		= 0xDF		; [MEMORY MAPPED] Data FIFO Status
 .equ	DCC2		= 0xDE		; [MEMORY MAPPED] DCDC Converter Control 2
 .equ	DCC1		= 0xDD		; [MEMORY MAPPED] DCDC Converter Control 1
@@ -367,7 +367,7 @@
 .equ	RXFOB		= 0x9F		; [MEMORY MAPPED] Received Frequency Offset vs Intermediate Frequency Path B
 .equ	SYCA		= 0x9E		; [MEMORY MAPPED] Symbol Check Configuration Path A
 .equ	SYCB		= 0x9D		; [MEMORY MAPPED] Symbol Check Configuration Path B
-.equ	TEMP		= 0x9B		; [MEMORY MAPPED] Temperature
+.equ	TEMP		= 0x9B		; [MEMORY MAPPED] [___2 addrs___] Temperature
 .equ	RDOCR		= 0x99		; [MEMORY MAPPED] Rx DSP Output Control
 .equ	RDSIMR		= 0x98		; [MEMORY MAPPED] Rx DSP Status Interrupt Mask Register
 .equ	TESRA		= 0x96		; [MEMORY MAPPED] Telegram Status Register Path A
@@ -378,21 +378,21 @@
 .equ	SOTSB		= 0x91		; [MEMORY MAPPED] Start Of Telegram Status Path B
 .equ	GTCCR		= 0x90		; [MEMORY MAPPED] General Timer/Counter Control Register
 .equ	T5IMR		= 0x8F		; [MEMORY MAPPED] Timer5 Interrupt Mask Register
-.equ	T5CNT		= 0x8D		; [MEMORY MAPPED] Timer5 Counter
+.equ	T5CNT		= 0x8D		; [MEMORY MAPPED] [___2 addrs___] Timer5 Counter
 .equ	T5CCR		= 0x8C		; [MEMORY MAPPED] Timer5 Configuration and Control Register
-.equ	T5OCR		= 0x8A		; [MEMORY MAPPED] Timer5 Output Compare
+.equ	T5OCR		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer5 Output Compare
 .equ	T4IMR		= 0x88		; [MEMORY MAPPED] Timer4 Interrupt Mask Register
 .equ	T4MRB		= 0x87		; [MEMORY MAPPED] Timer4 Mode Register B
 .equ	T4MRA		= 0x86		; [MEMORY MAPPED] Timer4 Mode Register A
-.equ	T4ICR		= 0x84		; [MEMORY MAPPED] Timer4 Input Capture
-.equ	T4COR		= 0x82		; [MEMORY MAPPED] Timer4 Compare
-.equ	T4CNT		= 0x80		; [MEMORY MAPPED] Timer4 Counter
+.equ	T4ICR		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer4 Input Capture
+.equ	T4COR		= 0x82		; [MEMORY MAPPED] [___2 addrs___] Timer4 Compare
+.equ	T4CNT		= 0x80		; [MEMORY MAPPED] [___2 addrs___] Timer4 Counter
 .equ	T3IMR		= 0x7F		; [MEMORY MAPPED] Timer3 Interrupt Mask Register
 .equ	T3MRB		= 0x7E		; [MEMORY MAPPED] Timer3 Mode Register B
 .equ	T3MRA		= 0x7D		; [MEMORY MAPPED] Timer3 Mode Register A
-.equ	T3ICR		= 0x7B		; [MEMORY MAPPED] Timer3 Input Capture
-.equ	T3COR		= 0x79		; [MEMORY MAPPED] Timer3 Compare
-.equ	T3CNT		= 0x77		; [MEMORY MAPPED] Timer3 Counter
+.equ	T3ICR		= 0x7B		; [MEMORY MAPPED] [___2 addrs___] Timer3 Input Capture
+.equ	T3COR		= 0x79		; [MEMORY MAPPED] [___2 addrs___] Timer3 Compare
+.equ	T3CNT		= 0x77		; [MEMORY MAPPED] [___2 addrs___] Timer3 Counter
 .equ	T2IMR		= 0x76		; [MEMORY MAPPED] Timer2 Interrupt Mask Register
 .equ	T2MR		= 0x75		; [MEMORY MAPPED] Timer2 Mode Register
 .equ	T2COR		= 0x74		; [MEMORY MAPPED] Timer2 Compare Register
@@ -413,7 +413,7 @@
 .equ	FFREQ1L		= 0x64		; [MEMORY MAPPED] Fractional Frequency 1 Low Byte
 .equ	FSEN		= 0x60		; [MEMORY MAPPED] Frequency Synthesizer Enable
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer
 .equ	CLPR		= 0x3C		; Clock Prescaler
 .equ	CMIMR		= 0x3B		; Clock Management Interrupt Mask Register
 .equ	CMCR		= 0x3A		; Clock Management Control Register
@@ -438,7 +438,7 @@
 .equ	GPIOR2		= 0x25		; General Purpose I/O Register 2
 .equ	GPIOR1		= 0x24		; General Purpose I/O Register 1
 .equ	EEPR		= 0x23		; EEPROM Protect Register
-.equ	EEAR		= 0x21		; EEPROM Address Register
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR6		= 0x1E		; General Purpose I/O Register 6
@@ -469,6 +469,47 @@
 .equ	PRR2		= 0x03		; Power Reduction Register 2
 .equ	PRR1		= 0x02		; Power Reduction Register 1
 .equ	PRR0		= 0x01		; Power Reduction Register 0
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Trace Identifier
+.equ	TRCIDH		= 0x0181
+.equ	TRCIDL		= 0x0180
+;    Data FIFO Telegram Length
+.equ	DFTLH		= 0xE1
+.equ	DFTLL		= 0xE0
+;    Temperature
+.equ	TEMPH		= 0x9C
+.equ	TEMPL		= 0x9B
+;    Timer5 Counter
+.equ	T5CNTH		= 0x8E
+.equ	T5CNTL		= 0x8D
+;    Timer5 Output Compare
+.equ	T5OCRH		= 0x8B
+.equ	T5OCRL		= 0x8A
+;    Timer4 Input Capture
+.equ	T4ICRH		= 0x85
+.equ	T4ICRL		= 0x84
+;    Timer4 Compare
+.equ	T4CORH		= 0x83
+.equ	T4CORL		= 0x82
+;    Timer4 Counter
+.equ	T4CNTH		= 0x81
+.equ	T4CNTL		= 0x80
+;    Timer3 Input Capture
+.equ	T3ICRH		= 0x7C
+.equ	T3ICRL		= 0x7B
+;    Timer3 Compare
+.equ	T3CORH		= 0x7A
+.equ	T3CORL		= 0x79
+;    Timer3 Counter
+.equ	T3CNTH		= 0x78
+.equ	T3CNTL		= 0x77
+;    Stack Pointer
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Address Register
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	CALIB MODULE REGISTERS BITS DEFINITION		========
@@ -2107,12 +2148,12 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

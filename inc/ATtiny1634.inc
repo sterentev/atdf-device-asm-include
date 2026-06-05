@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny1634
 ;* File Name         : ATtiny1634.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:47 UTC
+;* Make Date         : 2026-06-05 09:17:48 UTC
 ;
 ;***********************************************************************
 
@@ -207,15 +207,15 @@
 .equ	UCSR1B		= 0x78		; [MEMORY MAPPED] USART Control and Status Register B
 .equ	UCSR1C		= 0x77		; [MEMORY MAPPED] USART Control and Status Register C
 .equ	UCSR1D		= 0x76		; [MEMORY MAPPED] USART Control and Status Register D
-.equ	UBRR1		= 0x74		; [MEMORY MAPPED] USART Baud Rate Register  Bytes
+.equ	UBRR1		= 0x74		; [MEMORY MAPPED] [___2 addrs___] USART Baud Rate Register  Bytes
 .equ	UDR1		= 0x73		; [MEMORY MAPPED] USART I/O Data Register
 .equ	TCCR1A		= 0x72		; [MEMORY MAPPED] Timer/Counter1 Control Register A
 .equ	TCCR1B		= 0x71		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	TCCR1C		= 0x70		; [MEMORY MAPPED] Timer/Counter1 Control Register C
-.equ	TCNT1		= 0x6E		; [MEMORY MAPPED] Timer/Counter1  Bytes
-.equ	OCR1A		= 0x6C		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register  Bytes
-.equ	OCR1B		= 0x6A		; [MEMORY MAPPED] Timer/Counter1 Output Compare Register  Bytes
-.equ	ICR1		= 0x68		; [MEMORY MAPPED] Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x6E		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1  Bytes
+.equ	OCR1A		= 0x6C		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1B		= 0x6A		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Output Compare Register  Bytes
+.equ	ICR1		= 0x68		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
 .equ	GTCCR		= 0x67		; [MEMORY MAPPED] General Timer/Counter Control Register
 .equ	OSCCAL1		= 0x66		; [MEMORY MAPPED] 
 .equ	OSCTCAL0B	= 0x65		; [MEMORY MAPPED] 
@@ -225,7 +225,7 @@
 .equ	DIDR1		= 0x61		; [MEMORY MAPPED] Digital Input Disable Register 1
 .equ	DIDR0		= 0x60		; [MEMORY MAPPED] Digital Input Disable Register 0
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	GIMSK		= 0x3C		; General Interrupt Mask Register
 .equ	GIFR		= 0x3B		; General Interrupt Flag Register
 .equ	TIMSK		= 0x3A		; Timer/Counter Interrupt Mask Register
@@ -249,9 +249,9 @@
 .equ	UCSR0B		= 0x25		; USART Control and Status Register B
 .equ	UCSR0C		= 0x24		; USART Control and Status Register C
 .equ	UCSR0D		= 0x23		; USART Control and Status Register D
-.equ	UBRR0		= 0x21		; USART Baud Rate Register  Bytes
+.equ	UBRR0		= 0x21		; [___2 addrs___] USART Baud Rate Register  Bytes
 .equ	UDR0		= 0x20		; USART I/O Data Register
-.equ	EEAR		= 0x1E		; EEPROM Read/Write Access
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Read/Write Access
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	TCCR0A		= 0x1B		; Timer/Counter  Control Register A
@@ -280,7 +280,36 @@
 .equ	ADMUX		= 0x04		; The ADC multiplexer Selection Register
 .equ	ADCSRA		= 0x03		; The ADC Control and Status register
 .equ	ADCSRB		= 0x02		; ADC Control and Status Register B
-.equ	ADC		= 0x00		; ADC Data Register  Bytes
+.equ	ADC		= 0x00		; [___2 addrs___] ADC Data Register  Bytes
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    USART Baud Rate Register  Bytes
+.equ	UBRR1H		= 0x75
+.equ	UBRR1L		= 0x74
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x6F
+.equ	TCNT1L		= 0x6E
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1AH		= 0x6D
+.equ	OCR1AL		= 0x6C
+;    Timer/Counter1 Output Compare Register  Bytes
+.equ	OCR1BH		= 0x6B
+.equ	OCR1BL		= 0x6A
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x69
+.equ	ICR1L		= 0x68
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    USART Baud Rate Register  Bytes
+.equ	UBRR0H		= 0x22
+.equ	UBRR0L		= 0x21
+;    EEPROM Read/Write Access
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x01
+.equ	ADCL		= 0x00
 
 
 ; ====	TWI MODULE REGISTERS BITS DEFINITION		========
@@ -885,14 +914,14 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATmega406
 ;* File Name         : ATmega406.inc
 ;* Source Date       : 2026-01-22 07:11:00 UTC
-;* Make Date         : 2026-06-01 14:52:59 UTC
+;* Make Date         : 2026-06-05 09:18:00 UTC
 ;
 ;***********************************************************************
 
@@ -210,7 +210,7 @@
 .equ	BPIR		= 0xF2		; [MEMORY MAPPED] Battery Protection Interrupt Register
 .equ	CBCR		= 0xF1		; [MEMORY MAPPED] Cell Balancing Control Register
 .equ	FCSR		= 0xF0		; [MEMORY MAPPED] 
-.equ	CADIC		= 0xE8		; [MEMORY MAPPED] CC-ADC Instantaneous Current
+.equ	CADIC		= 0xE8		; [MEMORY MAPPED] [___2 addrs___] CC-ADC Instantaneous Current
 .equ	CADRDC		= 0xE7		; [MEMORY MAPPED] CC-ADC Regular Discharge Current
 .equ	CADRCC		= 0xE6		; [MEMORY MAPPED] CC-ADC Regular Charge Current
 .equ	CADCSRB		= 0xE5		; [MEMORY MAPPED] CC-ADC Control and Status Register B
@@ -231,12 +231,12 @@
 .equ	TWBR		= 0xB8		; [MEMORY MAPPED] TWI Bit Rate register
 .equ	OCR1AH		= 0x89		; [MEMORY MAPPED] Output Compare Register 1A High byte
 .equ	OCR1AL		= 0x88		; [MEMORY MAPPED] Output Compare Register 1A Low byte
-.equ	TCNT1		= 0x84		; [MEMORY MAPPED] Timer Counter 1  Bytes
+.equ	TCNT1		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer Counter 1  Bytes
 .equ	TCCR1B		= 0x81		; [MEMORY MAPPED] Timer/Counter1 Control Register B
 .equ	DIDR0		= 0x7E		; [MEMORY MAPPED] Digital Input Disable Register
 .equ	VADMUX		= 0x7C		; [MEMORY MAPPED] The VADC multiplexer Selection Register
 .equ	VADCSR		= 0x7A		; [MEMORY MAPPED] The VADC Control and Status register
-.equ	VADC		= 0x78		; [MEMORY MAPPED] VADC Data Register  Bytes
+.equ	VADC		= 0x78		; [MEMORY MAPPED] [___2 addrs___] VADC Data Register  Bytes
 .equ	TIMSK1		= 0x6F		; [MEMORY MAPPED] Timer/Counter Interrupt Mask Register
 .equ	TIMSK0		= 0x6E		; [MEMORY MAPPED] Timer/Counter Interrupt Mask Register
 .equ	PCMSK1		= 0x6C		; [MEMORY MAPPED] Pin Change Enable Mask Register 1
@@ -248,7 +248,7 @@
 .equ	WUTCSR		= 0x62		; [MEMORY MAPPED] Wake-up Timer Control Register
 .equ	WDTCSR		= 0x60		; [MEMORY MAPPED] Watchdog Timer Control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	SPMCSR		= 0x37		; Store Program Memory Control Register
 .equ	MCUCR		= 0x35		; MCU Control Register
 .equ	MCUSR		= 0x34		; MCU Status Register
@@ -261,7 +261,7 @@
 .equ	TCCR0B		= 0x25		; Timer/Counter0 Control Register
 .equ	TCCR0A		= 0x24		; Timer/Counter0 Control Register
 .equ	GTCCR		= 0x23		; General Timer/Counter Control Register
-.equ	EEAR		= 0x21		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	GPIOR0		= 0x1E		; General Purpose IO Register 0
@@ -280,6 +280,23 @@
 .equ	PORTA		= 0x02		; Port A Data Register
 .equ	DDRA		= 0x01		; Port A Data Direction Register
 .equ	PINA		= 0x00		; Port A Input Pins
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    CC-ADC Instantaneous Current
+.equ	CADICH		= 0xE9
+.equ	CADICL		= 0xE8
+;    Timer Counter 1  Bytes
+.equ	TCNT1H		= 0x85
+.equ	TCNT1L		= 0x84
+;    VADC Data Register  Bytes
+.equ	VADCH		= 0x79
+.equ	VADCL		= 0x78
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	ADC MODULE REGISTERS BITS DEFINITION		========
@@ -872,13 +889,13 @@
 ;#				  &  (~LB_MASK | LB) \
 ;#				  &  (~BLB0_MASK | BLB0) \
 ;#				  &  (~BLB1_MASK | BLB1)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

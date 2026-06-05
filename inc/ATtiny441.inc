@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATtiny441
 ;* File Name         : ATtiny441.inc
 ;* Source Date       : 2026-04-11 12:34:00 UTC
-;* Make Date         : 2026-06-01 14:52:49 UTC
+;* Make Date         : 2026-06-05 09:17:50 UTC
 ;
 ;***********************************************************************
 
@@ -216,10 +216,10 @@
 .equ	TCCR2A		= 0xCA		; [MEMORY MAPPED] Timer/Counter2 Control Register A
 .equ	TCCR2B		= 0xC9		; [MEMORY MAPPED] Timer/Counter2 Control Register B
 .equ	TCCR2C		= 0xC8		; [MEMORY MAPPED] Timer/Counter2 Control Register C
-.equ	TCNT2		= 0xC6		; [MEMORY MAPPED] Timer/Counter2  Bytes
-.equ	OCR2A		= 0xC4		; [MEMORY MAPPED] Timer/Counter2 Output Compare Register A  Bytes
-.equ	OCR2B		= 0xC2		; [MEMORY MAPPED] Timer/Counter2 Output Compare Register B  Bytes
-.equ	ICR2		= 0xC0		; [MEMORY MAPPED] Timer/Counter2 Input Capture Register  Bytes
+.equ	TCNT2		= 0xC6		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter2  Bytes
+.equ	OCR2A		= 0xC4		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter2 Output Compare Register A  Bytes
+.equ	OCR2B		= 0xC2		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter2 Output Compare Register B  Bytes
+.equ	ICR2		= 0xC0		; [MEMORY MAPPED] [___2 addrs___] Timer/Counter2 Input Capture Register  Bytes
 .equ	SPCR		= 0xB2		; [MEMORY MAPPED] SPI Control Register
 .equ	SPSR		= 0xB1		; [MEMORY MAPPED] SPI Status Register
 .equ	SPDR		= 0xB0		; [MEMORY MAPPED] SPI Data Register
@@ -233,13 +233,13 @@
 .equ	UCSR1B		= 0x95		; [MEMORY MAPPED] USART Control and Status Register B
 .equ	UCSR1C		= 0x94		; [MEMORY MAPPED] USART Control and Status Register C
 .equ	UCSR1D		= 0x93		; [MEMORY MAPPED] USART Control and Status Register D
-.equ	UBRR1		= 0x91		; [MEMORY MAPPED] USART Baud Rate Register  Bytes
+.equ	UBRR1		= 0x91		; [MEMORY MAPPED] [___2 addrs___] USART Baud Rate Register  Bytes
 .equ	UDR1		= 0x90		; [MEMORY MAPPED] USART I/O Data Register
 .equ	UCSR0A		= 0x86		; [MEMORY MAPPED] USART Control and Status Register A
 .equ	UCSR0B		= 0x85		; [MEMORY MAPPED] USART Control and Status Register B
 .equ	UCSR0C		= 0x84		; [MEMORY MAPPED] USART Control and Status Register C
 .equ	UCSR0D		= 0x83		; [MEMORY MAPPED] USART Control and Status Register D
-.equ	UBRR0		= 0x81		; [MEMORY MAPPED] USART Baud Rate Register  Bytes
+.equ	UBRR0		= 0x81		; [MEMORY MAPPED] [___2 addrs___] USART Baud Rate Register  Bytes
 .equ	UDR0		= 0x80		; [MEMORY MAPPED] USART I/O Data Register
 .equ	OSCCAL1		= 0x77		; [MEMORY MAPPED] Oscillator Calibration Register 32kHz
 .equ	OSCTCAL0B	= 0x76		; [MEMORY MAPPED] Oscillator Temperature Calibration Register B
@@ -260,7 +260,7 @@
 .equ	DIDR1		= 0x61		; [MEMORY MAPPED] Digital Input Disable Register 1
 .equ	DIDR0		= 0x60		; [MEMORY MAPPED] Digital Input Disable Register 0
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer 
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer 
 .equ	OCR0B		= 0x3C		; Timer/Counter0 Output Compare Register B
 .equ	GIMSK		= 0x3B		; General Interrupt Mask Register
 .equ	GIFR		= 0x3A		; General Interrupt Flag register
@@ -275,15 +275,15 @@
 .equ	TCCR0A		= 0x30		; Timer/Counter  Control Register A
 .equ	TCCR1A		= 0x2F		; Timer/Counter1 Control Register A
 .equ	TCCR1B		= 0x2E		; Timer/Counter1 Control Register B
-.equ	TCNT1		= 0x2C		; Timer/Counter1  Bytes
-.equ	OCR1A		= 0x2A		; Timer/Counter1 Output Compare Register A  Bytes
-.equ	OCR1B		= 0x28		; Timer/Counter1 Output Compare Register B  Bytes
-.equ	ICR1		= 0x24		; Timer/Counter1 Input Capture Register  Bytes
+.equ	TCNT1		= 0x2C		; [___2 addrs___] Timer/Counter1  Bytes
+.equ	OCR1A		= 0x2A		; [___2 addrs___] Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1B		= 0x28		; [___2 addrs___] Timer/Counter1 Output Compare Register B  Bytes
+.equ	ICR1		= 0x24		; [___2 addrs___] Timer/Counter1 Input Capture Register  Bytes
 .equ	GTCCR		= 0x23		; General Timer/Counter Control Register
 .equ	TCCR1C		= 0x22		; Timer/Counter1 Control Register C
 .equ	WDTCSR		= 0x21		; Watchdog Timer Control and Status Register
 .equ	PCMSK1		= 0x20		; Pin Change Enable Mask 1
-.equ	EEAR		= 0x1E		; EEPROM Address Register  Bytes
+.equ	EEAR		= 0x1E		; [___2 addrs___] EEPROM Address Register  Bytes
 .equ	EEDR		= 0x1D		; EEPROM Data Register
 .equ	EECR		= 0x1C		; EEPROM Control Register
 .equ	PORTA		= 0x1B		; Port A Data Register
@@ -306,9 +306,50 @@
 .equ	ACSR0A		= 0x0A		; Analog Comparator 0 Control And Status Register A
 .equ	ADMUXA		= 0x09		; The ADC multiplexer Selection Register A
 .equ	ADMUXB		= 0x08		; The ADC multiplexer Selection Register B
-.equ	ADC		= 0x06		; ADC Data Register  Bytes
+.equ	ADC		= 0x06		; [___2 addrs___] ADC Data Register  Bytes
 .equ	ADCSRA		= 0x05		; The ADC Control and Status register
 .equ	ADCSRB		= 0x04		; ADC Control and Status Register B
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    Timer/Counter2  Bytes
+.equ	TCNT2H		= 0xC7
+.equ	TCNT2L		= 0xC6
+;    Timer/Counter2 Output Compare Register A  Bytes
+.equ	OCR2AH		= 0xC5
+.equ	OCR2AL		= 0xC4
+;    Timer/Counter2 Output Compare Register B  Bytes
+.equ	OCR2BH		= 0xC3
+.equ	OCR2BL		= 0xC2
+;    Timer/Counter2 Input Capture Register  Bytes
+.equ	ICR2H		= 0xC1
+.equ	ICR2L		= 0xC0
+;    USART Baud Rate Register  Bytes
+.equ	UBRR1H		= 0x92
+.equ	UBRR1L		= 0x91
+;    USART Baud Rate Register  Bytes
+.equ	UBRR0H		= 0x82
+.equ	UBRR0L		= 0x81
+;    Stack Pointer 
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    Timer/Counter1  Bytes
+.equ	TCNT1H		= 0x2D
+.equ	TCNT1L		= 0x2C
+;    Timer/Counter1 Output Compare Register A  Bytes
+.equ	OCR1AH		= 0x2B
+.equ	OCR1AL		= 0x2A
+;    Timer/Counter1 Output Compare Register B  Bytes
+.equ	OCR1BH		= 0x29
+.equ	OCR1BL		= 0x28
+;    Timer/Counter1 Input Capture Register  Bytes
+.equ	ICR1H		= 0x25
+.equ	ICR1L		= 0x24
+;    EEPROM Address Register  Bytes
+.equ	EEARH		= 0x1F
+.equ	EEARL		= 0x1E
+;    ADC Data Register  Bytes
+.equ	ADCH		= 0x07
+.equ	ADCL		= 0x06
 
 
 ; ====	PORT MODULE REGISTERS BITS DEFINITION		========
@@ -1009,14 +1050,14 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "EXTENDED	", FUSES_EXTENDED
-;#	.message "HIGH		", FUSES_HIGH
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "EXTENDED        ", FUSES_EXTENDED
+;#	.message "HIGH            ", FUSES_HIGH
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin

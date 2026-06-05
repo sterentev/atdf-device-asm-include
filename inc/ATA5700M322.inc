@@ -8,7 +8,7 @@
 ;* Title             : Register/Mask/Bit Definitions for the ATA5700M322
 ;* File Name         : ATA5700M322.inc
 ;* Source Date       : 2022-03-03 10:51:00 UTC
-;* Make Date         : 2026-06-01 14:53:03 UTC
+;* Make Date         : 2026-06-05 09:18:04 UTC
 ;
 ;***********************************************************************
 
@@ -188,9 +188,9 @@
 .equ	CMCR		= 0x01E3	; [MEMORY MAPPED] Clock Management Control Register
 .equ	T3IFR		= 0x01E1	; [MEMORY MAPPED] Timer3 interrupt flag Register
 .equ	CRCDIR		= 0x01E0	; [MEMORY MAPPED] CRC Data Input Register
-.equ	PHCSR		= 0x01DE	; [MEMORY MAPPED] PH CRC Checksum Register
-.equ	PHCRP		= 0x01DC	; [MEMORY MAPPED] PH CRC Polynomial Register
-.equ	PHCST		= 0x01DA	; [MEMORY MAPPED] PH CRC Start Value Register
+.equ	PHCSR		= 0x01DE	; [MEMORY MAPPED] [___2 addrs___] PH CRC Checksum Register
+.equ	PHCRP		= 0x01DC	; [MEMORY MAPPED] [___2 addrs___] PH CRC Polynomial Register
+.equ	PHCST		= 0x01DA	; [MEMORY MAPPED] [___2 addrs___] PH CRC Start Value Register
 .equ	PHCRCR		= 0x01D9	; [MEMORY MAPPED] Protocol Handler CRC Control Register
 .equ	PHIMR		= 0x01D8	; [MEMORY MAPPED] Protocol Handler Interrupt Mask Register
 .equ	LDFC		= 0x01D7	; [MEMORY MAPPED] LF Data FIFO Configuration Register
@@ -237,12 +237,12 @@
 .equ	LTCOR		= 0x01A1	; [MEMORY MAPPED] LF Timer Compare Register
 .equ	LFSTOP		= 0x01A0	; [MEMORY MAPPED] LF Receiver Stop Bit Register
 .equ	LFSYLE		= 0x019F	; [MEMORY MAPPED] LF Receiver Synchronization Length Register
-.equ	LFSYSY		= 0x019B	; [MEMORY MAPPED] LF Receiver Synchronization Symbols Register
+.equ	LFSYSY		= 0x019B	; [MEMORY MAPPED] [___4 addrs___] LF Receiver Synchronization Symbols Register
 .equ	PHIDFR		= 0x019A	; [MEMORY MAPPED] Protocol Handler ID Frame Register
 .equ	PHID1L		= 0x0199	; [MEMORY MAPPED] PH Identifier 1 Length Register
-.equ	PHID1		= 0x0195	; [MEMORY MAPPED] PH ID1 Register
+.equ	PHID1		= 0x0195	; [MEMORY MAPPED] [___4 addrs___] PH ID1 Register
 .equ	PHID0L		= 0x0194	; [MEMORY MAPPED] PH Identifier 0 Length Register
-.equ	PHID0		= 0x0190	; [MEMORY MAPPED] PH ID0 Register
+.equ	PHID0		= 0x0190	; [MEMORY MAPPED] [___4 addrs___] PH ID0 Register
 .equ	LFIMR		= 0x018F	; [MEMORY MAPPED] LF Receiver Interrupt Mask Register
 .equ	LFCPR		= 0x018E	; [MEMORY MAPPED] LF Receiver Calibration Protect Register
 .equ	PHBCRR		= 0x0188	; [MEMORY MAPPED] Protocol Handler Bit Counter Read Register
@@ -314,7 +314,7 @@
 .equ	CLKOCR		= 0x0116	; [MEMORY MAPPED] Clock output control Register
 .equ	CLKOD		= 0x0115	; [MEMORY MAPPED] Clock output divider settings Register
 .equ	TRCDR		= 0xFF		; [MEMORY MAPPED] Trace Data Register
-.equ	TRCID		= 0xFC		; [MEMORY MAPPED] Trace ID Register
+.equ	TRCID		= 0xFC		; [MEMORY MAPPED] [___2 addrs___] Trace ID Register
 .equ	SP2SR		= 0xF9		; [MEMORY MAPPED] SPI2 Status Register
 .equ	SP2DR		= 0xF8		; [MEMORY MAPPED] SPI2 Data Register
 .equ	SP2CR		= 0xF7		; [MEMORY MAPPED] SPI2 control Register
@@ -413,22 +413,22 @@
 .equ	LFCALR2		= 0x91		; [MEMORY MAPPED] LF Receiver Calibration Register 2
 .equ	LFCALR1		= 0x90		; [MEMORY MAPPED] LF Receiver Calibration Register 1
 .equ	T5IMR		= 0x8F		; [MEMORY MAPPED] Timer5 Interrupt Mask Register
-.equ	T5CNT		= 0x8D		; [MEMORY MAPPED] Timer5 Counter
+.equ	T5CNT		= 0x8D		; [MEMORY MAPPED] [___2 addrs___] Timer5 Counter
 .equ	T5CCR		= 0x8C		; [MEMORY MAPPED] Timer5 Control Register
-.equ	T5OCR		= 0x8A		; [MEMORY MAPPED] Timer5 Output Compare Register
+.equ	T5OCR		= 0x8A		; [MEMORY MAPPED] [___2 addrs___] Timer5 Output Compare Register
 .equ	T5TEMP		= 0x89		; [MEMORY MAPPED] Timer5 Temp Register
 .equ	T4IMR		= 0x88		; [MEMORY MAPPED] Timer4 interrupt mask Register
 .equ	T4MRB		= 0x87		; [MEMORY MAPPED] Timer4 mode Register
 .equ	T4MRA		= 0x86		; [MEMORY MAPPED] Timer4 mode Register
-.equ	T4ICR		= 0x84		; [MEMORY MAPPED] Timer4 input capture Register
-.equ	T4COR		= 0x82		; [MEMORY MAPPED] Timer4 compare Register
-.equ	T4CNT		= 0x80		; [MEMORY MAPPED] Timer4 counter Register
+.equ	T4ICR		= 0x84		; [MEMORY MAPPED] [___2 addrs___] Timer4 input capture Register
+.equ	T4COR		= 0x82		; [MEMORY MAPPED] [___2 addrs___] Timer4 compare Register
+.equ	T4CNT		= 0x80		; [MEMORY MAPPED] [___2 addrs___] Timer4 counter Register
 .equ	T3IMR		= 0x7F		; [MEMORY MAPPED] Timer3 interrupt mask Register
 .equ	T3MRB		= 0x7E		; [MEMORY MAPPED] Timer3 mode Register
 .equ	T3MRA		= 0x7D		; [MEMORY MAPPED] Timer3 mode Register
-.equ	T3ICR		= 0x7B		; [MEMORY MAPPED] Timer3 input capture Register
-.equ	T3COR		= 0x79		; [MEMORY MAPPED] Timer3 compare Register
-.equ	T3CNT		= 0x77		; [MEMORY MAPPED] Timer3 counter Register
+.equ	T3ICR		= 0x7B		; [MEMORY MAPPED] [___2 addrs___] Timer3 input capture Register
+.equ	T3COR		= 0x79		; [MEMORY MAPPED] [___2 addrs___] Timer3 compare Register
+.equ	T3CNT		= 0x77		; [MEMORY MAPPED] [___2 addrs___] Timer3 counter Register
 .equ	T2IMR		= 0x76		; [MEMORY MAPPED] Timer2 Interrupt Mask Register
 .equ	T2MR		= 0x75		; [MEMORY MAPPED] Timer2 Mode Register
 .equ	T2COR		= 0x74		; [MEMORY MAPPED] Timer2 Compare Register
@@ -442,7 +442,7 @@
 .equ	PCMSK0		= 0x6C		; [MEMORY MAPPED] Pin change Mask Register 0
 .equ	EICRA		= 0x6B		; [MEMORY MAPPED] External Interrupt control Register
 .equ	SREG		= 0x3F		; Status Register
-.equ	SP		= 0x3D		; Stack Pointer
+.equ	SP		= 0x3D		; [___2 addrs___] Stack Pointer
 .equ	LFCR3		= 0x3B		; LF Receiver Control Register 3
 .equ	LFCR2		= 0x3A		; LF Receiver Control Register 2
 .equ	TPSR		= 0x39		; Transponder Status Register
@@ -464,7 +464,7 @@
 .equ	GPIOR2		= 0x25		; General Purpose I/O Register 2
 .equ	GPIOR1		= 0x24		; General Purpose I/O Register 1
 .equ	EEPR		= 0x23		; EEPROM Protection Register
-.equ	EEAR		= 0x21		; EEPROM Address Register
+.equ	EEAR		= 0x21		; [___2 addrs___] EEPROM Address Register
 .equ	EEDR		= 0x20		; EEPROM Data Register
 .equ	EECR		= 0x1F		; EEPROM Control Register
 .equ	AESSR		= 0x1E		; AES Status Register
@@ -496,6 +496,50 @@
 .equ	PRR2		= 0x02		; Power reduction register 2
 .equ	PRR1		= 0x01		; Power reduction Register 1
 .equ	GPIOR0		= 0x00		; General Purpose I/O Register 0
+;
+; ----------	REGISTERS PAIRS			------------------------
+;    PH CRC Checksum Register
+.equ	PHCSRH		= 0x01DF
+.equ	PHCSRL		= 0x01DE
+;    PH CRC Polynomial Register
+.equ	PHCRPH		= 0x01DD
+.equ	PHCRPL		= 0x01DC
+;    PH CRC Start Value Register
+.equ	PHCSTH		= 0x01DB
+.equ	PHCSTL		= 0x01DA
+;    Trace ID Register
+.equ	TRCIDH		= 0xFD
+.equ	TRCIDL		= 0xFC
+;    Timer5 Counter
+.equ	T5CNTH		= 0x8E
+.equ	T5CNTL		= 0x8D
+;    Timer5 Output Compare Register
+.equ	T5OCRH		= 0x8B
+.equ	T5OCRL		= 0x8A
+;    Timer4 input capture Register
+.equ	T4ICRH		= 0x85
+.equ	T4ICRL		= 0x84
+;    Timer4 compare Register
+.equ	T4CORH		= 0x83
+.equ	T4CORL		= 0x82
+;    Timer4 counter Register
+.equ	T4CNTH		= 0x81
+.equ	T4CNTL		= 0x80
+;    Timer3 input capture Register
+.equ	T3ICRH		= 0x7C
+.equ	T3ICRL		= 0x7B
+;    Timer3 compare Register
+.equ	T3CORH		= 0x7A
+.equ	T3CORL		= 0x79
+;    Timer3 counter Register
+.equ	T3CNTH		= 0x78
+.equ	T3CNTL		= 0x77
+;    Stack Pointer
+.equ	SPH		= 0x3E
+.equ	SPL		= 0x3D
+;    EEPROM Address Register
+.equ	EEARH		= 0x22
+.equ	EEARL		= 0x21
 
 
 ; ====	AES MODULE REGISTERS BITS DEFINITION		========
@@ -2373,12 +2417,12 @@
 ;#	.set	LB		= 0x03	; No memory lock features enabled
 ;#	.set	LOCKBITS_LOCKBIT= 0xFF \
 ;#				  &  (~LB_MASK | LB)
-;#	.message "====================="
-;#	.message "=====  Fuses  ======="
-;#	.message "LOW		", FUSES_LOW
-;#	.message "===== Lockbits ======"
-;#	.message " LOCKBIT	", LOCKBITS_LOCKBIT
-;#	.message "====================="
+;#	.message "===================="
+;#	.message "-----  Fuses  ------"
+;#	.message "LOW             ", FUSES_LOW
+;#	.message "----- Lockbits -----"
+;#	.message "LOCKBIT         ", LOCKBITS_LOCKBIT
+;#	.message "===================="
 ;#	
 ;#	.org 0x0000
 ;#	; Interrupt vectors begin
