@@ -21,38 +21,18 @@
   <xsl:param name="addrspace"/>
   <xsl:variable name="modnames" select="/avr-tools-device-file/devices/device/peripherals/module[instance/register-group[@address-space=$addrspace]]"/>
   <xsl:if test="count(exsl:node-set($modnames)) &gt; 0">
-   <!-- List all addr space registers -->
+   <!-- List all registers for the addr space -->
    <xsl:call-template name="header1">
     <xsl:with-param name="str" select="concat(translate($addrspace, 'abcdefghijklmnopqrstuvwxyz' , 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'), ' REGISTERS')"/>
    </xsl:call-template>
    <xsl:text>;&#10;</xsl:text>
    <xsl:for-each select="/avr-tools-device-file/modules/module[@name=exsl:node-set($modnames)/@name]/register-group/register[not(@name=preceding::register/@name)]">
     <xsl:sort select="@offset" order="descending"/>
-    <xsl:variable name="regs_offset">
-     <xsl:call-template name="MAPPED_IO_offset">
-      <xsl:with-param name="addrspace" select="$addrspace"/>
-      <xsl:with-param name="addr" select="@offset"/>
-     </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="captionmark">
-     <xsl:call-template name="MAPPED_IO_caption">
-      <xsl:with-param name="addrspace" select="$addrspace"/>
-      <xsl:with-param name="addr" select="@offset"/>
-     </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="captionregsize">
-     <xsl:if test="@size &gt; 1">
-      <xsl:value-of select="concat('[___', @size, ' addrs___] ')" indent="no"/>
-     </xsl:if>
-    </xsl:variable>
-    <xsl:call-template name="out">
-     <xsl:with-param name="name" select="@name"/>
-     <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset)"/>
-     <xsl:with-param name="valuebase" select="16"/>
-     <xsl:with-param name="comment" select="concat($captionmark, $captionregsize, @caption)"/>
+    <xsl:call-template name="listregister">
+     <xsl:with-param name="addrspace" select="$addrspace"/>
     </xsl:call-template>
    </xsl:for-each>
-   <!-- Add addr space register pairs -->
+   <!-- Add defs for register pairs -->
    <xsl:if test="count(/avr-tools-device-file/modules/module[@name=exsl:node-set($modnames)/@name]/register-group/register[@size=2])">
     <xsl:text>;&#10;</xsl:text>
     <xsl:call-template name="header3">
@@ -60,26 +40,12 @@
     </xsl:call-template>
     <xsl:for-each select="/avr-tools-device-file/modules/module[@name=exsl:node-set($modnames)/@name]/register-group/register[@size=2 and not(@name=preceding::register/@name)]">
      <xsl:sort select="@offset" order="descending"/>
-     <xsl:variable name="regs_offset">
-      <xsl:call-template name="MAPPED_IO_offset">
-       <xsl:with-param name="addrspace" select="$addrspace"/>
-       <xsl:with-param name="addr" select="@offset"/>
-      </xsl:call-template>
-     </xsl:variable>
-     <xsl:value-of select="concat(';    ', @caption, '&#10;')" indent="no"/>
-     <xsl:call-template name="out">
-      <xsl:with-param name="name" select="concat(@name, 'H')"/>
-      <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset, '+1')"/>
-      <xsl:with-param name="valuebase" select="16"/>
-     </xsl:call-template>
-     <xsl:call-template name="out">
-      <xsl:with-param name="name" select="concat(@name, 'L')"/>
-      <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset)"/>
-      <xsl:with-param name="valuebase" select="16"/>
+     <xsl:call-template name="listregisterpair">
+      <xsl:with-param name="addrspace" select="$addrspace"/>
      </xsl:call-template>
     </xsl:for-each>
    </xsl:if>
-   <!-- Describe registers bits by functional modules -->
+   <!-- Def registers bits by functional modules -->
    <xsl:for-each select="$modnames">
     <xsl:variable name="modname" select="@name"/>
     <xsl:if test="count(/avr-tools-device-file/modules/module[@name=$modname]/register-group/register/bitfield)">
@@ -91,6 +57,80 @@
     </xsl:if>
    </xsl:for-each>
   </xsl:if>
+ </xsl:template>
+
+
+ <xsl:template name="listregister">
+  <xsl:param name="addrspace"/>
+  <xsl:variable name="regs_offset">
+   <xsl:call-template name="MAPPED_IO_offset">
+    <xsl:with-param name="addrspace" select="$addrspace"/>
+    <xsl:with-param name="addr" select="@offset"/>
+   </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="captionmark">
+   <xsl:call-template name="MAPPED_IO_caption">
+    <xsl:with-param name="addrspace" select="$addrspace"/>
+    <xsl:with-param name="addr" select="@offset"/>
+   </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="captionregsize">
+   <xsl:if test="@size &gt; 1">
+    <xsl:value-of select="concat('[___', @size, ' addrs___] ')" indent="no"/>
+   </xsl:if>
+  </xsl:variable>
+  <xsl:call-template name="out">
+   <xsl:with-param name="name" select="@name"/>
+   <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset)"/>
+   <xsl:with-param name="valuebase" select="16"/>
+   <xsl:with-param name="comment" select="concat($captionmark, $captionregsize, @caption)"/>
+  </xsl:call-template>
+ </xsl:template>
+
+ <xsl:template name="listregisterpair">
+  <xsl:param name="addrspace"/>
+  <xsl:variable name="regs_offset">
+   <xsl:call-template name="MAPPED_IO_offset">
+    <xsl:with-param name="addrspace" select="$addrspace"/>
+    <xsl:with-param name="addr" select="@offset"/>
+   </xsl:call-template>
+  </xsl:variable>
+  <xsl:value-of select="concat(';    ', @caption, '&#10;')" indent="no"/>
+  <xsl:variable name="nameh" select="concat(@name, 'H')"/>
+  <xsl:variable name="namel" select="concat(@name, 'L')"/>
+  <xsl:call-template name="out">
+   <xsl:with-param name="mode">
+    <xsl:call-template name="regnamemode">
+     <xsl:with-param name="regname" select="$nameh"/>
+    </xsl:call-template>
+   </xsl:with-param>
+   <xsl:with-param name="name" select="$nameh"/>
+   <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset, '+1')"/>
+   <xsl:with-param name="valuebase" select="16"/>
+  </xsl:call-template>
+  <xsl:call-template name="out">
+   <xsl:with-param name="mode">
+    <xsl:call-template name="regnamemode">
+     <xsl:with-param name="regname" select="$namel"/>
+    </xsl:call-template>
+   </xsl:with-param>
+   <xsl:with-param name="name" select="concat(@name, 'L')"/>
+   <xsl:with-param name="value" select="concat(@offset, '-', $regs_offset)"/>
+   <xsl:with-param name="valuebase" select="16"/>
+  </xsl:call-template>
+ </xsl:template>
+
+ <!-- Check for register re-definitions -->
+ <xsl:template name="regnamemode">
+  <xsl:param name="regname"/>
+  <xsl:choose>
+   <xsl:when test="count(//register[@name=$regname])">
+    <xsl:value-of select="'nequ'"/>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:value-of select="'equ'"/>
+   </xsl:otherwise>
+  </xsl:choose>
  </xsl:template>
 
 
